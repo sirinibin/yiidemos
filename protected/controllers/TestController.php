@@ -220,7 +220,7 @@ class TestController extends Controller
 	}
         public function actionGeneratePdf() 
 	{
-		Yii::import('application.extensions.giiplus2.bootstrap.*');
+		Yii::import('application.extensions.giiplus.bootstrap.*');
 		require_once('tcpdf/tcpdf.php');
 		require_once('tcpdf/config/lang/eng.php');
 
