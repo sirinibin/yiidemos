@@ -1,0 +1,92 @@
+2012/06/19 01:13:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "g".' in /var/www/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('g')
+#1 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/test3/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test3/index.php?r=g
+---
+2012/06/19 01:14:12 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootMenu" is invalid. Make sure it points to an existing directory or file.' in /var/www/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/test3/protected/views/test/index.php(39): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/test3/...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/test3/...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/test3/...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#8 /var/www/test3/protected/controllers/TestController.php(158): CController->render('index', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(276): CController->run('')
+#19 /var/www/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#20 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/test3/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/test3/index.php?r=test
+HTTP_REFERER=http://localhost/test3/index.php?r=gii/bootstrap
+---
+2012/06/19 01:14:47 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootMenu" is invalid. Make sure it points to an existing directory or file.' in /var/www/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/test3/protected/views/test/index.php(39): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/test3/...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/test3/...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/test3/...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#8 /var/www/test3/protected/controllers/TestController.php(158): CController->render('index', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(276): CController->run('')
+#19 /var/www/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#20 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/test3/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/test3/index.php?r=test
+HTTP_REFERER=http://localhost/test3/index.php?r=gii/bootstrap
+---
+2012/06/19 01:14:49 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootMenu" is invalid. Make sure it points to an existing directory or file.' in /var/www/yii/framework/YiiBase.php:343
+Stack trace:
+#0 /var/www/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/test3/protected/views/test/index.php(39): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yii/framework/web/CBaseController.php(127): require('/var/www/test3/...')
+#5 /var/www/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/test3/...', Array, true)
+#6 /var/www/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/test3/...', Array, true)
+#7 /var/www/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#8 /var/www/test3/protected/controllers/TestController.php(158): CController->render('index', Array)
+#9 /var/www/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#10 /var/www/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 /var/www/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /var/www/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yii/framework/web/CController.php(292): CFilterChain->run()
+#17 /var/www/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yii/framework/web/CWebApplication.php(276): CController->run('')
+#19 /var/www/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#20 /var/www/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/test3/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/test3/index.php?r=test
+HTTP_REFERER=http://localhost/test3/index.php?r=gii/bootstrap
+---
