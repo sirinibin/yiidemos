@@ -5,6 +5,23 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+if (isset($_SERVER['PLATFORM'])) {
+  if ($_SERVER['PLATFORM'] == 'pagoda') {
+    $db_name = "yiidemo";
+    $db_user = "aisha";
+    $db_host = "tunnel.pagodabox.com;mysql:port=3306";
+    $db_password = "1bn6mh0P";
+  } 
+}
+else 
+  {
+      $db_name="test";
+      $db_user="root";
+      $db_host="localhost";
+      $db_password="123";
+  }
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'My Web Application',
@@ -74,10 +91,10 @@ return array(
 		// uncomment the following to use a MySQL database
 		
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=test',
+			'connectionString' => 'mysql:host='.$db_host.';dbname='.$db_name,
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '123',
+			'username' => $db_user,
+			'password' => $db_password,
 			'charset' => 'utf8',
 		),
 		

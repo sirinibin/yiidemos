@@ -25,11 +25,11 @@ $i = 0;
  * First server
  */
 //tunnel.pagodabox.com:3308
-      $db_name="691014_de_rentarentner_placement";
+      $db_name="yiidemo";
 
-      $db_user="tifany";
+      $db_user="aisha";
       $db_host="tunnel.pagodabox.com;mysql:port=3306";
-      $db_password="NMRrGJQ7";    
+      $db_password="1bn6mh0P";    
 $i++;
 /* Authentication type */
 //$cfg['Servers'][$i]['auth_type'] = 'cookie';
