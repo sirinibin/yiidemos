@@ -1,49 +1,29 @@
-<style>
-tr th {
-	font-weight:bold;
-	border-bottom:1px solid blue;
-}
+<?php echo"<?php";?> if ($model !== null):?>
+<table border="1">
 
-.even {
-	background-color:#EFEFEF;
-}
-</style>
-
-<?php echo "<?php"; ?> $this->widget('bootstrap.widgets.BootGridView',array(
-        'type'=>'striped',
-	'dataProvider'=>$dataProvider,
-	'template'=>"{items}",
-	'columns'=>array(
+	<tr>
 <?php
-$count=0;
-foreach($this->tableSchema->columns as $column)
-{
-	if(++$count==7)
-		echo "\t\t/*\n";
-        ?>
-         array(
+  foreach($this->tableSchema->columns as $column)
+        {
+  ?>
+		<th width="80px">
+		      <?php echo $column->name; ?>
+		</th>
+ <?php } ?>
+	</tr>
+	<?php echo "<?php";?> foreach($model as $row): ?>
+	<tr>
         <?php
-	echo "\t\t'name'=>'".$column->name."',\n";
-         ?>
-        <?php
-	echo "\t\t'sortable'=>false,\n";
-         ?>
-        <?php
-	echo "\t\t'value'=>'\$data->".$column->name."',\n";
-         ?>
-         <?php
-	echo "\t\t'headerHtmlOptions'=>array('width'=>'80'),\n";
-         ?>
-         <?php
-	echo "\t\t'htmlOptions'=>array('width'=>'80'),\n";
-         ?>
-        
-             ),     
-<?php
-          
-}
-if($count>=7)
-	echo "\t\t*/\n";
-?>
-	),
-)); ?>
+  foreach($this->tableSchema->columns as $column)
+        {
+          ?>
+		<td>
+			<?php echo "<?php"; ?> echo $row-><?php echo $column->name; ?>; ?>
+		</td>
+       <?php 
+        }
+     ?>
+	</tr>
+     <?php echo"<?php"; ?> endforeach; ?>
+</table>
+<?php echo"<?php";?> endif; ?>

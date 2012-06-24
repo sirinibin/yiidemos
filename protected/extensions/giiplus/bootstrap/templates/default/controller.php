@@ -159,7 +159,6 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			
 		}
                  $session['<?php echo $this->modelClass; ?>_records']=Test::model()->findAll($criteria); 
-                 $session['<?php echo $this->modelClass; ?>_dataProvider']=$model->search();
 
                 $this->render('index',array(
 			'model'=>$model,
@@ -228,21 +227,24 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	}
         public function actionGeneratePdf() 
 	{
+            $session=new CHttpSession;
+            $session->open();
 		Yii::import('application.extensions.giiplus.bootstrap.*');
 		require_once('tcpdf/tcpdf.php');
 		require_once('tcpdf/config/lang/eng.php');
 
 
-                if(isset($session['<?php echo $this->modelClass; ?>_dataProvider']))
-                 {
-                  $dataProvider=$session['<?php echo $this->modelClass; ?>_dataProvider'];
-                 }
-                else
- 		 $dataProvider = new CActiveDataProvider('<?php echo $this->modelClass; ?>');
+               if(isset($session['<?php echo $this->modelClass; ?>_records']))
+               {
+                $model=$session['<?php echo $this->modelClass; ?>_records'];
+               }
+               else
+                 $model = <?php echo $this->modelClass; ?>::model()->findAll();
 
+		
 
 		$html = $this->renderPartial('expenseGridtoReport', array(
-			'dataProvider'=>$dataProvider
+			'model'=>$model
 		), true);
 		
 		//die($html);

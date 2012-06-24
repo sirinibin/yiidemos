@@ -27,13 +27,13 @@ class TestController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','create','update','GeneratePdf','GenerateExcel','delete'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			/*array('allow', // allow authenticated user to perform 'create' and 'update' actions
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update','GeneratePdf','GenerateExcel'),
 				'users'=>array('@'),
-			),*/
+			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
 				'users'=>array('admin'),
@@ -151,7 +151,6 @@ class TestController extends Controller
                     			
 		}
                  $session['Test_records']=Test::model()->findAll($criteria); 
-                 $session['Test_dataProvider']=$model->search();
 
                 $this->render('index',array(
 			'model'=>$model,
@@ -220,21 +219,24 @@ class TestController extends Controller
 	}
         public function actionGeneratePdf() 
 	{
+            $session=new CHttpSession;
+            $session->open();
 		Yii::import('application.extensions.giiplus.bootstrap.*');
 		require_once('tcpdf/tcpdf.php');
 		require_once('tcpdf/config/lang/eng.php');
 
 
-                if(isset($session['Test_dataProvider']))
-                 {
-                  $dataProvider=$session['Test_dataProvider'];
-                 }
-                else
- 		 $dataProvider = new CActiveDataProvider('Test');
+               if(isset($session['Test_records']))
+               {
+                $model=$session['Test_records'];
+               }
+               else
+                 $model = Test::model()->findAll();
 
+		
 
 		$html = $this->renderPartial('expenseGridtoReport', array(
-			'dataProvider'=>$dataProvider
+			'model'=>$model
 		), true);
 		
 		//die($html);

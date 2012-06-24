@@ -1,42 +1,26 @@
-<style>
-tr th {
-	font-weight:bold;
-	border-bottom:1px solid blue;
-}
+<?php if ($model !== null):?>
+<table border="1">
 
-.even {
-	background-color:#EFEFEF;
-}
-</style>
-
-<?php $this->widget('bootstrap.widgets.BootGridView',array(
-        'type'=>'striped',
-	'dataProvider'=>$dataProvider,
-	'template'=>"{items}",
-	'columns'=>array(
-         array(
-        		'name'=>'id',
-        		'sortable'=>false,
-        		'value'=>'$data->id',
-         		'headerHtmlOptions'=>array('width'=>'80'),
-         		'htmlOptions'=>array('width'=>'80'),
-        
-             ),     
-         array(
-        		'name'=>'name',
-        		'sortable'=>false,
-        		'value'=>'$data->name',
-         		'headerHtmlOptions'=>array('width'=>'80'),
-         		'htmlOptions'=>array('width'=>'80'),
-        
-             ),     
-         array(
-        		'name'=>'age',
-        		'sortable'=>false,
-        		'value'=>'$data->age',
-         		'headerHtmlOptions'=>array('width'=>'80'),
-         		'htmlOptions'=>array('width'=>'80'),
-        
-             ),     
-	),
-)); ?>
+	<tr>
+		<th width="80px">
+		      id		</th>
+ 		<th width="80px">
+		      name		</th>
+ 		<th width="80px">
+		      age		</th>
+ 	</tr>
+	<?php foreach($model as $row): ?>
+	<tr>
+        		<td>
+			<?php echo $row->id; ?>
+		</td>
+       		<td>
+			<?php echo $row->name; ?>
+		</td>
+       		<td>
+			<?php echo $row->age; ?>
+		</td>
+       	</tr>
+     <?php endforeach; ?>
+</table>
+<?php endif; ?>
