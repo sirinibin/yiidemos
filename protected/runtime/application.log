@@ -98,3 +98,43 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/test3/index.php?r=gii/bootstra
 ---
+2012/07/03 15:45:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "g".' in /var/www/test3/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('g')
+#1 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/test3/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test3/index.php?r=g
+---
+2012/07/03 15:45:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "te".' in /var/www/test3/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('te')
+#1 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/test3/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test3/index.php?r=te
+---
+2012/07/03 15:45:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "tes".' in /var/www/test3/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('tes')
+#1 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/test3/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test3/index.php?r=tes
+---
+2012/07/03 15:49:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gi".' in /var/www/test3/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('gi')
+#1 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/test3/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test3/index.php?r=gi
+---
+2012/07/09 12:26:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "g".' in /var/www/test3/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('g')
+#1 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/test3/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test3/index.php?r=g
+---

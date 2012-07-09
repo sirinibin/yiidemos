@@ -52,6 +52,7 @@ $this->endWidget();
 <?php $this->widget('bootstrap.widgets.BootGridView',array(
 	'id'=>'test-grid',
 	'dataProvider'=>$model->search(),
+        'type'=>'striped bordered condensed',
         'template'=>'{summary}{pager}{items}{pager}',
 	'columns'=>array(
 		'id',
