@@ -40,10 +40,11 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+           //Yii::app()->clientScript->registerCoreScript("jquery");
            header('P3P: CP="HONK"');
            $session=new CHttpSession; //making session object
            $session->open();         
- 
+           /*
           $facebook = new Facebook(array(
           'appId'  => Yii::app()->params['fb_app_id'],
           'secret' => Yii::app()->params['fb_app_secret'],
@@ -62,10 +63,10 @@ class SiteController extends Controller
 
              echo "please login";
              }
-
+               */
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index',array('userId'=>$userId));
+		$this->render('index');
 	}
 
 	/**

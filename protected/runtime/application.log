@@ -211,3 +211,14 @@ REQUEST_URI=/test3/
 2012/08/09 01:34:23 [error] [exception.FacebookApiException] OAuthException: An active access token must be used to query information about the current user.
 REQUEST_URI=/test3/
 ---
+2012/08/09 02:58:04 [error] [php] Undefined variable: userId (/var/www/test3/protected/controllers/SiteController.php:69)
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/test3/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/test3/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#3 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/test3/index.php(13): CWebApplication->run()
+REQUEST_URI=/test3/
+in /var/www/test3/protected/controllers/SiteController.php (69)
+in /var/www/test3/index.php (13)
