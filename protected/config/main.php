@@ -33,6 +33,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+                'application.extensions.facebook.*', 
 	),
 
 	'modules'=>array(
@@ -124,5 +125,7 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+                'fb_app_id'=>'174683815908585',
+                'fb_app_secret'=>'16c1ee8315499025482b00e8d2ea229c',
 	),
 );

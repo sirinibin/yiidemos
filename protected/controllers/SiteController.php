@@ -20,16 +20,52 @@ class SiteController extends Controller
 			),
 		);
 	}
+       /*
+        public function actionAskPermission()
+        {
+         $session=new CHttpSession;
+         $session->open(); 
+        
+         
+         $auth_url = "https://www.facebook.com/dialog/oauth?client_id=".Yii::app()->controller->module->app_id. "&redirect_uri=" . urlencode($session['page_link']."?sk=app_".Yii::app()->controller->module->app_id)."&scope=email,user_location";
+                  
+         echo("<script> top.location.href='" . $auth_url . "'</script>");
+             
 
+        }
+         */
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
 	{
+           header('P3P: CP="HONK"');
+           $session=new CHttpSession; //making session object
+           $session->open();         
+ 
+          $facebook = new Facebook(array(
+          'appId'  => Yii::app()->params['fb_app_id'],
+          'secret' => Yii::app()->params['fb_app_secret'],
+           ));
+         //  $me=$facebook->api('/me');
+          //  echo "id:".Yii::app()->params['fb_app_id']."|"."secret:".Yii::app()->params['fb_app_secret'];
+           $userId = $facebook->getUser();
+            if($userId!=0)
+             {
+              $me=$facebook->api('/me');
+              $session['me']=$me;                
+              print_r($me);
+             }
+            else
+             {
+
+             echo "please login";
+             }
+
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->render('index',array('userId'=>$userId));
 	}
 
 	/**
