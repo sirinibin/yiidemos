@@ -222,3 +222,47 @@ Stack trace:
 REQUEST_URI=/test3/
 in /var/www/test3/protected/controllers/SiteController.php (69)
 in /var/www/test3/index.php (13)
+2012/08/09 03:12:50 [error] [exception.CException] exception 'CException' with message 'Alias "application.widgets.facebook.Facebook" is invalid. Make sure it points to an existing PHP file.' in /var/www/test3/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('application.wid...', true)
+#1 /var/www/test3/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'application.wid...', Array)
+#2 /var/www/test3/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('application.wid...', Array)
+#3 /var/www/test3/protected/views/site/index.php(2): CBaseController->widget('application.wid...', Array)
+#4 /var/www/test3/yii/framework/web/CBaseController.php(127): require('/var/www/test3/...')
+#5 /var/www/test3/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/test3/...', NULL, true)
+#6 /var/www/test3/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/test3/...', NULL, true)
+#7 /var/www/test3/yii/framework/web/CController.php(783): CController->renderPartial('index', NULL, true)
+#8 /var/www/test3/protected/controllers/SiteController.php(69): CController->render('index')
+#9 /var/www/test3/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#10 /var/www/test3/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/test3/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#12 /var/www/test3/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/test3/yii/framework/web/CWebApplication.php(276): CController->run('')
+#14 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#15 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /var/www/test3/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/test3/
+---
+2012/08/09 03:38:05 [error] [php] Undefined variable: facebook (/var/www/test3/protected/controllers/SiteController.php:55)
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/test3/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/test3/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#3 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/test3/index.php(13): CWebApplication->run()
+REQUEST_URI=/test3/
+in /var/www/test3/protected/controllers/SiteController.php (55)
+in /var/www/test3/index.php (13)
+2012/08/09 03:39:23 [error] [php] Undefined variable: facebook (/var/www/test3/protected/controllers/SiteController.php:56)
+Stack trace:
+#0 /var/www/test3/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/test3/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/test3/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#3 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/test3/index.php(13): CWebApplication->run()
+REQUEST_URI=/test3/
+in /var/www/test3/protected/controllers/SiteController.php (56)
+in /var/www/test3/index.php (13)

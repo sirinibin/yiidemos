@@ -43,15 +43,23 @@ class SiteController extends Controller
            //Yii::app()->clientScript->registerCoreScript("jquery");
            header('P3P: CP="HONK"');
            $session=new CHttpSession; //making session object
-           $session->open();         
-           /*
+           $session->open();       
+           
+           if(isset($_REQUEST['name']))
+             { 
+              echo "name:".$_REQUEST['name'];
+              return;
+             }  
+          
           $facebook = new Facebook(array(
           'appId'  => Yii::app()->params['fb_app_id'],
           'secret' => Yii::app()->params['fb_app_secret'],
            ));
+           
          //  $me=$facebook->api('/me');
           //  echo "id:".Yii::app()->params['fb_app_id']."|"."secret:".Yii::app()->params['fb_app_secret'];
-           $userId = $facebook->getUser();
+           
+            $userId = $facebook->getUser();
             if($userId!=0)
              {
               $me=$facebook->api('/me');
@@ -63,7 +71,7 @@ class SiteController extends Controller
 
              echo "please login";
              }
-               */
+                
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 		$this->render('index');

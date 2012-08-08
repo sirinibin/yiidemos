@@ -59,6 +59,9 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
+                'session' => array(
+                        'autoStart'=>true,  
+                            ), 
                 'bootstrap'=>array(
                         'class'=>'ext.bootstrap.components.Bootstrap', // assuming you extracted bootstrap under extensions
                         'coreCss'=>true, // whether to register the Bootstrap core CSS (bootstrap.min.css), defaults to true
