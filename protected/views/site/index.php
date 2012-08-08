@@ -20,7 +20,8 @@
               xfbml      : true  // parse XFBML
             });
         FB.Event.subscribe('auth.login', function(response) {
-          alert("ok");  
+          alert("ok");
+          alert(response);  
           window.location.reload();
         });
           };
