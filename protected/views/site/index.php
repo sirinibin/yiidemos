@@ -14,7 +14,7 @@
           window.fbAsyncInit = function() {
             FB.init({
               appId      : '<?php echo Yii::app()->params["fb_app_id"]; ?>', // App ID
-              channelUrl : '//localhost', // Channel File
+              channelUrl : '//www.yiidemos.pagodabox.com/', // Channel File
               status     : true, // check login status
               cookie     : true, // enable cookies to allow the server to access the session
               xfbml      : true  // parse XFBML
