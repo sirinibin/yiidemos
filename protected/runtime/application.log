@@ -405,3 +405,45 @@ Stack trace:
 #26 {main}
 REQUEST_URI=/test3/
 ---
+2012/08/09 15:43:57 [error] [php] include(ii.php): failed to open stream: No such file or directory (/var/www/test3/yii/framework/YiiBase.php:418)
+Stack trace:
+#0 /var/www/test3/protected/controllers/SiteController.php(176): spl_autoload_call()
+#1 /var/www/test3/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogout()
+#2 /var/www/test3/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#3 /var/www/test3/yii/framework/web/CController.php(287): SiteController->runAction()
+#4 /var/www/test3/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#5 /var/www/test3/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#6 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#7 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#8 /var/www/test3/index.php(13): CWebApplication->run()
+REQUEST_URI=/test3/index.php?r=site/logout&_=1344507237303
+in /var/www/test3/protected/controllers/SiteController.php (176)
+in /var/www/test3/index.php (13)
+2012/08/09 15:43:59 [error] [php] include(ii.php): failed to open stream: No such file or directory (/var/www/test3/yii/framework/YiiBase.php:418)
+Stack trace:
+#0 /var/www/test3/protected/controllers/SiteController.php(176): spl_autoload_call()
+#1 /var/www/test3/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogout()
+#2 /var/www/test3/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#3 /var/www/test3/yii/framework/web/CController.php(287): SiteController->runAction()
+#4 /var/www/test3/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#5 /var/www/test3/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#6 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#7 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#8 /var/www/test3/index.php(13): CWebApplication->run()
+REQUEST_URI=/test3/index.php?r=site/logout&_=1344507239590
+in /var/www/test3/protected/controllers/SiteController.php (176)
+in /var/www/test3/index.php (13)
+2012/08/09 15:44:01 [error] [php] include(ii.php): failed to open stream: No such file or directory (/var/www/test3/yii/framework/YiiBase.php:418)
+Stack trace:
+#0 /var/www/test3/protected/controllers/SiteController.php(176): spl_autoload_call()
+#1 /var/www/test3/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionLogout()
+#2 /var/www/test3/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#3 /var/www/test3/yii/framework/web/CController.php(287): SiteController->runAction()
+#4 /var/www/test3/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#5 /var/www/test3/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#6 /var/www/test3/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#7 /var/www/test3/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#8 /var/www/test3/index.php(13): CWebApplication->run()
+REQUEST_URI=/test3/index.php?r=site/logout&_=1344507241834
+in /var/www/test3/protected/controllers/SiteController.php (176)
+in /var/www/test3/index.php (13)
