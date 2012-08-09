@@ -34,7 +34,51 @@
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
-		)); ?>
+		)); 
+
+              
+$this->widget('bootstrap.widgets.BootNavbar', array(
+    'fixed'=>false,
+    'brand'=>CHtml::encode(Yii::app()->name),
+    'brandUrl'=>'#',
+    'collapse'=>true, // requires bootstrap-responsive.css
+    //'htmlOptions'=>array('class'=>'span14 offset2'),
+    'items'=>array(
+        array(
+            'class'=>'bootstrap.widgets.BootMenu',
+            'items'=>array(
+                array('label'=>'Home', 'url'=>Yii::app()->createUrl('site/index'), 'active'=>true),
+                 array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
+               
+            ),
+        ),
+      //  '<form class="navbar-search" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',
+      '<div class="pull-right">',
+           (Yii::app()->user->isGuest) ? '<div class="span2"><b>':'<div><b>',
+            
+       !Yii::app()->user->isGuest&&!Yii::app()->user->hasState('FB') ?  "":array(
+            	'class'=>'FbLogin',
+            	//'htmlOptions'=>array('class'=>'pull-right'),
+            	'appId'=>'271271732958999',
+		'secretId'=>'54bc6d84aa1df015d195b203dbeb3ef6',
+		'logintable'=>'User',
+		'loginfield'=>'fbid',
+		),
+         (!Yii::app()->user->hasState('FB')||Yii::app()->user->isGuest) ?  array(
+            'class'=>'bootstrap.widgets.BootMenu',
+            //'htmlOptions'=>array('class'=>'pull-right'),
+            'items'=>array(
+           	         Yii::app()->user->isGuest ? array('label'=>'Login', 'url'=>Yii::app()->createUrl('site/login')) : array('label'=>Yii::app()->user->name.'(Logout)', 'url'=>Yii::app()->createUrl('site/logout')), 
+            ), 
+            ) : '',
+            
+            
+            '</b></div></div>',     
+    ),
+    
+));
+         
+?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(

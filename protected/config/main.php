@@ -33,7 +33,8 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.extensions.facebook.*', 
+               // 'application.extensions.facebook.*', 
+                'application.extensions.fb.*', 
 	),
 
 	'modules'=>array(

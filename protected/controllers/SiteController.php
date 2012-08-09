@@ -20,6 +20,24 @@ class SiteController extends Controller
 			),
 		);
 	}
+
+        public function actionFacebooklogin()
+       {
+       Yii::import('ext.facebook.*');
+        $ui = new FacebookUserIdentity(Yii::app()->params['fb_app_id'],Yii::app()->params['fb_app_secret']);
+        if ($ui->authenticate()) {
+        $user=Yii::app()->user;
+        $user->login($ui);
+        $this->redirect($user->returnUrl);
+    } else {
+        throw new CHttpException(401, $ui->error);
+    }
+       }  
+       	public function actionFblogin()
+	{
+		$this->render('fblogin');
+	}  
+
        /*
         public function actionAskPermission()
         {
@@ -44,18 +62,29 @@ class SiteController extends Controller
            header('P3P: CP="HONK"');
            $session=new CHttpSession; //making session object
            $session->open();       
-           
+          /* 
            if(isset($_REQUEST['name']))
              { 
               echo "name:".$_REQUEST['name'];
               return;
              }  
-          
+           */
+            /*
           $facebook = new Facebook(array(
           'appId'  => Yii::app()->params['fb_app_id'],
           'secret' => Yii::app()->params['fb_app_secret'],
            ));
            
+           $signedRequest=$facebook->getSignedRequest();
+            if($signedRequest)
+             {
+                print_r($signedRequest);
+             }
+            else
+            {
+             echo "No signed request";
+            }
+              
          //  $me=$facebook->api('/me');
           //  echo "id:".Yii::app()->params['fb_app_id']."|"."secret:".Yii::app()->params['fb_app_secret'];
            
@@ -68,13 +97,14 @@ class SiteController extends Controller
              }
             else
              {
-
-             echo "please login";
-             }
+             echo "Not logged in";
+             } 
+              */
+              $userId=0;
                 
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$this->render('index',array('userId'=>$userId));
 	}
 
 	/**
@@ -143,6 +173,7 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
+                ii::app()->user->setState('FB',NULL);
 		$this->redirect(Yii::app()->homeUrl);
 	}
 }

@@ -5,9 +5,5 @@
  * under Apache 2.0 License (http://www.apache.org/licenses/LICENSE-2.0.html).
  *
  */
-Yii::import('ext.facebook.*');
-Yii::import('ext.facebook.lib.*');
-
-class FacebookComponent extends CComponent {
+class FacebookException extends CException {
 }
-?>
