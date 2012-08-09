@@ -30,4 +30,21 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_NONE;
 		return !$this->errorCode;
 	}
+      public function fbauthenticate()
+	{
+		//$fbId=$this->username;
+		//$users=User::model()->find('fbid=:fbid',array(':fbid'=>$fbId));
+		//if($users==NULL)
+		//	$this->errorCode=self::ERROR_USERNAME_INVALID;
+		//else
+		{//	$this->errorCode=self::ERROR_NONE;
+		//	$this->_id=$users->id;
+		//	$this->username=$users->name;
+			$this->setState('FB', $this->username);
+		//	$this->setState('role', $users->role);
+			
+		}
+                  return(true);
+		//return !$this->errorCode;
+	}
 }
