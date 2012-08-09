@@ -59,10 +59,10 @@ $this->widget('bootstrap.widgets.BootNavbar', array(
        !Yii::app()->user->isGuest&&!Yii::app()->user->hasState('FB') ?  "":array(
             	'class'=>'FbLogin',
             	//'htmlOptions'=>array('class'=>'pull-right'),
-            	'appId'=>'271271732958999',
-		'secretId'=>'54bc6d84aa1df015d195b203dbeb3ef6',
-		'logintable'=>'User',
-		'loginfield'=>'fbid',
+            	'appId'=>Yii::app()->params['fb_app_id'],
+		'secretId'=>Yii::app()->params['fb_app_secret'],
+		//'logintable'=>'User',
+		//'loginfield'=>'fbid',
 		),
          (!Yii::app()->user->hasState('FB')||Yii::app()->user->isGuest) ?  array(
             'class'=>'bootstrap.widgets.BootMenu',
