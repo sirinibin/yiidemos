@@ -40,7 +40,7 @@ $this->widget('bootstrap.widgets.BootNavbar', array(
             'class'=>'bootstrap.widgets.BootMenu',
             'items'=>array(
                 array('label'=>'Giiplus demo', 'url'=>Yii::app()->createUrl('test/'), 'active'=>true),
-                array('label'=>'Ajax form submit demo', 'url'=>Yii::app()->createUrl('person/ajax')),
+                array('label'=>'Ajax form submit demo', 'url'=>Yii::app()->createUrl('test/')),
             //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
                
             ),

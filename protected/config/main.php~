@@ -16,7 +16,7 @@ if (isset($_SERVER['PLATFORM'])) {
 }
 else 
   {
-      $db_name="yiidemos";
+      $db_name="test";
       $db_user="root";
       $db_host="localhost";
       $db_password="123";

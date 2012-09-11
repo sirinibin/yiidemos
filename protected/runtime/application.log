@@ -447,3 +447,80 @@ Stack trace:
 REQUEST_URI=/test3/index.php?r=site/logout&_=1344507241834
 in /var/www/test3/protected/controllers/SiteController.php (176)
 in /var/www/test3/index.php (13)
+2012/09/11 23:13:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "test".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('test')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('test')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/test')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/test
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/index
+---
+2012/09/11 23:13:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "test".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('test')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('test')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/test')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/test
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/index
+---
+2012/09/11 23:13:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'test.test' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `test`.
+in /var/www/yiidemos/protected/controllers/TestController.php (135)
+in /var/www/yiidemos/index.php (13)
+2012/09/11 23:13:51 [error] [exception.CDbException] exception 'CDbException' with message 'The table "test" for active record class "Test" cannot be found in the database.' in /var/www/yiidemos/yii/framework/db/ar/CActiveRecord.php:2264
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/db/ar/CActiveRecord.php(379): CActiveRecordMetaData->__construct(Object(Test))
+#1 /var/www/yiidemos/yii/framework/db/ar/CActiveRecord.php(394): CActiveRecord::model('Test')
+#2 /var/www/yiidemos/yii/framework/db/ar/CActiveRecord.php(78): CActiveRecord->getMetaData()
+#3 /var/www/yiidemos/protected/controllers/TestController.php(135): CActiveRecord->__construct('search')
+#4 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#5 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#6 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#7 /var/www/yiidemos/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#8 /var/www/yiidemos/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#9 /var/www/yiidemos/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#10 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#11 /var/www/yiidemos/yii/framework/web/CController.php(292): CFilterChain->run()
+#12 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#14 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#15 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /var/www/yiidemos/index.php(13): CApplication->run()
+#17 {main}
+REQUEST_URI=/yiidemos/index.php?r=test
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/test
+---
+2012/09/11 23:14:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "test".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('test')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('test')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/test')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/test
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/index
+---
+2012/09/11 23:41:52 [warning] [application] Failed to set unsafe attribute "name" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/11 23:41:52 [warning] [application] Failed to set unsafe attribute "age" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/11 23:43:34 [warning] [application] Failed to set unsafe attribute "name" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/11 23:43:34 [warning] [application] Failed to set unsafe attribute "age" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/11 23:43:39 [warning] [application] Failed to set unsafe attribute "name" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/11 23:43:39 [warning] [application] Failed to set unsafe attribute "age" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
