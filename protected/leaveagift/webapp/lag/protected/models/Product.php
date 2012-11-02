@@ -1,0 +1,219 @@
+<?php
+
+/**
+ * This is the model class for table "ps_product".
+ *
+ * The followings are the available columns in table 'ps_product':
+ * @property string $id_product
+ * @property string $id_supplier
+ * @property string $id_manufacturer
+ * @property string $id_tax_rules_group
+ * @property string $id_category_default
+ * @property string $id_color_default
+ * @property integer $on_sale
+ * @property integer $online_only
+ * @property string $ean13
+ * @property string $upc
+ * @property string $ecotax
+ * @property integer $quantity
+ * @property string $minimal_quantity
+ * @property string $price
+ * @property string $wholesale_price
+ * @property string $unity
+ * @property string $unit_price_ratio
+ * @property string $additional_shipping_cost
+ * @property string $reference
+ * @property string $supplier_reference
+ * @property string $location
+ * @property double $width
+ * @property double $height
+ * @property double $depth
+ * @property double $weight
+ * @property string $out_of_stock
+ * @property integer $quantity_discount
+ * @property integer $customizable
+ * @property integer $uploadable_files
+ * @property integer $text_fields
+ * @property integer $active
+ * @property integer $available_for_order
+ * @property string $condition
+ * @property integer $show_price
+ * @property integer $indexed
+ * @property integer $cache_is_pack
+ * @property integer $cache_has_attachments
+ * @property string $cache_default_attribute
+ * @property string $date_add
+ * @property string $date_upd
+ */
+class Product extends CActiveRecord
+{
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return Product the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+	
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'ps_product';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('id_tax_rules_group, date_add, date_upd', 'required'),
+			array('on_sale, online_only, quantity, quantity_discount, customizable, uploadable_files, text_fields, active, available_for_order, show_price, indexed, cache_is_pack, cache_has_attachments', 'numerical', 'integerOnly'=>true),
+			array('width, height, depth, weight', 'numerical'),
+			array('id_supplier, id_manufacturer, reference, supplier_reference', 'length', 'max'=>32),
+			array('id_tax_rules_group, id_category_default, id_color_default, minimal_quantity, out_of_stock, cache_default_attribute', 'length', 'max'=>10),
+			array('ean13', 'length', 'max'=>13),
+			array('upc', 'length', 'max'=>12),
+			array('ecotax', 'length', 'max'=>17),
+			array('price, wholesale_price, unit_price_ratio, additional_shipping_cost', 'length', 'max'=>20),
+			array('unity', 'length', 'max'=>255),
+			array('location', 'length', 'max'=>64),
+			array('condition', 'length', 'max'=>11),
+			// The following rule is used by search().
+			// Please remove those attributes that should not be searched.
+			array('id_product, id_supplier, id_manufacturer, id_tax_rules_group, id_category_default, id_color_default, on_sale, online_only, ean13, upc, ecotax, quantity, minimal_quantity, price, wholesale_price, unity, unit_price_ratio, additional_shipping_cost, reference, supplier_reference, location, width, height, depth, weight, out_of_stock, quantity_discount, customizable, uploadable_files, text_fields, active, available_for_order, condition, show_price, indexed, cache_is_pack, cache_has_attachments, cache_default_attribute, date_add, date_upd', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+			'tags'=>array(self::MANY_MANY, 'Tag','ps_product_tag(id_product, id_tag)'),
+			'attachments'=>array(self::MANY_MANY, 'Attachment','ps_product_attachment(id_product, id_attachment)'),
+			'supplier'=>array(self::BELONGS_TO, 'Supplier','id_supplier'),
+			'product_lang'=>array(self::HAS_ONE, 'ProductLang','id_product'),
+			'categories'=>array(self::MANY_MANY, 'Category','ps_category_product(id_product, id_category)'),
+			//TODO - verify these relationships
+			'features'=>array(self::MANY_MANY, 'FeatureLang','ps_feature_product(id_product,id_feature)'),
+			'featurevalues'=>array(self::MANY_MANY, 'FeatureValueLang','ps_feature_product(id_product,id_feature_value)'),
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+			'id_product' => 'Id Product',
+			'id_supplier' => 'Id Supplier',
+			'id_manufacturer' => 'Id Manufacturer',
+			'id_tax_rules_group' => 'Id Tax Rules Group',
+			'id_category_default' => 'Id Category Default',
+			'id_color_default' => 'Id Color Default',
+			'on_sale' => 'On Sale',
+			'online_only' => 'Online Only',
+			'ean13' => 'Ean13',
+			'upc' => 'Upc',
+			'ecotax' => 'Ecotax',
+			'quantity' => 'Quantity',
+			'minimal_quantity' => 'Minimal Quantity',
+			'price' => 'Price',
+			'wholesale_price' => 'Wholesale Price',
+			'unity' => 'Unity',
+			'unit_price_ratio' => 'Unit Price Ratio',
+			'additional_shipping_cost' => 'Additional Shipping Cost',
+			'reference' => 'Reference',
+			'supplier_reference' => 'Supplier Reference',
+			'location' => 'Location',
+			'width' => 'Width',
+			'height' => 'Height',
+			'depth' => 'Depth',
+			'weight' => 'Weight',
+			'out_of_stock' => 'Out Of Stock',
+			'quantity_discount' => 'Quantity Discount',
+			'customizable' => 'Customizable',
+			'uploadable_files' => 'Uploadable Files',
+			'text_fields' => 'Text Fields',
+			'active' => 'Active',
+			'available_for_order' => 'Available For Order',
+			'condition' => 'Condition',
+			'show_price' => 'Show Price',
+			'indexed' => 'Indexed',
+			'cache_is_pack' => 'Cache Is Pack',
+			'cache_has_attachments' => 'Cache Has Attachments',
+			'cache_default_attribute' => 'Cache Default Attribute',
+			'date_add' => 'Date Add',
+			'date_upd' => 'Date Upd',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('id_product',$this->id_product,true);
+		$criteria->compare('id_supplier',$this->id_supplier,true);
+		$criteria->compare('id_manufacturer',$this->id_manufacturer,true);
+		$criteria->compare('id_tax_rules_group',$this->id_tax_rules_group,true);
+		$criteria->compare('id_category_default',$this->id_category_default,true);
+		$criteria->compare('id_color_default',$this->id_color_default,true);
+		$criteria->compare('on_sale',$this->on_sale);
+		$criteria->compare('online_only',$this->online_only);
+		$criteria->compare('ean13',$this->ean13,true);
+		$criteria->compare('upc',$this->upc,true);
+		$criteria->compare('ecotax',$this->ecotax,true);
+		$criteria->compare('quantity',$this->quantity);
+		$criteria->compare('minimal_quantity',$this->minimal_quantity,true);
+		$criteria->compare('price',$this->price,true);
+		$criteria->compare('wholesale_price',$this->wholesale_price,true);
+		$criteria->compare('unity',$this->unity,true);
+		$criteria->compare('unit_price_ratio',$this->unit_price_ratio,true);
+		$criteria->compare('additional_shipping_cost',$this->additional_shipping_cost,true);
+		$criteria->compare('reference',$this->reference,true);
+		$criteria->compare('supplier_reference',$this->supplier_reference,true);
+		$criteria->compare('location',$this->location,true);
+		$criteria->compare('width',$this->width);
+		$criteria->compare('height',$this->height);
+		$criteria->compare('depth',$this->depth);
+		$criteria->compare('weight',$this->weight);
+		$criteria->compare('out_of_stock',$this->out_of_stock,true);
+		$criteria->compare('quantity_discount',$this->quantity_discount);
+		$criteria->compare('customizable',$this->customizable);
+		$criteria->compare('uploadable_files',$this->uploadable_files);
+		$criteria->compare('text_fields',$this->text_fields);
+		$criteria->compare('active',$this->active);
+		$criteria->compare('available_for_order',$this->available_for_order);
+		$criteria->compare('condition',$this->condition,true);
+		$criteria->compare('show_price',$this->show_price);
+		$criteria->compare('indexed',$this->indexed);
+		$criteria->compare('cache_is_pack',$this->cache_is_pack);
+		$criteria->compare('cache_has_attachments',$this->cache_has_attachments);
+		$criteria->compare('cache_default_attribute',$this->cache_default_attribute,true);
+		$criteria->compare('date_add',$this->date_add,true);
+		$criteria->compare('date_upd',$this->date_upd,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
+}

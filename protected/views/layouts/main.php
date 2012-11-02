@@ -39,9 +39,11 @@ $this->widget('bootstrap.widgets.BootNavbar', array(
         array(
             'class'=>'bootstrap.widgets.BootMenu',
             'items'=>array(
-                array('label'=>'Giiplus demo', 'url'=>Yii::app()->createUrl('test/'), 'active'=>true),
+                array('label'=>'Giiplus demo', 'url'=>Yii::app()->createUrl('test/')),
                 array('label'=>'Ajax form submit demo', 'url'=>Yii::app()->createUrl('person/ajax')),
-            //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
+                array('label'=>'Aspect Ratio w/ Preview Pane ', 'url'=>Yii::app()->createUrl('site/icrop')),
+                array('label'=>'Jcrop - API Demo', 'url'=>Yii::app()->createUrl('site/icropapi')),
+               //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
                
             ),
         ),
@@ -49,7 +51,7 @@ $this->widget('bootstrap.widgets.BootNavbar', array(
     ),
     
 ));
-         
+  
 ?>
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>

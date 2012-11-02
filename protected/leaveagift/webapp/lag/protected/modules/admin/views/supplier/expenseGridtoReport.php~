@@ -1,0 +1,40 @@
+<?php
+$assetsDir = dirname(__FILE__).'/../../../../assets/images/suppliers/'; 
+?>
+<?php if ($model !== null):?>
+<table border="1">
+
+	<tr>
+		<th width="80px">
+		      id_supplier		</th>
+ 		<th width="80px">
+		      name		</th>
+ 		<th width="80px">
+		      date_add		</th>
+ 		<th width="80px">
+		      date_upd		</th>
+ 		
+ 		<th width="80px">
+		      logo		</th>
+ 	</tr>
+	<?php foreach($model as $row): ?>
+	<tr>
+        		<td>
+			<?php echo $row->id_supplier; ?>
+		</td>
+       		<td>
+			<?php echo $row->name; ?>
+		</td>
+       		<td>
+			<?php echo $row->date_add; ?>
+		</td>
+       		<td>
+			<?php echo $row->date_upd; ?>
+		</td>
+       		<td>
+			<?php echo CHtml::image(Yii::app()->assetManager->publish($assetsDir.$row->logo),"",array("style"=>"width:25px;height:25px;")); ?>
+		</td>
+       	</tr>
+     <?php endforeach; ?>
+</table>
+<?php endif; ?>

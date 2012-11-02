@@ -1,0 +1,111 @@
+<meta http-equiv="refresh" content="5;url=<?php echo Yii::app()->createUrl('receiver/openGift',array('id_user_gift'=>$id_user_gift)); ?>">
+<!-- content starts -->
+<!--
+<div id="content">
+  
+  <!-- gift card starts -->
+<!--
+  <div id="custom-gift-card-receiver">
+    <div id="sender-msg">Somebody loves you!!!</div>
+    
+    <div id="loading-gift">
+	  <table width="100%" border="0" cellspacing="2" cellpadding="0">
+  <tr>
+    <td align="center" valign="bottom"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/loading-gift.jpg" width="40" height="41" alt="" /></td>
+  </tr>
+  <tr>
+    <td width="75" align="center" valign="bottom">Loading your gift ...</td>
+    </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="left" valign="top"><span class="giftload">Meanwhile please</span></td>
+  </tr>
+  <tr>
+    <td align="center"><div class="fb-like" data-href="https://www.facebook.com/LeaveaGift" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="trebuchet ms"></div></a></td>
+  </tr>
+  <tr>
+    <td><span class="giftload">we work hard for your happiness</span></td>
+  </tr>
+      </table>
+
+      
+      
+	</div><!-- front ends --><!-- inside ends -->
+  
+  
+  
+  
+  
+ <!-- </div>   <!-- gift card ends -->
+  
+  
+  
+  
+  
+
+  
+  <!--
+  </div>
+  -->
+  <!-- content ends --> 
+  
+  
+  
+  
+   <!-- content starts -->
+  <div id="content">
+  
+  <!-- gift card starts -->
+  <div id="custom-gift-card-receiver">
+    <div id="sender-msg">Your gift is being unwrapped</div>
+    
+    <div id="loading-gift">
+	  <table width="100%" border="0" cellspacing="2">
+  <tr>
+    <td align="center" valign="bottom"><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/loading.gif" width="40" height="41" alt="" /></td>
+  </tr>
+  <tr>
+    <td width="75" align="center" valign="bottom">Loading your gift ...</td>
+    </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+  </tr>
+  <tr>
+    <td align="center" valign="top">Meanwhile please</td>
+  </tr>
+  <tr>
+    <td align="center">
+     <div class="like_like"><div class="lik_center_box">
+     <div class="fb-like" data-href="https://www.facebook.com/LeaveaGift" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false" data-font="trebuchet ms"></div>
+    <!--<div class="like_like"><div class="lik_center_box"><a href="#"><img src="<?php //echo Yii::app()->request->baseUrl; ?>/images/like_.jpg" width="50" height="26" border="0" /></a></div></div>
+      -->
+    </td>
+  </tr>
+  <tr>
+    <td align="center">We work hard for your happiness</td>
+  </tr>
+      </table>
+
+      
+      
+	</div><!-- front ends --><!-- inside ends -->
+  
+  
+  
+  
+  
+  </div>   <!-- gift card ends -->
+  
+  
+  
+  
+  
+
+  
+  
+  </div>
+  <!-- content ends --> 
+  
+  

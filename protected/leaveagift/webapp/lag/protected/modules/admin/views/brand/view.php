@@ -1,0 +1,63 @@
+<?php
+$this->breadcrumbs=array(
+	'Brands'=>array('index'),
+	$model->name,
+);
+?>
+
+<h1>View Brand #<?php echo $model->id_brand; ?></h1>
+<hr />
+<?php 
+$this->beginWidget('zii.widgets.CPortlet', array(
+	'htmlOptions'=>array(
+		'class'=>''
+	)
+));
+$this->widget('bootstrap.widgets.TbMenu', array(
+	'type'=>'pills',
+	'items'=>array(
+		array('label'=>'Create', 'icon'=>'icon-plus', 'url'=>Yii::app()->controller->createUrl('create'), 'linkOptions'=>array()),
+                array('label'=>'List', 'icon'=>'icon-th-list', 'url'=>Yii::app()->controller->createUrl('index'), 'linkOptions'=>array()),
+                array('label'=>'Update', 'icon'=>'icon-edit', 'url'=>Yii::app()->controller->createUrl('update',array('id'=>$model->id_brand)), 'linkOptions'=>array()),
+		//array('label'=>'Search', 'icon'=>'icon-search', 'url'=>'#', 'linkOptions'=>array('class'=>'search-button')),
+		array('label'=>'Print', 'icon'=>'icon-print', 'url'=>'javascript:void(0);return false', 'linkOptions'=>array('onclick'=>'printDiv();return false;')),
+
+)));
+$this->endWidget();
+?>
+
+<div class='printableArea'>
+
+<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+	'data'=>$model,
+	'attributes'=>array(
+		'id_brand',
+		'name',
+		'brand_code',
+                array('name'=>'logo1 (front end)','type'=>'html','value'=>$model->getImage(0,"html")),
+                array('name'=>'logo2 (receiver end)','type'=>'html','value'=>$model->getImage(1,"html")),
+                array('name'=>'logo3 (receiver end-return gift)','type'=>'html','value'=>$model->getImage(2,"html")),
+                /* array(
+                       'name'=>'logo',
+                       'type'=>'html',
+                       'htmlOptions'=>array('width'=>'20','height'=>'500',),
+                       'value'=>'<img src="'.$image_url.'" width="50" height="30" >',
+ 
+                     ),*/ 
+		'date_add',
+		'date_upd',
+	),
+)); ?>
+</div>
+<style type="text/css" media="print">
+body {visibility:hidden;}
+.printableArea{visibility:visible;} 
+</style>
+<script type="text/javascript">
+function printDiv()
+{
+
+window.print();
+
+}
+</script>

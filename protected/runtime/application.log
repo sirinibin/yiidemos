@@ -524,3 +524,673 @@ in /var/www/yiidemos/index.php (13)
 2012/09/11 23:43:39 [warning] [application] Failed to set unsafe attribute "age" of "PersonForm".
 in /var/www/yiidemos/protected/controllers/PersonController.php (28)
 in /var/www/yiidemos/index.php (13)
+2012/09/12 00:05:48 [warning] [application] Failed to set unsafe attribute "name" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/12 00:05:48 [warning] [application] Failed to set unsafe attribute "age" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/12 00:05:54 [warning] [application] Failed to set unsafe attribute "name" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/09/12 00:05:54 [warning] [application] Failed to set unsafe attribute "age" of "PersonForm".
+in /var/www/yiidemos/protected/controllers/PersonController.php (28)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:17:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:17:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:17:14 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:17:15 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:17:20 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:24:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:24:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "path/to/full/image.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('path/to/full/im...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=path/to/full/image.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:30:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:30:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:30:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:30:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:30:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:30:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:31:11 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:31:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:31:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:31:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:31:49 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+---
+2012/10/18 20:35:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/views/site/../assets689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/views/site/../assets689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:35:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/views/site/../assets689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/views/site/../assets689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:35:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/views/site/../assets689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/views/site/../assets689x1000.jpg
+---
+2012/10/18 20:36:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/views/site/../assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/views/site/../assets/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:36:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/views/site/../assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/views/site/../assets/689x1000.jpg
+---
+2012/10/18 20:37:27 [error] [exception.CException] exception 'CException' with message 'The asset "/var/www/yiidemos/protected/views/site/../assets/689x1000.jpg" to be published does not exist.' in /var/www/yiidemos/yii/framework/web/CAssetManager.php:239
+Stack trace:
+#0 /var/www/yiidemos/protected/views/site/ajaxcrop.php(10): CAssetManager->publish('/var/www/yiidem...')
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', NULL, true)
+#3 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', NULL, true)
+#4 /var/www/yiidemos/yii/framework/web/CController.php(783): CController->renderPartial('ajaxcrop', NULL, true)
+#5 /var/www/yiidemos/protected/controllers/SiteController.php(182): CController->render('ajaxcrop')
+#6 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionAjaxCrop()
+#7 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#8 /var/www/yiidemos/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#9 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('ajaxcrop')
+#11 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/ajaxcrop')
+#12 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#13 /var/www/yiidemos/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:41:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:41:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:41:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:41:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:42:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:42:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:42:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "yiidemos/assets/25fca3ea/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('yiidemos/assets...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=yiidemos/assets/25fca3ea/689x1000.jpg
+---
+2012/10/18 20:43:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:43:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:43:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:43:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('689x1000.jpg')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('689x1000.jpg')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/689x1000.j...')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/689x1000.jpg
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/ajaxcrop
+---
+2012/10/18 20:50:44 [error] [php] Undefined index: idOrAttributeName_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:51:19 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:54:06 [error] [php] Undefined index: start_imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:54:30 [error] [php] Undefined variable: coords (/var/www/yiidemos/protected/controllers/SiteController.php:196)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#4 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#5 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/controllers/SiteController.php (196)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:54:51 [error] [php] Undefined index: _x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:55:07 [error] [php] Undefined index: _x_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:55:23 [error] [php] Undefined index: _x_x_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:55:31 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:59:33 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 20:59:39 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:01:30 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:02:28 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:02:29 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:02:29 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:02:30 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:04:33 [error] [php] Undefined index: imageId_x_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:04:44 [error] [php] Undefined index: imageId_x (/var/www/yiidemos/protected/extensions/jcrop/EJCropper.php:39)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#1 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#2 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#3 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#4 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#5 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#6 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/ajaxcrop
+in /var/www/yiidemos/protected/extensions/jcrop/EJCropper.php (39)
+in /var/www/yiidemos/protected/controllers/SiteController.php (193)
+in /var/www/yiidemos/index.php (13)
+2012/10/18 21:36:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "var/www/yiidemos/protected/assets/689x1000.jpg".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('var/www/yiidemo...')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=var/www/yiidemos/protected/assets/689x1000.jpg
+---
+2012/10/19 11:37:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "icrop".' in /var/www/yiidemos/yii/framework/web/CWebApplication.php:280
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('icrop')
+#1 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#2 /var/www/yiidemos/index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yiidemos/index.php?r=icrop
+---
+2012/10/19 11:37:18 [error] [php] include(Icrop.php): failed to open stream: No such file or directory (/var/www/yiidemos/yii/framework/YiiBase.php:418)
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): import()
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget()
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): SiteController->createWidget()
+#3 /var/www/yiidemos/protected/views/site/icrop.php(3): SiteController->widget()
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require()
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): SiteController->renderInternal()
+#6 /var/www/yiidemos/yii/framework/web/CController.php(870): SiteController->renderFile()
+#7 /var/www/yiidemos/yii/framework/web/CController.php(783): SiteController->renderPartial()
+#8 /var/www/yiidemos/protected/controllers/SiteController.php(208): SiteController->render()
+#9 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIcrop()
+#10 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#11 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#12 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#13 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#14 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#15 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#16 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/icrop
+in /var/www/yiidemos/protected/views/site/icrop.php (3)
+in /var/www/yiidemos/protected/controllers/SiteController.php (208)
+in /var/www/yiidemos/index.php (13)
+2012/10/19 12:23:10 [error] [php] include(CJuiWidget.php): failed to open stream: No such file or directory (/var/www/yiidemos/yii/framework/YiiBase.php:418)
+Stack trace:
+#0 /var/www/yiidemos/protected/extensions/icrop/Icrop.php(20): spl_autoload_call()
+#1 /var/www/yiidemos/yii/framework/YiiBase.php(397): include()
+#2 /var/www/yiidemos/yii/framework/YiiBase.php(298): autoload()
+#3 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): import()
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget()
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): SiteController->createWidget()
+#6 /var/www/yiidemos/protected/views/site/icrop.php(13): SiteController->widget()
+#7 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require()
+#8 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): SiteController->renderInternal()
+#9 /var/www/yiidemos/yii/framework/web/CController.php(870): SiteController->renderFile()
+#10 /var/www/yiidemos/yii/framework/web/CController.php(783): SiteController->renderPartial()
+#11 /var/www/yiidemos/protected/controllers/SiteController.php(209): SiteController->render()
+#12 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIcrop()
+#13 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#14 /var/www/yiidemos/yii/framework/web/CController.php(287): SiteController->runAction()
+#15 /var/www/yiidemos/yii/framework/web/CController.php(266): SiteController->runActionWithFilters()
+#16 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): SiteController->run()
+#17 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#18 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#19 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=site/icrop
+in /var/www/yiidemos/protected/extensions/icrop/Icrop.php (20)
+in /var/www/yiidemos/protected/views/site/icrop.php (13)
+in /var/www/yiidemos/protected/controllers/SiteController.php (209)
+2012/10/19 14:46:55 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "apicrop".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('apicrop')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('apicrop')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/apicrop')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/apicrop
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/icrop
+---
+2012/10/19 14:47:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "apicrop".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('apicrop')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('apicrop')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/apicrop')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/apicrop
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/icrop
+---
+2012/10/19 14:48:12 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "apicrop".' in /var/www/yiidemos/yii/framework/web/CController.php:484
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CController.php(271): CController->missingAction('apicrop')
+#1 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('apicrop')
+#2 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('site/apicrop')
+#3 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /var/www/yiidemos/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yiidemos/index.php?r=site/apicrop
+HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/icrop
+---

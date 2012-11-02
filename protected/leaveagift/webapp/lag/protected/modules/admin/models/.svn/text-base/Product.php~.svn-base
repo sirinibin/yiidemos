@@ -1,0 +1,997 @@
+<?php
+
+/**
+ * This is the model class for table "ps_product".
+ *
+ * The followings are the available columns in table 'ps_product':
+ * @property string $id_product
+ * @property string $id_supplier
+ * @property string $id_manufacturer
+ * @property string $id_tax_rules_group
+ * @property string $id_category_default
+ * @property string $id_color_default
+ * @property integer $on_sale
+ * @property integer $online_only
+ * @property string $ean13
+ * @property string $upc
+ * @property string $ecotax
+ * @property integer $quantity
+ * @property string $minimal_quantity
+ * @property string $price
+ * @property string $wholesale_price
+ * @property string $unity
+ * @property string $unit_price_ratio
+ * @property string $additional_shipping_cost
+ * @property string $reference
+ * @property string $supplier_reference
+ * @property string $location
+ * @property double $width
+ * @property double $height
+ * @property double $depth
+ * @property double $weight
+ * @property string $out_of_stock
+ * @property integer $quantity_discount
+ * @property integer $customizable
+ * @property integer $uploadable_files
+ * @property integer $text_fields
+ * @property integer $active
+ * @property integer $available_for_order
+ * @property string $condition
+ * @property integer $show_price
+ * @property integer $indexed
+ * @property integer $cache_is_pack
+ * @property integer $cache_has_attachments
+ * @property string $cache_default_attribute
+ * @property string $date_add
+ * @property string $date_upd
+ */
+class Product extends CActiveRecord
+{
+   public $id_tag;
+   public $id_category;
+   public $image;
+
+   public $image2;
+
+   public $description;
+  /* public $features="- Use as cash on the site for up to the value on the card
+- No minimums";*/
+
+
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return Product the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
+
+	/**
+	 * @return string the associated database table name
+	 */
+	public function tableName()
+	{
+		return 'ps_product';
+	}
+
+	/**
+	 * @return array validation rules for model attributes.
+	 */
+	public function rules()
+	{
+		// NOTE: you should only define rules for those attributes that
+		// will receive user inputs.
+		return array(
+			array('redirection_url,tips,terms,user_validity,sender_limit,receiver_limit,features,id_tag,id_supplier,logo_choice,id_category,quantity,price,description,is_return_gift,event', 'required'),
+                        array('image,image2', 'file', 
+                           'types'=>'jpg, gif, png, bmp, jpeg,pdf',
+                           'maxSize'=>1024 * 1024 * 1, // 1MB
+                           'tooLarge'=>'The file was larger than 1MB. Please upload a smaller file.',
+                           'allowEmpty' => true,
+     
+                           ),
+                
+                       array('redirection_url','url'),
+                       array('quantity','compare','compareValue'=>'0','operator'=>'>'),
+			array('on_sale, online_only, quantity, quantity_discount, customizable, uploadable_files, text_fields, active, available_for_order, show_price, indexed, cache_is_pack, cache_has_attachments', 'numerical', 'integerOnly'=>true),
+			array('width, height, depth, weight', 'numerical'),
+			array('id_supplier, id_manufacturer, reference, supplier_reference', 'length', 'max'=>32),
+			array('id_tax_rules_group, id_category_default, id_color_default, minimal_quantity, out_of_stock, cache_default_attribute', 'length', 'max'=>10),
+			array('ean13', 'length', 'max'=>13),
+			array('upc', 'length', 'max'=>12),
+			array('ecotax', 'length', 'max'=>17),
+			array('price, wholesale_price, unit_price_ratio, additional_shipping_cost', 'length', 'max'=>20),
+			array('unity', 'length', 'max'=>255),
+			array('location', 'length', 'max'=>64),
+			array('condition', 'length', 'max'=>11),
+                        array('id_tag,image,description,is_return_gift,min_purchase,id_brand,product_value,position','safe'),
+			// The following rule is used by search().
+			// Please remove those attributes that should not be searched.
+			array('id_tag,id_product, id_supplier, id_manufacturer, id_tax_rules_group, id_category_default, id_color_default, on_sale, online_only, ean13, upc, ecotax, quantity, minimal_quantity, price, wholesale_price, unity, unit_price_ratio, additional_shipping_cost, reference, supplier_reference, location, width, height, depth, weight, out_of_stock, quantity_discount, customizable, uploadable_files, text_fields, active, available_for_order, condition, show_price, indexed, cache_is_pack, cache_has_attachments, cache_default_attribute, date_add, date_upd', 'safe', 'on'=>'search'),
+		);
+	}
+
+	/**
+	 * @return array relational rules.
+	 */
+	public function relations()
+	{
+		// NOTE: you may need to adjust the relation name and the related
+		// class name for the relations automatically generated below.
+		return array(
+                 'frontendimage'=>array(self::HAS_ONE, 'ProductImage','id_product','condition'=>'frontendimage.position="0"'), 
+ 
+                 'receiverendimage'=>array(self::HAS_ONE, 'ProductImage','id_product','condition'=>'receiverendimage.position="1"'), 
+
+                 'orders'=>array(self::HAS_MANY, 'UserOrder','id_product'),
+                 'orders_count'=>array(self::STAT, 'UserOrder','id_product'),
+                 'template'=>array(self::BELONGS_TO, 'ProductTemplate','id_template'), 
+                 'voucher_count'=>array(self::STAT, 'Vouchers','id_product'), 
+                // 'active_voucher_count'=>array(self::STAT, 'Vouchers','id_product','condition'=>'active_voucher_count.status="1"'),   
+                 
+                 'vouchers'=>array(self::HAS_MANY, 'Vouchers','id_product'), 
+                 //'voucher_count'=>array(self::STAT, 'Vouchers','id_product'),  
+                 'tags'=>array(self::MANY_MANY, 'Tag','ps_product_tag(id_product, id_tag)','limit'=>'1'),
+                 'attachments'=>array(self::MANY_MANY, 'Attachment','ps_product_attachment(id_product, id_attachment)'),
+                 'images'=>array(self::HAS_MANY, 'ProductImage','id_product'), 
+                 'images_count'=>array(self::STAT, 'ProductImage','id_product'), 
+                 'supplier'=>array(self::BELONGS_TO, 'Supplier','id_supplier'), 
+                 'brand'=>array(self::BELONGS_TO, 'Brand','id_brand'),
+                 'product_lang'=>array(self::HAS_ONE, 'ProductLang','id_product'),
+                 'categories'=>array(self::MANY_MANY, 'Category','ps_category_product(id_product, id_category)'), 
+                 'features'=>array(self::MANY_MANY, 'FeatureLang','ps_feature_product(id_product,id_feature)'),
+                 'featurevalues'=>array(self::MANY_MANY, 'FeatureValueLang','ps_feature_product(id_product,id_feature_value)'),
+		);
+	}
+
+	/**
+	 * @return array customized attribute labels (name=>label)
+	 */
+	public function attributeLabels()
+	{
+		return array(
+                        'image'=>'Image1(Front end)',
+                        'image2'=>'Image2(Receiver end)',
+                        'user_validity'=>'User Validity(days)',
+                        'product_value'=>'Product value(only for free gifts)',
+                        'min_purchase'=>'Minimum purchase(only for free gifts)',
+                        'id_tag'=>'Type',
+			'id_product' => 'Id Product',
+			'id_supplier' => 'Supplier',
+                        'id_brand'=>'Brand',
+                        'id_category'=>'Occasion',
+			'id_manufacturer' => 'Id Manufacturer',
+			'id_tax_rules_group' => 'Id Tax Rules Group',
+			'id_category_default' => 'Id Category Default',
+			'id_color_default' => 'Id Color Default',
+			'on_sale' => 'On Sale',
+			'online_only' => 'Online Only',
+			'ean13' => 'Ean13',
+			'upc' => 'Upc',
+			'ecotax' => 'Ecotax',
+			'quantity' => 'Inventory',
+			'minimal_quantity' => 'Minimal Quantity',
+			'price' => 'Price',
+			'wholesale_price' => 'Wholesale Price',
+			'unity' => 'Unity',
+			'unit_price_ratio' => 'Unit Price Ratio',
+			'additional_shipping_cost' => 'Additional Shipping Cost',
+			'reference' => 'Reference',
+			'supplier_reference' => 'Supplier Reference',
+			'location' => 'Location',
+			'width' => 'Width',
+			'height' => 'Height',
+			'depth' => 'Depth',
+			'weight' => 'Weight',
+			'out_of_stock' => 'Out Of Stock',
+			'quantity_discount' => 'Quantity Discount',
+			'customizable' => 'Customizable',
+			'uploadable_files' => 'Uploadable Files',
+			'text_fields' => 'Text Fields',
+			'active' => 'Active',
+			'available_for_order' => 'Available For Order',
+			'condition' => 'Condition',
+			'show_price' => 'Show Price',
+			'indexed' => 'Indexed',
+			'cache_is_pack' => 'Cache Is Pack',
+			'cache_has_attachments' => 'Cache Has Attachments',
+			'cache_default_attribute' => 'Cache Default Attribute',
+			'date_add' => 'Date Add',
+			'date_upd' => 'Date Upd',
+		);
+	}
+
+	/**
+	 * Retrieves a list of models based on the current search/filter conditions.
+	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+	 */
+	public function search()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+                
+               /* $criteria->with=array(
+                           'tags'=>array(
+                                      'select'=>false,
+                                      'joinType'=>'INNER JOIN',
+                                      //'together'=>true,
+                                      'alias'=>'pt',
+                                      'condition'=>'pt.id_tag="'.$this->id_tag.'"',
+                                         ),
+                                     );*/
+                $criteria->order='id_product desc';
+
+		$criteria->compare('id_product',$this->id_product,true);
+		$criteria->compare('id_supplier',$this->id_supplier,true);
+		$criteria->compare('id_manufacturer',$this->id_manufacturer,true);
+		$criteria->compare('id_tax_rules_group',$this->id_tax_rules_group,true);
+		$criteria->compare('id_category_default',$this->id_category_default,true);
+		$criteria->compare('id_color_default',$this->id_color_default,true);
+		$criteria->compare('on_sale',$this->on_sale);
+		$criteria->compare('online_only',$this->online_only);
+		$criteria->compare('ean13',$this->ean13,true);
+		$criteria->compare('upc',$this->upc,true);
+		$criteria->compare('ecotax',$this->ecotax,true);
+		$criteria->compare('quantity',$this->quantity);
+		$criteria->compare('minimal_quantity',$this->minimal_quantity,true);
+		$criteria->compare('price',$this->price,true);
+		$criteria->compare('wholesale_price',$this->wholesale_price,true);
+		$criteria->compare('unity',$this->unity,true);
+		$criteria->compare('unit_price_ratio',$this->unit_price_ratio,true);
+		$criteria->compare('additional_shipping_cost',$this->additional_shipping_cost,true);
+		$criteria->compare('reference',$this->reference,true);
+		$criteria->compare('supplier_reference',$this->supplier_reference,true);
+		$criteria->compare('location',$this->location,true);
+		$criteria->compare('width',$this->width);
+		$criteria->compare('height',$this->height);
+		$criteria->compare('depth',$this->depth);
+		$criteria->compare('weight',$this->weight);
+		$criteria->compare('out_of_stock',$this->out_of_stock,true);
+		$criteria->compare('quantity_discount',$this->quantity_discount);
+		$criteria->compare('customizable',$this->customizable);
+		$criteria->compare('uploadable_files',$this->uploadable_files);
+		$criteria->compare('text_fields',$this->text_fields);
+		$criteria->compare('active',$this->active);
+		$criteria->compare('available_for_order',$this->available_for_order);
+		$criteria->compare('condition',$this->condition,true);
+		$criteria->compare('show_price',$this->show_price);
+		$criteria->compare('indexed',$this->indexed);
+		$criteria->compare('cache_is_pack',$this->cache_is_pack);
+		$criteria->compare('cache_has_attachments',$this->cache_has_attachments);
+		$criteria->compare('cache_default_attribute',$this->cache_default_attribute,true);
+		$criteria->compare('date_add',$this->date_add,true);
+		$criteria->compare('date_upd',$this->date_upd,true);
+ 
+               // $criteria->condition='tags.id_tag="'.$this->id_tag.'"';
+                //$criteria->compare('tags.id_tag',$this->id_tag,true);
+                //$criteria->compare('id_tag',$this->id_tag,true);
+  
+                
+               //$criteria->compare('name',$this->id_tag,true);
+                    // echo count($this->tags);
+                //echo "t:".$this->id_tag;
+                //exit;  
+                //$this->id_tag=$this->tags[0]->id_tag;
+               // $criteria->compare('id_tag',$this->tag_id,true);
+                //$criteria->compare('date_upd',$this->tags[0]->id_tag,true);
+  
+              
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+                       
+		));
+	}
+    public function getSupplierOptions()
+    {
+      $suppliers=Supplier::model()->findAll();
+      return(CHtml::listData($suppliers,'id_supplier','name'));
+    }  
+    public function getBrandOptions()
+    {
+      $brands=Brand::model()->findAll();
+      return(CHtml::listData($brands,'id_brand','name'));
+    }
+    public function getLogoChoiceOptions()
+    {
+      return array(
+             '1'=>'Use Supplier logo',
+             '2'=>'Use Brand logo',
+           );
+    }
+    public function getTagOptions()
+    {
+      $tags=Tag::model()->findAll();
+      return(CHtml::listData($tags,'id_tag','name'));
+    }
+    public function getCategoryOptions()
+    {
+      $tags=CategoryLang::model()->findAll();
+      return(CHtml::listData($tags,'id_category','name'));
+    } 
+    public function addProductCategory() 
+    {
+      $model=new CategoryProduct;
+      $model->id_category=$this->id_category; 
+      $model->id_product=$this->id_product;
+      $model->save(false);
+    }
+    public function removeProductCategory() 
+    {
+        //echo $this->id_product;
+           //                   exit;
+      if(!isset($this->categories[0]))
+       return;
+      $criteria=new CDbCriteria;
+      $criteria->condition='id_category=:id_category and id_product=:id_product';
+      $criteria->params=array(':id_category'=>$this->categories[0]->id_category,':id_product'=>$this->id_product);
+      return(CategoryProduct::model()->find($criteria)->delete());
+    }
+ 
+    public function addProductTag() 
+    {
+      $tag=new ProductTag;
+      $tag->id_product=$this->id_product; 
+      $tag->id_tag=$this->id_tag;
+      $tag->save(false);
+    }
+    public function addValidity($validity) 
+    {
+      $fv= new FeatureValue;
+      $fv->id_feature=1;/* 1=>Valid till */
+      $fv->save(false);
+
+      $fvl= new FeatureValueLang;
+ 
+      $fvl->id_feature_value=$fv->id_feature_value;
+      $fvl->value=$validity;
+      $fvl->save(false);
+ 
+      $fp=new FeatureProduct;
+      $fp->id_product=$this->id_product; 
+      $fp->id_feature=1;
+      $fp->id_feature_value=$fv->id_feature_value;
+        
+      $fp->save(false);
+    }
+    public function updateValidity($validity) 
+    {
+      $criteria=new CDbCriteria;
+      $criteria->condition='id_feature=:id_feature and id_product=:id_product';
+      $criteria->params=array(':id_feature'=>1,':id_product'=>$this->id_product); 
+      $fp=FeatureProduct::model()->find($criteria);
+
+      if($fp==null)
+       {
+         $this->addValidity($validity);
+         return;
+       }
+ 
+      $criteria->condition='id_feature_value=:id_feature_value';
+      $criteria->params=array(':id_feature_value'=> $fp->id_feature_value); 
+      $fvl=FeatureValueLang::model()->find($criteria);
+      $fvl->value=$validity;
+      $fvl->save(false);
+    }
+   public function addGiftFeatures($features) 
+    {
+      $fv=new  FeatureValue;
+      $fv->id_feature=3;/* 3=>Gift Features */
+      $fv->save(false);
+
+      $fvl=new  FeatureValueLang;
+ 
+      $fvl->id_feature_value=$fv->id_feature_value;
+      $fvl->value=$features;
+      $fvl->save(false);
+ 
+      $fp=new FeatureProduct;
+      $fp->id_product=$this->id_product; 
+      $fp->id_feature=3;
+      $fp->id_feature_value=$fv->id_feature_value;
+        
+      $fp->save(false);
+    }
+  
+  public function updateGiftFeatures($features) 
+    {
+      $criteria=new CDbCriteria;
+      $criteria->condition='id_feature=:id_feature and id_product=:id_product';
+      $criteria->params=array(':id_feature'=>'3',':id_product'=>$this->id_product) ; 
+      $fp=FeatureProduct::model()->find($criteria);
+       if($fp==null)
+       {
+         $this->addGiftFeatures($features);
+         return;
+       }
+      
+      $criteria->condition='id_feature_value=:id_feature_value';
+      $criteria->params=array(':id_feature_value'=> $fp->id_feature_value); 
+      $fvl=FeatureValueLang::model()->find($criteria);
+      $fvl->value=$features;
+      $fvl->save(false);
+    }
+    
+    public function removeProductTag() 
+    {
+        //echo $this->id_product;
+           //                   exit;
+      if(!isset($this->tags[0]))
+       return;
+      $criteria=new CDbCriteria;
+      $criteria->condition='id_tag=:id_tag and id_product=:id_product';
+      $criteria->params=array(':id_tag'=>$this->tags[0]->id_tag,':id_product'=>$this->id_product);
+      return(ProductTag::model()->find($criteria)->delete());
+    }
+ 
+   public function removeAttachments()
+    { 
+      if(isset($this->attachments[0]))
+                                       {
+                                        if(isset($this->attachments[0]->file_name))
+                                         {
+                                          if(file_exists(Yii::app()->basePath.'/assets/images/products/'.$this->attachments[0]->file_name))   
+                                           unlink(Yii::app()->basePath.'/assets/images/products/'.$this->attachments[0]->file_name);
+                                         }  
+                                         $criteria=new CDbCriteria;
+                                         $criteria->condition='id_product=:id_product and id_attachment=:id_attachment';
+                                         $criteria->params=array(':id_product'=>$this->id_product,':id_attachment'=>$this->attachments[0]->id_attachment);      
+                                         ProductAttachment::model()->find($criteria)->delete();  
+
+                                         Attachment::model()->findbyPk($this->attachments[0]->id_attachment)->delete();             
+                            
+                                       }
+       
+
+    }
+  public function addImageAttachment()
+    {
+       $attachment=new Attachment;
+       $attachment->file_name=$this->image;
+       $attachment->mime="image/png";   
+       $attachment->save(false);  
+     
+       $pa=new ProductAttachment;
+       $pa->id_product=$this->id_product;
+       $pa->id_attachment=$attachment->id_attachment;
+       $pa->save(false);
+     
+    }
+  
+  public function getReturnIsGiftOptions()
+  {
+   return array(
+         '0'=>'NO',
+         '1'=>'YES',
+         '2'=>'both',   
+       ); 
+  }
+   public function getReturnGiftValue()
+  {
+    if($this->is_return_gift==1)
+     return("YES");
+    if($this->is_return_gift==0)
+     return("NO");
+    else
+     return("both");
+   
+  }
+  
+    public function removeProductImages() 
+    {
+        //echo $this->id_product;
+           //                   exit;
+      if($this->images_count>0)
+       {
+        $criteria=new CDbCriteria;
+        $criteria->condition='id_product=:id_product';
+        $criteria->params=array(':id_product'=>$this->id_product);
+        return(ProductImage::model()->deleteAll($criteria));
+       
+       }
+    }
+     public function removeProductImage($pos=0) 
+    {
+      
+      if($this->images_count>0)
+       {
+        $criteria=new CDbCriteria;
+        $criteria->condition='id_product=:id_product and position=:position';
+        $criteria->params=array(':id_product'=>$this->id_product,':position'=>$pos);
+ 
+         $image=ProductImage::model()->find($criteria);
+         if($image==null)
+          return(false);
+         $filename=$image->filename;
+
+
+         $s3=Yii::app()->s3->getInstance();
+         if($image->delete())
+         {
+          if($s3->deleteObject('lagdev','productpics/'.$filename))
+           {
+             return(true);
+           }
+         }
+
+         return(false);
+       
+       
+       }
+    }
+
+  public function getImage($pos=0,$type="text")  
+  {
+      
+   if($pos==0)
+   {
+    if(isset($this->frontendimage->filename))
+     {
+       if($type=="text")
+         return(Yii::app()->params['productpics'].$this->frontendimage->filename);   
+       else if($type=="html")
+        { 
+          // return(Yii::app()->params['productpics'].$this->frontendimage->filename); 
+          return("<img src='".Yii::app()->params['productpics'].$this->frontendimage->filename."' >");   
+        }
+         
+     }
+    else if(isset($this->template->frontendimage->filename))
+     {
+         if($type=="text")
+          return(Yii::app()->params['producttemplatepics'].$this->template->frontendimage->filename);
+         else if($type=="html")
+          return("<img src='".Yii::app()->params['producttemplatepics'].$this->template->frontendimage->filename."' >");
+     }
+    else
+     return("");
+   }
+   else if($pos==1)
+   {
+    if(isset($this->receiverendimage->filename))
+     {
+       if($type=="text")
+        return(Yii::app()->params['productpics'].$this->receiverendimage->filename);
+       else if($type=="html")
+        return("<img src='".Yii::app()->params['productpics'].$this->receiverendimage->filename."' >"); 
+
+     }
+    else if(isset($this->template->receiverendimage->filename))
+     {
+       if($type=="text")
+        return(Yii::app()->params['producttemplatepics'].$this->template->receiverendimage->filename);
+       else if($type=="html")
+        return("<img src='".Yii::app()->params['producttemplatepics'].$this->receiverendimage->filename."' >"); 
+     }
+    else
+      return("");
+   }
+   
+  }
+ 
+  public function getSupplier()
+  {
+    
+    if(isset($this->supplier->name))
+    {
+      $value="";
+      if(isset($this->supplier->images[0]))
+       $value.=CHtml::image(Yii::app()->params["supplierpics"].$this->supplier->images[0]->filename,"",array("style"=>"width:25px;height:25px;"));
+
+       $value.=$this->supplier->name;
+      return($value);
+    }
+    else
+    {
+     return(null);
+    }
+  }
+ public function getSupplierImageUrl()
+  {
+    
+    if(isset($this->supplier->images[0]->filename))
+    {
+       return(Yii::app()->params["supplierpics"].$this->supplier->images[0]->filename);
+    }
+    else
+    {
+     return(null);
+    }
+  } 
+   public function getBrandImageUrl()
+  {
+    
+    if(isset($this->brand->images[0]->filename))
+    {
+   
+       return(Yii::app()->params["brandpics"].$this->brand->images[0]->filename);
+    }
+    else
+    {
+     return(null);
+    }
+  } 
+   public function getBrand()
+  {
+    
+    if(isset($this->brand->name))
+    {
+      $value="";
+      if(isset($this->brand->images[0]))
+       $value.=CHtml::image(Yii::app()->params["brandpics"].$this->brand->images[0]->filename,"",array("style"=>"width:25px;height:25px;"));
+
+       $value.=$this->brand->name;
+      return($value);
+    }
+    else
+    {
+     return(null);
+    }
+  } 
+   public function getSupplierLogo($pos=0)
+    {
+     
+             if($this->logo_choice==1)
+              {
+                if($pos==0)
+                  {
+                   if(isset($this->supplier->frontendimage))
+                   {
+                    return(Yii::app()->params['supplierpics'].$this->supplier->frontendimage->filename);
+
+                   }
+                  else
+                    return("");
+                  }
+                else if($pos==1)
+                {
+                  if(isset($this->supplier->receiverendimage))
+                   {
+                    return(Yii::app()->params['supplierpics'].$this->supplier->receiverendimage->filename);
+
+                   }
+                  else
+                    return("");
+                }
+                
+                else if($pos==2)
+                {
+                  
+                   if(isset($this->supplier->receiverendimage2))
+                   {
+                    return(Yii::app()->params['supplierpics'].$this->supplier->receiverendimage2->filename);
+
+                   }
+                   
+                  else
+                   {
+                      Yii::import("application.extensions.S3.*");
+                      Yii::import('application.extensions.image.Image');
+             
+			      $dir_path=Yii::app()->basePath.'/assets/images/';
+			       
+			        $filename=$this->supplier->frontendimage->filename;
+			    
+				$url=Yii::app()->params['supplierpics'].$filename;
+				
+				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+				
+				$resizeDimensions=$this->getResizeDimensions(false,100,34,$url);
+				
+				 $s3=Yii::app()->s3->getInstance();
+                                $s3->getObject('lagdev', 'supplierpics/'.$filename, $dir_path.$filename);
+                                $file=$dir_path.$filename;
+				
+				$image = new Image($file);
+				$image->resize($resizeDimensions[0], $resizeDimensions[1])->rotate(0)->quality(100)->sharpen(0);
+
+			    
+				$filename=$filename.$this->supplier->id_supplier.$resizeDimensions[0].$resizeDimensions[1].".".$ext;
+				$savePath=$dir_path.$filename;   
+				$image->save($savePath);
+			      
+				$success = Yii::app()->s3->upload( $savePath , 'supplierpics/'.$filename, 'lagdev' );
+				$this->addSupllierImage($filename,$this->id_supplier,2);
+				unlink($savePath);
+				unlink($file);
+				
+				return(Yii::app()->params['supplierpics'].$filename);
+			
+                    }
+                   
+                }
+                
+              }
+             else if($this->logo_choice==2)
+              {
+                if($pos==0)
+                  {
+                   if(isset($this->brand->frontendimage))
+                   {
+                    return(Yii::app()->params['brandpics'].$this->brand->frontendimage->filename);
+
+                   }
+                  else
+                    return("");
+                  }
+                else if($pos==1)
+                {
+                  if(isset($this->brand->receiverendimage))
+                   {
+                    return(Yii::app()->params['brandpics'].$this->brand->receiverendimage->filename);
+
+                   }
+                  else
+                    return("");
+                }
+                
+               else if($pos==2)
+                {
+                  if(isset($this->brand->receiverendimage2))
+                   {
+                    return(Yii::app()->params['brandpics'].$this->brand->receiverendimage2->filename);
+
+                   }
+                  else
+                   {
+                    
+                       Yii::import("application.extensions.S3.*");
+                       Yii::import('application.extensions.image.Image');
+             
+			      $dir_path=Yii::app()->basePath.'/assets/images/';
+			       
+			        $filename=$this->supplier->frontendimage->filename;
+			    
+				$url=Yii::app()->params['brandpics'].$filename;
+				
+				$ext = pathinfo($filename, PATHINFO_EXTENSION);
+				
+				$resizeDimensions=$this->getResizeDimensions(false,100,34,$url);
+				
+				 $s3=Yii::app()->s3->getInstance();
+                                $s3->getObject('lagdev', 'brandpics/'.$filename, $dir_path.$filename);
+                                $file=$dir_path.$filename;
+				
+				$image = new Image($file);
+				$image->resize($resizeDimensions[0], $resizeDimensions[1])->rotate(0)->quality(100)->sharpen(0);
+
+			    
+				$filename=$filename.$this->supplier->id_brand.$resizeDimensions[0].$resizeDimensions[1].".".$ext;
+				$savePath=$dir_path.$filename;   
+				$image->save($savePath);
+			      
+				$success = Yii::app()->s3->upload( $savePath , 'brandpics/'.$filename, 'lagdev' );
+				$this->addBrandImage($filename,$this->id_supplier,2);
+				unlink($savePath);
+				unlink($file);
+				
+				return(Yii::app()->params['brandpics'].$filename);
+				
+                   } 
+                }
+                
+
+              }
+ 
+        return(null);
+    }
+    
+    public function addSupllierImage($filename,$id_supplier,$pos)
+  {
+           $image=new SupplierImages;
+           $image->id_supplier=$id_supplier;
+           $image->position=$pos;
+	   $image->filename = $filename;  
+	   $image->save(false);
+
+  }
+  public function addBrandImage($filename,$id_brand,$pos)
+  {
+           $image=new BrandImages;
+           $image->id_brand=$id_brand;
+           $image->position=$pos;
+	   $image->filename = $filename;  
+	   $image->save(false);
+
+  }
+  public function getResizeDimensions($uploadedFile,$containerwidth,$containerheight,$url=false)
+     {
+      if($url==false)
+       {
+        $sizes=getimagesize($uploadedFile->getTempName());
+       }
+      else
+       {
+        $sizes=getimagesize($url);
+      
+       }
+        
+      $X=$sizes[0];
+      $Y=$sizes[1];
+       
+       $a=(float)($X/$containerwidth);
+       $b=(float)($Y/$containerheight);
+       
+       
+       if($a>$b)
+        {
+          return(array((float)($X/$a),(float)($Y/$a)));
+        }
+        else 
+        {
+          return(array((float)($X/$b),(float)($Y/$b)));
+        }  
+     
+     }
+     
+  public function getPriceValue()
+  {
+         if($this->price==0)
+         {
+           return($this->product_value);
+         }
+         else
+         {
+          return($this->price);
+         }
+     
+  }
+
+  
+  public function copyImagesFromTemplate($template)
+  {
+   $frontendimage=$template->frontendimage->filename;
+   $receiverendimage=$template->receiverendimage->filename;
+   $s3=Yii::app()->s3->getInstance();
+  /* try{
+       $sizes1=getimagesize(Yii::app()->params['producttemplatepics'].$frontendimage);
+       $sizes2=getimagesize(Yii::app()->params['producttemplatepics'].$receiverendimage);
+      }
+   catch(Exception $e)
+     {*/
+       $sizes1=array('199','138');
+       $sizes2=array('280','199');
+    // }
+   
+    $ext1 = pathinfo($frontendimage, PATHINFO_EXTENSION);
+
+    $ext2 = pathinfo($receiverendimage, PATHINFO_EXTENSION);
+
+   $filename1=$frontendimage.$this->id_product.$sizes1[0].$sizes2[1].".".$ext1;
+  
+   $filename2=$frontendimage.$this->id_product.$sizes2[0].$sizes2[1].".".$ext2;
+   
+
+   $s3->copyObject('lagdev', 'producttemplatepics/'.$frontendimage, 'lagdev', 'productpics/'.$filename1);
+ 
+   $s3->copyObject('lagdev', 'producttemplatepics/'.$receiverendimage, 'lagdev', 'productpics/'.$filename2);
+   
+    $this->addProductImage($filename1,0);
+    $this->addProductImage($filename2,1);        
+   
+  }
+
+
+  public function addProductImage($filename,$pos)
+  {
+           $pimage=new ProductImage;
+           $pimage->id_product=$this->id_product;
+           $pimage->position=$pos;
+	   $pimage->filename = $filename;  // random number + file name
+	   $pimage->save(false);
+
+  }
+
+   public function saveImageToS3($uploadedFile,$pos=0)
+  {  
+   $dir_path=Yii::app()->basePath.'/assets/images/'; 
+   $sizes=getimagesize($uploadedFile->getTempName());
+                                 
+   $ext = pathinfo($uploadedFile->getName(), PATHINFO_EXTENSION);
+
+       $filename=$uploadedFile->getName().$this->id_product.$sizes[0].$sizes[1].".".$ext;
+       $savePath=$dir_path.$filename; 
+       $uploadedFile->saveAs($savePath);
+       $success = Yii::app()->s3->upload( $savePath , 'productpics/'.$filename, 'lagdev' );
+
+
+       $this->addProductImage($filename,$pos);
+       
+
+       unlink($savePath);
+
+  }
+
+
+  public function getSoldOutStatus()
+  {
+   if($this->out_of_stock==1)
+    return("YES");
+   else
+    return("NO");
+  }
+ 
+ /*
+ public function getUserValidity($delivery_date=null,$position="receiverend")
+  {
+      if($position=="frontend")
+       {
+        /*
+        $datetime1 = date_create($delivery_date);
+        $datetime2 = date_create($this->vouchers[0]->validity);
+        $interval = date_diff($datetime1, $datetime2);
+        $validity=(int)$interval->format('%a days')+$this->user_validity;
+        */
+   /*      return($validity. " days");
+       
+       }
+       else
+       {
+         return(date('M-d-Y',strtotime($this->vouchers[0]->validity." +".$this->user_validity." days")));
+       }  
+     
+  }*/
+   
+  public function getProductValidity()
+  {
+   return(date('M-d-Y',strtotime($this->vouchers[0]->validity." -".$this->user_validity." days")));      
+  }
+   public function getUserValidity()
+  {
+   return(date('M-d-Y',strtotime($this->delivery_date." +".$this->user_validity." days")));      
+  }
+  
+   public function isDateExceeded($delivery_date)
+  {
+ 
+       if(strtotime($delivery_date." +".$this->user_validity." days")>strtotime($this->vouchers[0]->validity)) 
+        {
+         return(true);
+        }
+        else
+        {
+         return(false);
+        }
+   
+  }
+  /*$datetime1 = date_create($delivery_date);
+         $datetime2 = date_create($this->vouchers[0]->validity);
+         $interval = date_diff($datetime1, $datetime2);
+   
+        $validity=(int)$interval->format('%a days')+$this->user_validity;*/
+         /*echo "<br/>delivery date:".$delivery_date;
+         echo "<br/>voucher validity:".$this->vouchers[0]->validity;
+         echo "<br/>Product validuty:".$this->user_validity;
+         
+         
+          echo "<br/>totol validiy:".date('M-d-Y',strtotime(date('Y-m-d',time())." +".$validity." days"));
+        exit;*/
+      //return(date('M-d-Y',strtotime(date('Y-m-d',time())." +".$validity." days")));
+  
+  
+ 
+/*
+  public function getFreeGiftReceivedCount($receiverfbid) 
+  {
+    $criteria=new CDbCriteria;
+    $criteria->condition="id_product=:id_product and receiver_fbid=:receiver_fbid ";
+    $criteria->params=array(":id_product"=>$this->id_product,":receiver_fbid"=>$receiverfbid); 
+
+   
+    UserOrder::model()->count($criteria);
+  }
+  */
+  public function getActiveVoucherCount()
+  {
+   $criteria=new CDbCriteria;
+   $criteria->condition="id_product=:id_product and status='1'";
+   
+   return(Vouchers::model()->count($criteria));
+   
+  }
+}

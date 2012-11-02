@@ -1,0 +1,21 @@
+#loading{
+    background-image: url(loading.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: fixed;
+    z-index: 999999;
+    top:25%;
+    left: 45%;
+    width: 300px;
+    height: 300px;
+    margin-top: -50px;
+    mergin-left:-50px;
+    opacity: 0.8;
+    
+    
+    
+    text-align: center;
+    padding-top: 80px;
+    
+    display: none;
+}

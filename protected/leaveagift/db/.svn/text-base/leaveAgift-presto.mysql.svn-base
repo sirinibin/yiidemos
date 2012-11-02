@@ -1,0 +1,1716 @@
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+
+CREATE TABLE IF NOT EXISTS `lag_user` (
+  `id_user` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_customer` int(64) NOT NULL,
+  `facebook_userid` varchar(32) NOT NULL,
+  `facebook_oauthid` varchar(512) NOT NULL,
+  `facebook_email` varchar(128) NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_user`),
+  UNIQUE KEY `facebook_email` (`facebook_email`),
+  KEY `facebook_oauthid` (`facebook_oauthid`(255))
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `lag_user_order` (
+  `id_user_gift` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_cart` int(64) unsigned NOT NULL,
+  `id_product` int(64) unsigned NOT NULL,
+  `id_user` int(64) unsigned NOT NULL,
+  `receiver_fbid` varchar(128) DEFAULT NULL,
+  `receiver_fbfirstname` varchar(64) DEFAULT NULL,
+  `receiver_fbemail` varchar(128) DEFAULT NULL,
+  `notify_email` varchar(128) DEFAULT NULL,
+  `img_url` varchar(128) DEFAULT NULL,
+  `message_card` text,
+  `message_post` text,
+  `title` varchar(128) NOT NULL,
+  `delivery_date` datetime NOT NULL,
+  `greeting` varchar(32) NOT NULL,
+  `gift_opened` varchar(8) NOT NULL,
+  `gift_rating` varchar(8) NOT NULL,
+  `facebook_postid` varchar(64) DEFAULT NULL,
+  `post_email_status` bit(3) DEFAULT b'0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_user_gift`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_access` (
+  `id_profile` int(10) unsigned NOT NULL,
+  `id_tab` int(10) unsigned NOT NULL,
+  `view` int(11) NOT NULL,
+  `add` int(11) NOT NULL,
+  `edit` int(11) NOT NULL,
+  `delete` int(11) NOT NULL,
+  PRIMARY KEY (`id_profile`,`id_tab`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_accessory` (
+  `id_product_1` int(64) unsigned NOT NULL,
+  `id_product_2` int(64) unsigned NOT NULL,
+  PRIMARY KEY (`id_product_1`,`id_product_2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_address` (
+  `id_address` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_country` int(10) unsigned NOT NULL,
+  `id_state` int(10) unsigned DEFAULT NULL,
+  `id_customer` int(64) unsigned NOT NULL DEFAULT '0',
+  `id_manufacturer` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_supplier` int(10) unsigned NOT NULL DEFAULT '0',
+  `alias` varchar(32) NOT NULL,
+  `company` varchar(32) DEFAULT NULL,
+  `lastname` varchar(32) NOT NULL,
+  `firstname` varchar(32) NOT NULL,
+  `address1` varchar(128) NOT NULL,
+  `address2` varchar(128) DEFAULT NULL,
+  `postcode` varchar(12) DEFAULT NULL,
+  `city` varchar(64) NOT NULL,
+  `other` text,
+  `phone` varchar(16) DEFAULT NULL,
+  `phone_mobile` varchar(16) DEFAULT NULL,
+  `vat_number` varchar(32) DEFAULT NULL,
+  `dni` varchar(16) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_address`),
+  KEY `address_customer` (`id_customer`),
+  KEY `id_country` (`id_country`),
+  KEY `id_state` (`id_state`),
+  KEY `id_manufacturer` (`id_manufacturer`),
+  KEY `id_supplier` (`id_supplier`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_address_format` (
+  `id_country` int(10) unsigned NOT NULL,
+  `format` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id_country`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_alias` (
+  `id_alias` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `alias` varchar(255) NOT NULL,
+  `search` varchar(255) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_alias`),
+  UNIQUE KEY `alias` (`alias`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_attachment` (
+  `id_attachment` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `file` varchar(40) NOT NULL,
+  `file_name` varchar(128) NOT NULL,
+  `mime` varchar(128) NOT NULL,
+  PRIMARY KEY (`id_attachment`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_attachment_lang` (
+  `id_attachment` int(64) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  `description` text,
+  PRIMARY KEY (`id_attachment`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_attribute` (
+  `id_attribute` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_attribute_group` int(10) unsigned NOT NULL,
+  `color` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id_attribute`),
+  KEY `attribute_group` (`id_attribute_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_attribute_group` (
+  `id_attribute_group` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `is_color_group` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_attribute_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_attribute_group_lang` (
+  `id_attribute_group` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `public_name` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_attribute_group`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_attribute_impact` (
+  `id_attribute_impact` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) unsigned NOT NULL,
+  `id_attribute` int(11) unsigned NOT NULL,
+  `weight` float NOT NULL,
+  `price` decimal(17,2) NOT NULL,
+  PRIMARY KEY (`id_attribute_impact`),
+  UNIQUE KEY `id_product` (`id_product`,`id_attribute`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_attribute_lang` (
+  `id_attribute` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`id_attribute`,`id_lang`),
+  KEY `id_lang` (`id_lang`,`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_carrier` (
+  `id_carrier` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_tax_rules_group` int(10) unsigned DEFAULT '0',
+  `name` varchar(64) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `shipping_handling` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `range_behavior` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_module` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_free` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `shipping_external` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `need_range` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `external_module_name` varchar(64) DEFAULT NULL,
+  `shipping_method` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_carrier`),
+  KEY `deleted` (`deleted`,`active`),
+  KEY `id_tax_rules_group` (`id_tax_rules_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_carrier_group` (
+  `id_carrier` int(10) unsigned NOT NULL,
+  `id_group` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_carrier`,`id_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_carrier_lang` (
+  `id_carrier` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `delay` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id_carrier`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_carrier_zone` (
+  `id_carrier` int(10) unsigned NOT NULL,
+  `id_zone` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_carrier`,`id_zone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_cart` (
+  `id_cart` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_carrier` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `id_address_delivery` int(10) unsigned NOT NULL,
+  `id_address_invoice` int(10) unsigned NOT NULL,
+  `id_currency` int(10) unsigned NOT NULL,
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_guest` int(10) unsigned NOT NULL,
+  `secure_key` varchar(32) NOT NULL DEFAULT '-1',
+  `recyclable` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `gift` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `gift_message` text,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_cart`),
+  KEY `cart_customer` (`id_customer`),
+  KEY `id_address_delivery` (`id_address_delivery`),
+  KEY `id_address_invoice` (`id_address_invoice`),
+  KEY `id_carrier` (`id_carrier`),
+  KEY `id_lang` (`id_lang`),
+  KEY `id_currency` (`id_currency`),
+  KEY `id_guest` (`id_guest`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_cart_discount` (
+  `id_cart` int(64) unsigned NOT NULL,
+  `id_discount` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_cart`,`id_discount`),
+  KEY `id_discount` (`id_discount`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_cart_product` (
+  `id_cart` int(64) unsigned NOT NULL,
+  `id_product` int(64) unsigned NOT NULL,
+  `id_product_attribute` int(64) unsigned NOT NULL DEFAULT '0',
+  `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_cart`,`id_product`,`id_product_attribute`),
+  KEY `id_product_attribute` (`id_product_attribute`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_category` (
+  `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_parent` int(10) unsigned NOT NULL,
+  `level_depth` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `nleft` int(10) unsigned NOT NULL DEFAULT '0',
+  `nright` int(10) unsigned NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  `position` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_category`),
+  KEY `category_parent` (`id_parent`),
+  KEY `nleftright` (`nleft`,`nright`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_category_group` (
+  `id_category` int(10) unsigned NOT NULL,
+  `id_group` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_category`,`id_group`),
+  KEY `id_category` (`id_category`),
+  KEY `id_group` (`id_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_category_lang` (
+  `id_category` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `description` text,
+  `link_rewrite` varchar(128) NOT NULL,
+  `meta_title` varchar(128) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_category`,`id_lang`),
+  KEY `category_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_category_product` (
+  `id_category` int(10) unsigned NOT NULL,
+  `id_product` int(64) unsigned NOT NULL,
+  `position` int(10) unsigned NOT NULL DEFAULT '0',
+  UNIQUE KEY `category_product_index` (`id_category`,`id_product`),
+  KEY `id_product` (`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_cms` (
+  `id_cms` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_cms_category` int(10) unsigned NOT NULL,
+  `position` int(10) unsigned NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_cms`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_cms_category` (
+  `id_cms_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_parent` int(10) unsigned NOT NULL,
+  `level_depth` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  `position` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_cms_category`),
+  KEY `category_parent` (`id_parent`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_cms_category_lang` (
+  `id_cms_category` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `description` text,
+  `link_rewrite` varchar(128) NOT NULL,
+  `meta_title` varchar(128) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  UNIQUE KEY `category_lang_index` (`id_cms_category`,`id_lang`),
+  KEY `category_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_cms_lang` (
+  `id_cms` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `meta_title` varchar(128) NOT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `content` longtext,
+  `link_rewrite` varchar(128) NOT NULL,
+  PRIMARY KEY (`id_cms`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_compare` (
+  `id_compare` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_customer` int(64) unsigned NOT NULL,
+  PRIMARY KEY (`id_compare`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_compare_product` (
+  `id_compare` int(10) unsigned NOT NULL,
+  `id_product` int(64) unsigned NOT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_compare`,`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_configuration` (
+  `id_configuration` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `value` text,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_configuration`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_configuration_lang` (
+  `id_configuration` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `value` text,
+  `date_upd` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_configuration`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_connections` (
+  `id_connections` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_guest` int(10) unsigned NOT NULL,
+  `id_page` int(10) unsigned NOT NULL,
+  `ip_address` bigint(20) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  `http_referer` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_connections`),
+  KEY `id_guest` (`id_guest`),
+  KEY `date_add` (`date_add`),
+  KEY `id_page` (`id_page`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_connections_page` (
+  `id_connections` int(10) unsigned NOT NULL,
+  `id_page` int(10) unsigned NOT NULL,
+  `time_start` datetime NOT NULL,
+  `time_end` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_connections`,`id_page`,`time_start`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_connections_source` (
+  `id_connections_source` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_connections` int(10) unsigned NOT NULL,
+  `http_referer` varchar(255) DEFAULT NULL,
+  `request_uri` varchar(255) DEFAULT NULL,
+  `keywords` varchar(255) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_connections_source`),
+  KEY `connections` (`id_connections`),
+  KEY `orderby` (`date_add`),
+  KEY `http_referer` (`http_referer`),
+  KEY `request_uri` (`request_uri`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_contact` (
+  `id_contact` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(128) NOT NULL,
+  `customer_service` tinyint(1) NOT NULL DEFAULT '0',
+  `position` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_contact`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_contact_lang` (
+  `id_contact` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id_contact`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_country` (
+  `id_country` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_zone` int(10) unsigned NOT NULL,
+  `id_currency` int(10) unsigned NOT NULL DEFAULT '0',
+  `iso_code` varchar(3) NOT NULL,
+  `call_ps` int(10) NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `contains_states` tinyint(1) NOT NULL DEFAULT '0',
+  `need_identification_number` tinyint(1) NOT NULL DEFAULT '0',
+  `need_zip_code` tinyint(1) NOT NULL DEFAULT '1',
+  `zip_code_format` varchar(12) NOT NULL DEFAULT '',
+  `display_tax_label` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_country`),
+  KEY `country_iso_code` (`iso_code`),
+  KEY `country_` (`id_zone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_country_lang` (
+  `id_country` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_country`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_county` (
+  `id_county` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `id_state` int(11) NOT NULL,
+  `active` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_county`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_county_zip_code` (
+  `id_county` int(11) NOT NULL,
+  `from_zip_code` int(11) NOT NULL,
+  `to_zip_code` int(11) NOT NULL,
+  PRIMARY KEY (`id_county`,`from_zip_code`,`to_zip_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_currency` (
+  `id_currency` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `iso_code` varchar(3) NOT NULL DEFAULT '0',
+  `iso_code_num` varchar(3) NOT NULL DEFAULT '0',
+  `sign` varchar(8) NOT NULL,
+  `blank` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `format` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `decimals` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `conversion_rate` decimal(13,6) NOT NULL,
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_currency`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_customer` (
+  `id_customer` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_gender` int(10) unsigned NOT NULL,
+  `id_default_group` int(10) unsigned NOT NULL DEFAULT '1',
+  `firstname` varchar(32) NOT NULL,
+  `lastname` varchar(32) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `passwd` varchar(32) NOT NULL,
+  `last_passwd_gen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `birthday` date DEFAULT NULL,
+  `newsletter` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `ip_registration_newsletter` varchar(15) DEFAULT NULL,
+  `newsletter_date_add` datetime DEFAULT NULL,
+  `optin` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `secure_key` varchar(32) NOT NULL DEFAULT '-1',
+  `note` text,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `is_guest` tinyint(1) NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_customer`),
+  KEY `customer_email` (`email`),
+  KEY `customer_login` (`email`,`passwd`),
+  KEY `id_customer_passwd` (`id_customer`,`passwd`),
+  KEY `id_gender` (`id_gender`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_customer_group` (
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_group` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_customer`,`id_group`),
+  KEY `customer_login` (`id_group`),
+  KEY `id_customer` (`id_customer`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_customer_message` (
+  `id_customer_message` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_customer_thread` int(11) DEFAULT NULL,
+  `id_employee` int(10) unsigned DEFAULT NULL,
+  `message` text NOT NULL,
+  `file_name` varchar(18) DEFAULT NULL,
+  `ip_address` int(11) DEFAULT NULL,
+  `user_agent` varchar(128) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_customer_message`),
+  KEY `id_customer_thread` (`id_customer_thread`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_customer_thread` (
+  `id_customer_thread` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_lang` int(10) unsigned NOT NULL,
+  `id_contact` int(10) unsigned NOT NULL,
+  `id_customer` int(64) unsigned DEFAULT NULL,
+  `id_order` int(64) unsigned DEFAULT NULL,
+  `id_product` int(64) unsigned DEFAULT NULL,
+  `status` enum('open','closed','pending1','pending2') NOT NULL DEFAULT 'open',
+  `email` varchar(128) NOT NULL,
+  `token` varchar(12) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_customer_thread`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_customization` (
+  `id_customization` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product_attribute` int(64) unsigned NOT NULL DEFAULT '0',
+  `id_cart` int(64) unsigned NOT NULL,
+  `id_product` int(64) NOT NULL,
+  `quantity` int(10) NOT NULL,
+  `quantity_refunded` int(11) NOT NULL DEFAULT '0',
+  `quantity_returned` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_customization`,`id_cart`,`id_product`),
+  KEY `id_product_attribute` (`id_product_attribute`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_customization_field` (
+  `id_customization_field` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) unsigned NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `required` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id_customization_field`),
+  KEY `id_product` (`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_customization_field_lang` (
+  `id_customization_field` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_customization_field`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_customized_data` (
+  `id_customization` int(10) unsigned NOT NULL,
+  `type` tinyint(1) NOT NULL,
+  `index` int(3) NOT NULL,
+  `value` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_customization`,`type`,`index`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_date_range` (
+  `id_date_range` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `time_start` datetime NOT NULL,
+  `time_end` datetime NOT NULL,
+  PRIMARY KEY (`id_date_range`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_delivery` (
+  `id_delivery` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_carrier` int(10) unsigned NOT NULL,
+  `id_range_price` int(10) unsigned DEFAULT NULL,
+  `id_range_weight` int(10) unsigned DEFAULT NULL,
+  `id_zone` int(10) unsigned NOT NULL,
+  `price` decimal(20,6) NOT NULL,
+  PRIMARY KEY (`id_delivery`),
+  KEY `id_zone` (`id_zone`),
+  KEY `id_carrier` (`id_carrier`,`id_zone`),
+  KEY `id_range_price` (`id_range_price`),
+  KEY `id_range_weight` (`id_range_weight`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_discount` (
+  `id_discount` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_discount_type` int(10) unsigned NOT NULL,
+  `behavior_not_exhausted` tinyint(3) DEFAULT '1',
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_group` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_currency` int(10) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(32) NOT NULL,
+  `value` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `quantity_per_user` int(10) unsigned NOT NULL DEFAULT '1',
+  `cumulable` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `cumulable_reduction` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `date_from` datetime NOT NULL,
+  `date_to` datetime NOT NULL,
+  `minimal` decimal(17,2) DEFAULT NULL,
+  `include_tax` tinyint(1) NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `cart_display` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_discount`),
+  KEY `discount_name` (`name`),
+  KEY `discount_customer` (`id_customer`),
+  KEY `id_discount_type` (`id_discount_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_discount_category` (
+  `id_category` int(11) unsigned NOT NULL,
+  `id_discount` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id_category`,`id_discount`),
+  KEY `discount` (`id_discount`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_discount_lang` (
+  `id_discount` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id_discount`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_discount_type` (
+  `id_discount_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_discount_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_discount_type_lang` (
+  `id_discount_type` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_discount_type`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_employee` (
+  `id_employee` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_profile` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL DEFAULT '0',
+  `lastname` varchar(32) NOT NULL,
+  `firstname` varchar(32) NOT NULL,
+  `email` varchar(128) NOT NULL,
+  `passwd` varchar(32) NOT NULL,
+  `last_passwd_gen` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `stats_date_from` date DEFAULT NULL,
+  `stats_date_to` date DEFAULT NULL,
+  `bo_color` varchar(32) DEFAULT NULL,
+  `bo_theme` varchar(32) DEFAULT NULL,
+  `bo_uimode` enum('hover','click') DEFAULT 'click',
+  `bo_show_screencast` tinyint(1) NOT NULL DEFAULT '1',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_employee`),
+  KEY `employee_login` (`email`,`passwd`),
+  KEY `id_employee_passwd` (`id_employee`,`passwd`),
+  KEY `id_profile` (`id_profile`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_feature` (
+  `id_feature` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_feature`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_feature_lang` (
+  `id_feature` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id_feature`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_feature_product` (
+  `id_feature` int(10) unsigned NOT NULL,
+  `id_product` int(64) unsigned NOT NULL,
+  `id_feature_value` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_feature`,`id_product`),
+  KEY `id_feature_value` (`id_feature_value`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_feature_value` (
+  `id_feature_value` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_feature` int(10) unsigned NOT NULL,
+  `custom` tinyint(3) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id_feature_value`),
+  KEY `feature` (`id_feature`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_feature_value_lang` (
+  `id_feature_value` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_feature_value`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_group` (
+  `id_group` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `reduction` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `price_display_method` tinyint(4) NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_group_lang` (
+  `id_group` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_group`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_group_reduction` (
+  `id_group_reduction` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `id_group` int(10) unsigned NOT NULL,
+  `id_category` int(10) unsigned NOT NULL,
+  `reduction` decimal(4,3) NOT NULL,
+  PRIMARY KEY (`id_group_reduction`),
+  UNIQUE KEY `id_group` (`id_group`,`id_category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_guest` (
+  `id_guest` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_operating_system` int(10) unsigned DEFAULT NULL,
+  `id_web_browser` int(10) unsigned DEFAULT NULL,
+  `id_customer` int(64) unsigned DEFAULT NULL,
+  `javascript` tinyint(1) DEFAULT '0',
+  `screen_resolution_x` smallint(5) unsigned DEFAULT NULL,
+  `screen_resolution_y` smallint(5) unsigned DEFAULT NULL,
+  `screen_color` tinyint(3) unsigned DEFAULT NULL,
+  `sun_java` tinyint(1) DEFAULT NULL,
+  `adobe_flash` tinyint(1) DEFAULT NULL,
+  `adobe_director` tinyint(1) DEFAULT NULL,
+  `apple_quicktime` tinyint(1) DEFAULT NULL,
+  `real_player` tinyint(1) DEFAULT NULL,
+  `windows_media` tinyint(1) DEFAULT NULL,
+  `accept_language` varchar(8) DEFAULT NULL,
+  PRIMARY KEY (`id_guest`),
+  KEY `id_customer` (`id_customer`),
+  KEY `id_operating_system` (`id_operating_system`),
+  KEY `id_web_browser` (`id_web_browser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_help_access` (
+  `id_help_access` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(45) NOT NULL,
+  `version` varchar(8) NOT NULL,
+  PRIMARY KEY (`id_help_access`),
+  UNIQUE KEY `label` (`label`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_hook` (
+  `id_hook` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `title` varchar(64) NOT NULL,
+  `description` text,
+  `position` tinyint(1) NOT NULL DEFAULT '1',
+  `live_edit` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_hook`),
+  UNIQUE KEY `hook_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_hook_module` (
+  `id_module` int(10) unsigned NOT NULL,
+  `id_hook` int(10) unsigned NOT NULL,
+  `position` tinyint(2) unsigned NOT NULL,
+  PRIMARY KEY (`id_module`,`id_hook`),
+  KEY `id_hook` (`id_hook`),
+  KEY `id_module` (`id_module`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_hook_module_exceptions` (
+  `id_hook_module_exceptions` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_module` int(10) unsigned NOT NULL,
+  `id_hook` int(10) unsigned NOT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_hook_module_exceptions`),
+  KEY `id_module` (`id_module`),
+  KEY `id_hook` (`id_hook`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_image` (
+  `id_image` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) unsigned NOT NULL,
+  `position` smallint(2) unsigned NOT NULL DEFAULT '0',
+  `cover` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_image`),
+  UNIQUE KEY `product_position` (`id_product`,`position`),
+  KEY `image_product` (`id_product`),
+  KEY `id_product_cover` (`id_product`,`cover`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_image_lang` (
+  `id_image` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `legend` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id_image`,`id_lang`),
+  KEY `id_image` (`id_image`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_image_type` (
+  `id_image_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(16) NOT NULL,
+  `width` int(10) unsigned NOT NULL,
+  `height` int(10) unsigned NOT NULL,
+  `products` tinyint(1) NOT NULL DEFAULT '1',
+  `categories` tinyint(1) NOT NULL DEFAULT '1',
+  `manufacturers` tinyint(1) NOT NULL DEFAULT '1',
+  `suppliers` tinyint(1) NOT NULL DEFAULT '1',
+  `scenes` tinyint(1) NOT NULL DEFAULT '1',
+  `stores` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_image_type`),
+  KEY `image_type_name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_import_match` (
+  `id_import_match` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `match` text NOT NULL,
+  `skip` int(2) NOT NULL,
+  PRIMARY KEY (`id_import_match`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_lang` (
+  `id_lang` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `active` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `iso_code` char(2) NOT NULL,
+  `language_code` char(5) NOT NULL,
+  `date_format_lite` char(32) NOT NULL DEFAULT 'Y-m-d',
+  `date_format_full` char(32) NOT NULL DEFAULT 'Y-m-d H:i:s',
+  `is_rtl` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_lang`),
+  KEY `lang_iso_code` (`iso_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_log` (
+  `id_log` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `severity` tinyint(1) NOT NULL,
+  `error_code` int(11) DEFAULT NULL,
+  `message` text NOT NULL,
+  `object_type` varchar(32) DEFAULT NULL,
+  `object_id` int(10) unsigned DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_log`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_manufacturer` (
+  `id_manufacturer` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_manufacturer`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_manufacturer_lang` (
+  `id_manufacturer` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `description` text,
+  `short_description` varchar(254) DEFAULT NULL,
+  `meta_title` varchar(128) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_manufacturer`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_memcached_servers` (
+  `id_memcached_server` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `ip` varchar(254) NOT NULL,
+  `port` int(11) unsigned NOT NULL,
+  `weight` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id_memcached_server`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_message` (
+  `id_message` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_cart` int(64) unsigned DEFAULT NULL,
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_employee` int(10) unsigned DEFAULT NULL,
+  `id_order` int(64) unsigned NOT NULL,
+  `message` text NOT NULL,
+  `private` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_message`),
+  KEY `message_order` (`id_order`),
+  KEY `id_cart` (`id_cart`),
+  KEY `id_customer` (`id_customer`),
+  KEY `id_employee` (`id_employee`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_message_readed` (
+  `id_message` int(10) unsigned NOT NULL,
+  `id_employee` int(10) unsigned NOT NULL,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_message`,`id_employee`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_meta` (
+  `id_meta` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `page` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_meta`),
+  KEY `meta_name` (`page`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_meta_lang` (
+  `id_meta` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `title` varchar(128) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `keywords` varchar(255) DEFAULT NULL,
+  `url_rewrite` varchar(254) NOT NULL,
+  PRIMARY KEY (`id_meta`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_module` (
+  `id_module` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_module`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_module_country` (
+  `id_module` int(10) unsigned NOT NULL,
+  `id_country` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_module`,`id_country`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_module_currency` (
+  `id_module` int(10) unsigned NOT NULL,
+  `id_currency` int(11) NOT NULL,
+  PRIMARY KEY (`id_module`,`id_currency`),
+  KEY `id_module` (`id_module`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_module_group` (
+  `id_module` int(10) unsigned NOT NULL,
+  `id_group` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id_module`,`id_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_operating_system` (
+  `id_operating_system` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id_operating_system`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_orders` (
+  `id_order` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_carrier` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_cart` int(64) unsigned NOT NULL,
+  `id_currency` int(10) unsigned NOT NULL,
+  `id_address_delivery` int(10) unsigned NOT NULL,
+  `id_address_invoice` int(10) unsigned NOT NULL,
+  `secure_key` varchar(32) NOT NULL DEFAULT '-1',
+  `payment` varchar(255) NOT NULL,
+  `conversion_rate` decimal(13,6) NOT NULL DEFAULT '1.000000',
+  `module` varchar(255) DEFAULT NULL,
+  `recyclable` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `gift` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `gift_message` text,
+  `shipping_number` varchar(32) DEFAULT NULL,
+  `total_discounts` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_paid` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_paid_real` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_products` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_products_wt` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_shipping` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `carrier_tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
+  `total_wrapping` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `invoice_number` int(10) unsigned NOT NULL DEFAULT '0',
+  `delivery_number` int(10) unsigned NOT NULL DEFAULT '0',
+  `invoice_date` datetime NOT NULL,
+  `delivery_date` datetime NOT NULL,
+  `valid` int(1) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_order`),
+  KEY `id_customer` (`id_customer`),
+  KEY `id_cart` (`id_cart`),
+  KEY `invoice_number` (`invoice_number`),
+  KEY `id_carrier` (`id_carrier`),
+  KEY `id_lang` (`id_lang`),
+  KEY `id_currency` (`id_currency`),
+  KEY `id_address_delivery` (`id_address_delivery`),
+  KEY `id_address_invoice` (`id_address_invoice`),
+  KEY `date_add` (`date_add`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_detail` (
+  `id_order_detail` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_order` int(64) unsigned NOT NULL,
+  `product_id` int(64) unsigned NOT NULL,
+  `product_attribute_id` int(64) unsigned DEFAULT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `product_quantity_in_stock` int(10) NOT NULL DEFAULT '0',
+  `product_quantity_refunded` int(10) unsigned NOT NULL DEFAULT '0',
+  `product_quantity_return` int(10) unsigned NOT NULL DEFAULT '0',
+  `product_quantity_reinjected` int(10) unsigned NOT NULL DEFAULT '0',
+  `product_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `reduction_percent` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `reduction_amount` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `group_reduction` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `product_quantity_discount` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `product_ean13` varchar(13) DEFAULT NULL,
+  `product_upc` varchar(12) DEFAULT NULL,
+  `product_reference` varchar(32) DEFAULT NULL,
+  `product_supplier_reference` varchar(32) DEFAULT NULL,
+  `product_weight` float NOT NULL,
+  `tax_name` varchar(40) NOT NULL,
+  `tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
+  `ecotax` decimal(21,6) NOT NULL DEFAULT '0.000000',
+  `ecotax_tax_rate` decimal(5,3) NOT NULL DEFAULT '0.000',
+  `discount_quantity_applied` tinyint(1) NOT NULL DEFAULT '0',
+  `download_hash` varchar(255) DEFAULT NULL,
+  `download_nb` int(10) unsigned DEFAULT '0',
+  `download_deadline` datetime DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id_order_detail`),
+  KEY `order_detail_order` (`id_order`),
+  KEY `product_id` (`product_id`),
+  KEY `product_attribute_id` (`product_attribute_id`),
+  KEY `id_order_id_order_detail` (`id_order`,`id_order_detail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_discount` (
+  `id_order_discount` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_order` int(64) unsigned NOT NULL,
+  `id_discount` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `value` decimal(17,2) NOT NULL DEFAULT '0.00',
+  PRIMARY KEY (`id_order_discount`),
+  KEY `order_discount_order` (`id_order`),
+  KEY `id_discount` (`id_discount`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_history` (
+  `id_order_history` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_employee` int(10) unsigned NOT NULL,
+  `id_order` int(64) unsigned NOT NULL,
+  `id_order_state` int(10) unsigned NOT NULL,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_order_history`),
+  KEY `order_history_order` (`id_order`),
+  KEY `id_employee` (`id_employee`),
+  KEY `id_order_state` (`id_order_state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_message` (
+  `id_order_message` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_order_message`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_message_lang` (
+  `id_order_message` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  `message` text NOT NULL,
+  PRIMARY KEY (`id_order_message`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_order_return` (
+  `id_order_return` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_order` int(64) unsigned NOT NULL,
+  `state` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `question` text NOT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_order_return`),
+  KEY `order_return_customer` (`id_customer`),
+  KEY `id_order` (`id_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_return_detail` (
+  `id_order_return` int(10) unsigned NOT NULL,
+  `id_order_detail` int(64) unsigned NOT NULL,
+  `id_customization` int(10) unsigned NOT NULL DEFAULT '0',
+  `product_quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_order_return`,`id_order_detail`,`id_customization`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_order_return_state` (
+  `id_order_return_state` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `color` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id_order_return_state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_return_state_lang` (
+  `id_order_return_state` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_order_return_state`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_order_slip` (
+  `id_order_slip` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `conversion_rate` decimal(13,6) NOT NULL DEFAULT '1.000000',
+  `id_customer` int(64) unsigned NOT NULL,
+  `id_order` int(64) unsigned NOT NULL,
+  `shipping_cost` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_order_slip`),
+  KEY `order_slip_customer` (`id_customer`),
+  KEY `id_order` (`id_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_slip_detail` (
+  `id_order_slip` int(10) unsigned NOT NULL,
+  `id_order_detail` int(64) unsigned NOT NULL,
+  `product_quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_order_slip`,`id_order_detail`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_order_state` (
+  `id_order_state` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `invoice` tinyint(1) unsigned DEFAULT '0',
+  `send_email` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `color` varchar(32) DEFAULT NULL,
+  `unremovable` tinyint(1) unsigned NOT NULL,
+  `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `logable` tinyint(1) NOT NULL DEFAULT '0',
+  `delivery` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_order_state`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_order_state_lang` (
+  `id_order_state` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `template` varchar(64) NOT NULL,
+  PRIMARY KEY (`id_order_state`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_order_tax` (
+  `id_order` int(64) NOT NULL,
+  `tax_name` varchar(40) NOT NULL,
+  `tax_rate` decimal(6,3) NOT NULL,
+  `amount` decimal(20,6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_pack` (
+  `id_product_pack` int(10) unsigned NOT NULL,
+  `id_product_item` int(10) unsigned NOT NULL,
+  `quantity` int(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_product_pack`,`id_product_item`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_page` (
+  `id_page` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_page_type` int(10) unsigned NOT NULL,
+  `id_object` int(10) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id_page`),
+  KEY `id_page_type` (`id_page_type`),
+  KEY `id_object` (`id_object`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_page_type` (
+  `id_page_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_page_type`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_page_viewed` (
+  `id_page` int(10) unsigned NOT NULL,
+  `id_date_range` int(10) unsigned NOT NULL,
+  `counter` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_page`,`id_date_range`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_payment_cc` (
+  `id_payment_cc` int(11) NOT NULL AUTO_INCREMENT,
+  `id_order` int(64) DEFAULT NULL,
+  `id_currency` int(10) unsigned NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `transaction_id` varchar(254) DEFAULT NULL,
+  `card_number` varchar(254) DEFAULT NULL,
+  `card_brand` varchar(254) DEFAULT NULL,
+  `card_expiration` char(7) DEFAULT NULL,
+  `card_holder` varchar(254) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_payment_cc`),
+  KEY `id_order` (`id_order`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_product` (
+  `id_product` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_supplier` int(32) unsigned DEFAULT NULL,
+  `id_manufacturer` int(32) unsigned DEFAULT NULL,
+  `id_tax_rules_group` int(10) unsigned NOT NULL,
+  `id_category_default` int(10) unsigned DEFAULT NULL,
+  `id_color_default` int(10) unsigned DEFAULT NULL,
+  `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `online_only` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `ean13` varchar(13) DEFAULT NULL,
+  `upc` varchar(12) DEFAULT NULL,
+  `ecotax` decimal(17,6) NOT NULL DEFAULT '0.000000',
+  `quantity` int(10) NOT NULL DEFAULT '0',
+  `minimal_quantity` int(10) unsigned NOT NULL DEFAULT '1',
+  `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `wholesale_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `unity` varchar(255) DEFAULT NULL,
+  `unit_price_ratio` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `additional_shipping_cost` decimal(20,2) NOT NULL DEFAULT '0.00',
+  `reference` varchar(32) DEFAULT NULL,
+  `supplier_reference` varchar(32) DEFAULT NULL,
+  `location` varchar(64) DEFAULT NULL,
+  `width` float NOT NULL DEFAULT '0',
+  `height` float NOT NULL DEFAULT '0',
+  `depth` float NOT NULL DEFAULT '0',
+  `weight` float NOT NULL DEFAULT '0',
+  `out_of_stock` int(10) unsigned NOT NULL DEFAULT '2',
+  `quantity_discount` tinyint(1) DEFAULT '0',
+  `customizable` tinyint(2) NOT NULL DEFAULT '0',
+  `uploadable_files` tinyint(4) NOT NULL DEFAULT '0',
+  `text_fields` tinyint(4) NOT NULL DEFAULT '0',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `available_for_order` tinyint(1) NOT NULL DEFAULT '1',
+  `condition` enum('new','used','refurbished') NOT NULL DEFAULT 'new',
+  `show_price` tinyint(1) NOT NULL DEFAULT '1',
+  `indexed` tinyint(1) NOT NULL DEFAULT '0',
+  `cache_is_pack` tinyint(1) NOT NULL DEFAULT '0',
+  `cache_has_attachments` tinyint(1) NOT NULL DEFAULT '0',
+  `cache_default_attribute` int(10) unsigned DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_product`),
+  KEY `product_supplier` (`id_supplier`),
+  KEY `product_manufacturer` (`id_manufacturer`),
+  KEY `id_category_default` (`id_category_default`),
+  KEY `id_color_default` (`id_color_default`),
+  KEY `date_add` (`date_add`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+CREATE TABLE IF NOT EXISTS `ps_product_attachment` (
+  `id_product` int(64) unsigned NOT NULL,
+  `id_attachment` int(64) unsigned NOT NULL,
+  PRIMARY KEY (`id_product`,`id_attachment`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_attribute` (
+  `id_product_attribute` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) unsigned NOT NULL,
+  `reference` varchar(32) DEFAULT NULL,
+  `supplier_reference` varchar(32) DEFAULT NULL,
+  `location` varchar(64) DEFAULT NULL,
+  `ean13` varchar(13) DEFAULT NULL,
+  `upc` varchar(12) DEFAULT NULL,
+  `wholesale_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `ecotax` decimal(17,6) NOT NULL DEFAULT '0.000000',
+  `quantity` int(10) NOT NULL DEFAULT '0',
+  `weight` float NOT NULL DEFAULT '0',
+  `unit_price_impact` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `default_on` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `minimal_quantity` int(10) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_product_attribute`),
+  KEY `product_attribute_product` (`id_product`),
+  KEY `reference` (`reference`),
+  KEY `supplier_reference` (`supplier_reference`),
+  KEY `product_default` (`id_product`,`default_on`),
+  KEY `id_product_id_product_attribute` (`id_product_attribute`,`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_product_attribute_combination` (
+  `id_attribute` int(10) unsigned NOT NULL,
+  `id_product_attribute` int(64) unsigned NOT NULL,
+  PRIMARY KEY (`id_attribute`,`id_product_attribute`),
+  KEY `id_product_attribute` (`id_product_attribute`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_attribute_image` (
+  `id_product_attribute` int(64) unsigned NOT NULL,
+  `id_image` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_product_attribute`,`id_image`),
+  KEY `id_image` (`id_image`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_country_tax` (
+  `id_product` int(64) NOT NULL,
+  `id_country` int(11) NOT NULL,
+  `id_tax` int(11) NOT NULL,
+  PRIMARY KEY (`id_product`,`id_country`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_download` (
+  `id_product_download` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) unsigned NOT NULL,
+  `display_filename` varchar(255) DEFAULT NULL,
+  `physically_filename` varchar(255) DEFAULT NULL,
+  `date_deposit` datetime NOT NULL,
+  `date_expiration` datetime DEFAULT NULL,
+  `nb_days_accessible` int(10) unsigned DEFAULT NULL,
+  `nb_downloadable` int(10) unsigned DEFAULT '1',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_product_download`),
+  KEY `product_active` (`id_product`,`active`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_product_group_reduction_cache` (
+  `id_product` int(10) unsigned NOT NULL,
+  `id_group` int(10) unsigned NOT NULL,
+  `reduction` decimal(4,3) NOT NULL,
+  PRIMARY KEY (`id_product`,`id_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_lang` (
+  `id_product` int(64) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `description` text,
+  `description_short` text,
+  `link_rewrite` varchar(128) NOT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_title` varchar(128) DEFAULT NULL,
+  `name` varchar(128) NOT NULL,
+  `available_now` varchar(255) DEFAULT NULL,
+  `available_later` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_product`,`id_lang`),
+  KEY `id_lang` (`id_lang`),
+  KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_sale` (
+  `id_product` int(64) unsigned NOT NULL,
+  `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `sale_nbr` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_upd` date NOT NULL,
+  PRIMARY KEY (`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_product_tag` (
+  `id_product` int(64) unsigned NOT NULL,
+  `id_tag` int(64) unsigned NOT NULL,
+  PRIMARY KEY (`id_product`,`id_tag`),
+  KEY `id_tag` (`id_tag`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_profile` (
+  `id_profile` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_profile`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_profile_lang` (
+  `id_lang` int(10) unsigned NOT NULL,
+  `id_profile` int(10) unsigned NOT NULL,
+  `name` varchar(128) NOT NULL,
+  PRIMARY KEY (`id_profile`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_quick_access` (
+  `id_quick_access` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `new_window` tinyint(1) NOT NULL DEFAULT '0',
+  `link` varchar(128) NOT NULL,
+  PRIMARY KEY (`id_quick_access`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_quick_access_lang` (
+  `id_quick_access` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_quick_access`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_range_price` (
+  `id_range_price` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_carrier` int(10) unsigned NOT NULL,
+  `delimiter1` decimal(20,6) NOT NULL,
+  `delimiter2` decimal(20,6) NOT NULL,
+  PRIMARY KEY (`id_range_price`),
+  UNIQUE KEY `id_carrier` (`id_carrier`,`delimiter1`,`delimiter2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_range_weight` (
+  `id_range_weight` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_carrier` int(10) unsigned NOT NULL,
+  `delimiter1` decimal(20,6) NOT NULL,
+  `delimiter2` decimal(20,6) NOT NULL,
+  PRIMARY KEY (`id_range_weight`),
+  UNIQUE KEY `id_carrier` (`id_carrier`,`delimiter1`,`delimiter2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_referrer` (
+  `id_referrer` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `passwd` varchar(32) DEFAULT NULL,
+  `http_referer_regexp` varchar(64) DEFAULT NULL,
+  `http_referer_like` varchar(64) DEFAULT NULL,
+  `request_uri_regexp` varchar(64) DEFAULT NULL,
+  `request_uri_like` varchar(64) DEFAULT NULL,
+  `http_referer_regexp_not` varchar(64) DEFAULT NULL,
+  `http_referer_like_not` varchar(64) DEFAULT NULL,
+  `request_uri_regexp_not` varchar(64) DEFAULT NULL,
+  `request_uri_like_not` varchar(64) DEFAULT NULL,
+  `base_fee` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `percent_fee` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `click_fee` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `cache_visitors` int(11) DEFAULT NULL,
+  `cache_visits` int(11) DEFAULT NULL,
+  `cache_pages` int(11) DEFAULT NULL,
+  `cache_registrations` int(11) DEFAULT NULL,
+  `cache_orders` int(11) DEFAULT NULL,
+  `cache_sales` decimal(17,2) DEFAULT NULL,
+  `cache_reg_rate` decimal(5,4) DEFAULT NULL,
+  `cache_order_rate` decimal(5,4) DEFAULT NULL,
+  `date_add` datetime NOT NULL,
+  PRIMARY KEY (`id_referrer`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_referrer_cache` (
+  `id_connections_source` int(11) unsigned NOT NULL,
+  `id_referrer` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id_connections_source`,`id_referrer`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_required_field` (
+  `id_required_field` int(11) NOT NULL AUTO_INCREMENT,
+  `object_name` varchar(32) NOT NULL,
+  `field_name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_required_field`),
+  KEY `object_name` (`object_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_scene` (
+  `id_scene` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_scene`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_scene_category` (
+  `id_scene` int(10) unsigned NOT NULL,
+  `id_category` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_scene`,`id_category`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_scene_lang` (
+  `id_scene` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_scene`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_scene_products` (
+  `id_scene` int(10) unsigned NOT NULL,
+  `id_product` int(64) unsigned NOT NULL,
+  `x_axis` int(4) NOT NULL,
+  `y_axis` int(4) NOT NULL,
+  `zone_width` int(3) NOT NULL,
+  `zone_height` int(3) NOT NULL,
+  PRIMARY KEY (`id_scene`,`id_product`,`x_axis`,`y_axis`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_search_engine` (
+  `id_search_engine` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `server` varchar(64) NOT NULL,
+  `getvar` varchar(16) NOT NULL,
+  PRIMARY KEY (`id_search_engine`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_search_index` (
+  `id_product` int(64) unsigned NOT NULL,
+  `id_word` int(11) unsigned NOT NULL,
+  `weight` smallint(4) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_word`,`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_search_word` (
+  `id_word` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_lang` int(10) unsigned NOT NULL,
+  `word` varchar(15) NOT NULL,
+  PRIMARY KEY (`id_word`),
+  UNIQUE KEY `id_lang` (`id_lang`,`word`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_specific_price` (
+  `id_specific_price` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) NOT NULL,
+  `id_shop` tinyint(3) unsigned NOT NULL,
+  `id_currency` int(10) unsigned NOT NULL,
+  `id_country` int(10) unsigned NOT NULL,
+  `id_group` int(10) unsigned NOT NULL,
+  `price` decimal(20,6) NOT NULL,
+  `from_quantity` mediumint(8) unsigned NOT NULL,
+  `reduction` decimal(20,6) NOT NULL,
+  `reduction_type` enum('amount','percentage') NOT NULL,
+  `from` datetime NOT NULL,
+  `to` datetime NOT NULL,
+  PRIMARY KEY (`id_specific_price`),
+  KEY `id_product` (`id_product`,`id_shop`,`id_currency`,`id_country`,`id_group`,`from_quantity`,`from`,`to`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_specific_price_priority` (
+  `id_specific_price_priority` int(11) NOT NULL AUTO_INCREMENT,
+  `id_product` int(11) NOT NULL,
+  `priority` varchar(80) NOT NULL,
+  PRIMARY KEY (`id_specific_price_priority`,`id_product`),
+  UNIQUE KEY `id_product` (`id_product`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_state` (
+  `id_state` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_country` int(11) unsigned NOT NULL,
+  `id_zone` int(11) unsigned NOT NULL,
+  `name` varchar(64) NOT NULL,
+  `iso_code` char(4) NOT NULL,
+  `tax_behavior` smallint(1) NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_state`),
+  KEY `id_country` (`id_country`),
+  KEY `id_zone` (`id_zone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_stock_mvt` (
+  `id_stock_mvt` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(64) unsigned DEFAULT NULL,
+  `id_product_attribute` int(64) unsigned DEFAULT NULL,
+  `id_order` int(64) unsigned DEFAULT NULL,
+  `id_stock_mvt_reason` int(11) unsigned NOT NULL,
+  `id_employee` int(11) unsigned NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_stock_mvt`),
+  KEY `id_order` (`id_order`),
+  KEY `id_product` (`id_product`),
+  KEY `id_product_attribute` (`id_product_attribute`),
+  KEY `id_stock_mvt_reason` (`id_stock_mvt_reason`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_stock_mvt_reason` (
+  `id_stock_mvt_reason` int(11) NOT NULL AUTO_INCREMENT,
+  `sign` tinyint(1) NOT NULL DEFAULT '1',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_stock_mvt_reason`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_stock_mvt_reason_lang` (
+  `id_stock_mvt_reason` int(11) NOT NULL,
+  `id_lang` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_stock_mvt_reason`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_store` (
+  `id_store` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_country` int(10) unsigned NOT NULL,
+  `id_state` int(10) unsigned DEFAULT NULL,
+  `name` varchar(128) NOT NULL,
+  `address1` varchar(128) NOT NULL,
+  `address2` varchar(128) DEFAULT NULL,
+  `city` varchar(64) NOT NULL,
+  `postcode` varchar(12) NOT NULL,
+  `latitude` decimal(11,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL,
+  `hours` varchar(254) DEFAULT NULL,
+  `phone` varchar(16) DEFAULT NULL,
+  `fax` varchar(16) DEFAULT NULL,
+  `email` varchar(128) DEFAULT NULL,
+  `note` text,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  PRIMARY KEY (`id_store`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_subdomain` (
+  `id_subdomain` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(16) NOT NULL,
+  PRIMARY KEY (`id_subdomain`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_supplier` (
+  `id_supplier` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `date_add` datetime NOT NULL,
+  `date_upd` datetime NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  `logo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_supplier`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+CREATE TABLE IF NOT EXISTS `ps_supplier_lang` (
+  `id_supplier` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `description` text,
+  `meta_title` varchar(128) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_supplier`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_tab` (
+  `id_tab` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_parent` int(11) NOT NULL,
+  `class_name` varchar(64) NOT NULL,
+  `module` varchar(64) DEFAULT NULL,
+  `position` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id_tab`),
+  KEY `class_name` (`class_name`),
+  KEY `id_parent` (`id_parent`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_tab_lang` (
+  `id_tab` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id_tab`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_tag` (
+  `id_tag` int(64) unsigned NOT NULL AUTO_INCREMENT,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_tag`),
+  KEY `tag_name` (`name`),
+  KEY `id_lang` (`id_lang`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+CREATE TABLE IF NOT EXISTS `ps_tax` (
+  `id_tax` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rate` decimal(10,3) NOT NULL,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id_tax`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_tax_lang` (
+  `id_tax` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_tax`,`id_lang`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ps_tax_rule` (
+  `id_tax_rule` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tax_rules_group` int(11) NOT NULL,
+  `id_country` int(11) NOT NULL,
+  `id_state` int(11) NOT NULL,
+  `id_county` int(11) NOT NULL,
+  `id_tax` int(11) NOT NULL,
+  `state_behavior` int(11) NOT NULL,
+  `county_behavior` int(11) NOT NULL,
+  PRIMARY KEY (`id_tax_rule`),
+  UNIQUE KEY `tax_rule` (`id_tax_rules_group`,`id_country`,`id_state`,`id_county`),
+  KEY `id_tax_rules_group` (`id_tax_rules_group`),
+  KEY `id_tax` (`id_tax`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_tax_rules_group` (
+  `id_tax_rules_group` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `active` int(11) NOT NULL,
+  PRIMARY KEY (`id_tax_rules_group`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_timezone` (
+  `id_timezone` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  PRIMARY KEY (`id_timezone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_webservice_account` (
+  `id_webservice_account` int(11) NOT NULL AUTO_INCREMENT,
+  `key` varchar(32) NOT NULL,
+  `description` text,
+  `class_name` varchar(50) NOT NULL DEFAULT 'WebserviceRequest',
+  `is_module` tinyint(2) NOT NULL DEFAULT '0',
+  `module_name` varchar(50) DEFAULT NULL,
+  `active` tinyint(2) NOT NULL,
+  PRIMARY KEY (`id_webservice_account`),
+  KEY `key` (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_webservice_permission` (
+  `id_webservice_permission` int(11) NOT NULL AUTO_INCREMENT,
+  `resource` varchar(50) NOT NULL,
+  `method` enum('GET','POST','PUT','DELETE','HEAD') NOT NULL,
+  `id_webservice_account` int(11) NOT NULL,
+  PRIMARY KEY (`id_webservice_permission`),
+  UNIQUE KEY `resource_2` (`resource`,`method`,`id_webservice_account`),
+  KEY `resource` (`resource`),
+  KEY `method` (`method`),
+  KEY `id_webservice_account` (`id_webservice_account`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_web_browser` (
+  `id_web_browser` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id_web_browser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+CREATE TABLE IF NOT EXISTS `ps_zone` (
+  `id_zone` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(64) NOT NULL,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_zone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

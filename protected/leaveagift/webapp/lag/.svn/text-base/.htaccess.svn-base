@@ -1,0 +1,11 @@
+Order deny,allow
+<Files .htaccess .htpasswd .htuser .htgroups >
+order allow,deny
+deny from all
+</Files>
+<IfModule !mod_ssl.c>
+Redirect permanent / https://www.leaveagift.com/auth/login
+</IfModule>
+ExpiresActive on
+ExpiresDefault A3600
+DirectoryIndex auth/logout index.php

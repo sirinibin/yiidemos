@@ -1,0 +1,228 @@
+<?php
+$this->breadcrumbs=array(
+	'Products',
+);
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+    $('.search-form').slideToggle('fast');
+    return false;
+});
+$('.search-form form').submit(function(){
+    $.fn.yiiGridView.update('product-grid', {
+        data: $(this).serialize()
+    });
+    return false;
+});
+");
+
+?>
+
+<h1>Products</h1>
+<hr />
+
+<?php 
+
+$this->beginWidget('zii.widgets.CPortlet', array(
+	'htmlOptions'=>array(
+		'class'=>''
+	)
+));
+
+$this->widget('bootstrap.widgets.TbMenu', array(
+	'type'=>'pills',
+	'items'=>array(
+		//array('label'=>'Create', 'icon'=>'icon-plus', 'url'=>Yii::app()->controller->createUrl('create'), 'linkOptions'=>array()),
+                array('label'=>'List', 'icon'=>'icon-th-list', 'url'=>Yii::app()->controller->createUrl('index'),'active'=>true, 'linkOptions'=>array()),
+		array('label'=>'Search', 'icon'=>'icon-search', 'url'=>'#', 'linkOptions'=>array('class'=>'search-button')),
+		array('label'=>'Export to PDF', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GeneratePdf'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
+		array('label'=>'Export to Excel', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GenerateExcel'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
+              //  array('label'=>'Import', 'icon'=>'icon-upload', 'url'=>Yii::app()->controller->createUrl('Imagesimport'), 'visible'=>true), 
+	),
+));
+$this->endWidget();
+
+?>
+
+
+
+<div class="search-form" style="display:none">
+<?php 
+ 
+ 
+  $this->renderPartial('_search',array(
+	'model'=>$model,
+));
+ ?>
+</div><!-- search-form -->
+
+
+<?php
+$assetsDir = dirname(__FILE__).'/../../../../assets';
+
+/*$s=$model->search();
+echo "<pre>";
+print_r($s);
+echo "</pre>";
+*/
+  $this->widget('bootstrap.widgets.TbGridView',array(
+	'id'=>'product-grid',
+       // 'filter'=>$model,    
+	'dataProvider'=>$model->search(),
+        'type'=>'striped bordered condensed',
+        'template'=>'{summary}{pager}{items}{pager}',
+	'columns'=>array(
+                        array(
+                              'name'=>'tags.name',
+                              'value'=>' isset($data->tags[0])?$data->tags[0]->name:"--" ',
+                             ),
+                        array(
+                              'name'=>'supplier',
+                              'type'=>'html',
+                              'value'=>'$data->getSupplier();', 
+                              ),
+                       array(
+                              'name'=>'brand',
+                              'type'=>'html',
+                              'value'=>'$data->getBrand();', 
+                              ),
+                     /*   array(
+                      'name'=>'Supplier',
+                      'type'=>'html',
+                      'value'=>'
+                              (!empty($data->supplier->logo))? $data->supplier->name."  ".CHtml::image(Yii::app()->assetManager->publish("'.$assetsDir.'/images/suppliers/".$data->supplier->logo),"",array("style"=>"width:25px;height:25px;")):"no logo uploaded"',
+                       'value'=>'(isset($data->supplier->images[0])&&isset($data->supplier->name))?CHtml::image(Yii::app()->params["supplierpics"].$data->supplier->images[0]->filename,"",array("style"=>"width:25px;height:25px;")).$data->supplier->name:$data->supplier->name."(no logo saved in S3)"; ',
+    
+                            ),*/
+                       
+                      /*  array(
+                      'name'=>'Brand',
+                      'type'=>'html',
+                      'value'=>'$data->brand->name',
+                    /*  'value'=>'(!empty($data->brand->logo))? $data->brand->name."  ".CHtml::image(Yii::app()->assetManager->publish("'.$assetsDir.'/images/brands/".$data->brand->logo),"",array("style"=>"width:25px;height:25px;")):"no logo uploaded"',*/
+                    /*  'value'=>'(isset($data->brand->images[0])&&isset($data->brand->name))?CHtml::image(Yii::app()->params["brandpics"].$data->brand->images[0]->filename,"",array("style"=>"width:25px;height:25px;")).$data->supplier->name:"(no logo saved in S3)"',
+                               
+                            ),*/
+                        array(
+                               'name'=>'price',
+                               'value'=>'number_format($data->price,0,".","")',
+                             ), 
+                        array(
+                               'name'=>'value',
+                               'value'=>'number_format($data->product_value,0,".","")',
+                             ), 
+                       array(
+                               'name'=>'Is Return Gift',
+                               'value'=>'$data->getReturnGiftValue()',
+                             ),
+                       /* array(
+                              'name'=>'Category',
+                              'value'=>' isset($data->categories[0]->lang[0])?$data->categories[0]->lang[0]->name:"--" ',
+                             ),*/
+                           'position',
+                        
+		//'id_product',
+		//'id_supplier',
+		//'id_manufacturer',
+		//'id_tax_rules_group',
+		//'id_category_default',
+		//'id_color_default',
+		/*
+		'on_sale',
+		'online_only',
+		'ean13',
+		'upc',
+		'ecotax',
+		'quantity',
+		'minimal_quantity',
+		'price',
+		'wholesale_price',
+		'unity',
+		'unit_price_ratio',
+		'additional_shipping_cost',
+		'reference',
+		'supplier_reference',
+		'location',
+		'width',
+		'height',
+		'depth',
+		'weight',
+		'out_of_stock',
+		'quantity_discount',
+		'customizable',
+		'uploadable_files',
+		'text_fields',
+		'active',
+		'available_for_order',
+		'condition',
+		'show_price',
+		'indexed',
+		'cache_is_pack',
+		'cache_has_attachments',
+		'cache_default_attribute',
+		'date_add',
+		'date_upd',
+		*/
+
+       array(
+            'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template' => ' {unpublish}{soldout} {notsoldout} {publish} {view} {update} {delete}',
+			'buttons' => array( 
+                              'publish' => array(
+                                        'visible'=>'($data->is_published==1)?true:false ',
+					'label'=> 'UNPUBLISH',
+                                        'url'=>'Yii::app()->createUrl("admin/product/publish",array("pid"=>$data->id_product))',
+					'options'=>array(
+						'class'=>'btn btn-danger'
+					)
+				),
+                              'unpublish' => array(
+                                        'visible'=>'($data->is_published==0)?true:false ',
+					'label'=> 'PUBLISH',
+                                        'url'=>'Yii::app()->createUrl("admin/product/publish",array("pid"=>$data->id_product))',
+					'options'=>array(
+						'class'=>'btn btn-success'
+					)
+				), 
+                              'soldout' => array(
+                                        'visible'=>'($data->out_of_stock==0)?true:false ',
+					'label'=> 'MARK SOLDOUT',
+                                        'url'=>'Yii::app()->createUrl("admin/product/MakeSoldOut",array("pid"=>$data->id_product))',
+					'options'=>array(
+						'class'=>'btn btn-success'
+					)
+				), 
+                               'notsoldout' => array(
+                                        'visible'=>'($data->out_of_stock==1)?true:false ',
+					'label'=> 'UNMARK SOLDOUT',
+                                        'url'=>'Yii::app()->createUrl("admin/product/MakeSoldOut",array("pid"=>$data->id_product))',
+					'options'=>array(
+						'class'=>'btn btn-danger'
+					)
+				),  
+			      'view' => array(
+					'label'=> 'View',
+					'options'=>array(
+						'class'=>'btn btn-small view'
+					)
+				),	
+                              'update' => array(
+					'label'=> 'Update',
+					'options'=>array(
+						'class'=>'btn btn-small update'
+					)
+				),
+				'delete' => array(
+					'label'=> 'Delete',
+					'options'=>array(
+						'class'=>'btn btn-small delete'
+					)
+				)
+			),
+            'htmlOptions'=>array('style'=>'width: 115px'),
+           )
+	),
+)); 
+
+ ?>
+
