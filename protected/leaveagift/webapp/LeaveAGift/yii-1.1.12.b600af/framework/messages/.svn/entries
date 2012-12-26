@@ -1,0 +1,170 @@
+10
+
+dir
+1053
+svn+ssh://sirin@ec2-50-18-0-11.us-west-1.compute.amazonaws.com/var/svn/leaveagift/trunk/webapp/LeaveAGift/yii-1.1.12.b600af/framework/messages
+svn+ssh://sirin@ec2-50-18-0-11.us-west-1.compute.amazonaws.com/var/svn/leaveagift
+
+
+
+2012-09-03T07:50:56.506839Z
+35
+sirin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+81821cda-4cab-48ad-ba64-a4f4fe4c3d3c
+
+zh_cn
+dir
+
+bs
+dir
+
+fr
+dir
+
+nl
+dir
+
+pl
+dir
+
+th
+dir
+
+hu
+dir
+
+no
+dir
+
+vi
+dir
+
+lt
+dir
+
+fa_ir
+dir
+
+ro
+dir
+
+lv
+dir
+
+pt
+dir
+
+tr
+dir
+
+ru
+dir
+
+sr_sr
+dir
+
+ta_in
+dir
+
+config.php
+file
+
+
+
+
+2012-09-20T13:31:53.432639Z
+e5b796b0910355b06d7a231ffa723248
+2012-09-03T07:50:56.506839Z
+35
+sirin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+664
+
+id
+dir
+
+el
+dir
+
+sr_yu
+dir
+
+ar
+dir
+
+ko_kr
+dir
+
+cs
+dir
+
+kk
+dir
+
+pt_br
+dir
+
+es
+dir
+
+it
+dir
+
+sk
+dir
+
+uk
+dir
+
+sv
+dir
+
+bg
+dir
+
+de
+dir
+
+ja
+dir
+
+zh_tw
+dir
+
+he
+dir
+
