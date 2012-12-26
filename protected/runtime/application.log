@@ -1194,3 +1194,227 @@ Stack trace:
 REQUEST_URI=/yiidemos/index.php?r=site/apicrop
 HTTP_REFERER=http://localhost/yiidemos/index.php?r=site/icrop
 ---
+2012/12/26 19:47:29 [error] [exception.CException] exception 'CException' with message 'The asset "/var/www/yiidemos/protected/views/site/../../assets/gangnam/images.jpeg" to be published does not exist.' in /var/www/yiidemos/yii/framework/web/CAssetManager.php:239
+Stack trace:
+#0 /var/www/yiidemos/protected/views/site/index.php(11): CAssetManager->publish('/var/www/yiidem...')
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#3 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#4 /var/www/yiidemos/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#5 /var/www/yiidemos/protected/controllers/SiteController.php(107): CController->render('index', Array)
+#6 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#7 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#8 /var/www/yiidemos/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#9 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#11 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#12 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#13 /var/www/yiidemos/index.php(13): CApplication->run()
+#14 {main}
+REQUEST_URI=/yiidemos/
+---
+2012/12/26 19:48:29 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootNavbar" is invalid. Make sure it points to an existing PHP file.' in /var/www/yiidemos/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/yiidemos/protected/views/layouts/main.php(53): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#6 /var/www/yiidemos/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#7 /var/www/yiidemos/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#8 /var/www/yiidemos/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#9 /var/www/yiidemos/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#10 /var/www/yiidemos/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#11 /var/www/yiidemos/protected/views/layouts/column1.php(5): CBaseController->endContent()
+#12 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#13 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#14 /var/www/yiidemos/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#15 /var/www/yiidemos/protected/controllers/SiteController.php(107): CController->render('index', Array)
+#16 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#17 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#18 /var/www/yiidemos/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#19 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#21 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#22 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#23 /var/www/yiidemos/index.php(13): CApplication->run()
+#24 {main}
+REQUEST_URI=/yiidemos/
+---
+2012/12/26 19:49:20 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootMenu" is invalid. Make sure it points to an existing PHP file.' in /var/www/yiidemos/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/yiidemos/protected/extensions/bootstrap/widgets/TbNavbar.php(147): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(174): TbNavbar->run()
+#5 /var/www/yiidemos/protected/views/layouts/main.php(53): CBaseController->widget('bootstrap.widge...', Array)
+#6 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#7 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#8 /var/www/yiidemos/yii/framework/web/widgets/CContentDecorator.php(77): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#9 /var/www/yiidemos/yii/framework/web/widgets/CContentDecorator.php(55): CContentDecorator->decorate('<div id="conten...')
+#10 /var/www/yiidemos/yii/framework/web/widgets/COutputProcessor.php(45): CContentDecorator->processOutput('<div id="conten...')
+#11 /var/www/yiidemos/yii/framework/web/CBaseController.php(207): COutputProcessor->run()
+#12 /var/www/yiidemos/yii/framework/web/CBaseController.php(301): CBaseController->endWidget('CContentDecorat...')
+#13 /var/www/yiidemos/protected/views/layouts/column1.php(5): CBaseController->endContent()
+#14 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#15 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#16 /var/www/yiidemos/yii/framework/web/CController.php(785): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#17 /var/www/yiidemos/protected/controllers/SiteController.php(107): CController->render('index', Array)
+#18 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): SiteController->actionIndex()
+#19 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#20 /var/www/yiidemos/yii/framework/web/CController.php(287): CController->runAction(Object(CInlineAction))
+#21 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#23 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('')
+#24 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#25 /var/www/yiidemos/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/yiidemos/
+---
+2012/12/26 19:49:53 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootMenu" is invalid. Make sure it points to an existing PHP file.' in /var/www/yiidemos/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/yiidemos/protected/views/test/index.php(39): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#6 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#7 /var/www/yiidemos/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#8 /var/www/yiidemos/protected/controllers/TestController.php(158): CController->render('index', Array)
+#9 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#10 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 /var/www/yiidemos/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /var/www/yiidemos/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yiidemos/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yiidemos/yii/framework/web/CController.php(292): CFilterChain->run()
+#17 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#19 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#20 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/yiidemos/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/yiidemos/index.php?r=test
+HTTP_REFERER=http://localhost/yiidemos/
+---
+2012/12/26 19:51:40 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootButton" is invalid. Make sure it points to an existing PHP file.' in /var/www/yiidemos/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/yiidemos/protected/views/test/_search.php(15): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#6 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#7 /var/www/yiidemos/protected/views/test/index.php(48): CController->renderPartial('_search', Array)
+#8 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#9 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#10 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#11 /var/www/yiidemos/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#12 /var/www/yiidemos/protected/controllers/TestController.php(158): CController->render('index', Array)
+#13 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#14 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#15 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#16 /var/www/yiidemos/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#17 /var/www/yiidemos/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#18 /var/www/yiidemos/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#19 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#20 /var/www/yiidemos/yii/framework/web/CController.php(292): CFilterChain->run()
+#21 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#23 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#24 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#25 /var/www/yiidemos/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/yiidemos/index.php?r=test
+HTTP_REFERER=http://localhost/yiidemos/
+---
+2012/12/26 19:52:07 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootButton" is invalid. Make sure it points to an existing PHP file.' in /var/www/yiidemos/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/yiidemos/protected/views/test/_search.php(15): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#6 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#7 /var/www/yiidemos/protected/views/test/index.php(48): CController->renderPartial('_search', Array)
+#8 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#9 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#10 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#11 /var/www/yiidemos/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#12 /var/www/yiidemos/protected/controllers/TestController.php(158): CController->render('index', Array)
+#13 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#14 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#15 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#16 /var/www/yiidemos/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#17 /var/www/yiidemos/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#18 /var/www/yiidemos/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#19 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#20 /var/www/yiidemos/yii/framework/web/CController.php(292): CFilterChain->run()
+#21 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#22 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#23 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#24 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#25 /var/www/yiidemos/index.php(13): CApplication->run()
+#26 {main}
+REQUEST_URI=/yiidemos/index.php?r=test
+HTTP_REFERER=http://localhost/yiidemos/
+---
+2012/12/26 19:52:30 [error] [exception.CException] exception 'CException' with message 'Alias "bootstrap.widgets.BootGridView" is invalid. Make sure it points to an existing PHP file.' in /var/www/yiidemos/yii/framework/YiiBase.php:318
+Stack trace:
+#0 /var/www/yiidemos/yii/framework/web/CWidgetFactory.php(147): YiiBase::import('bootstrap.widge...', true)
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(147): CWidgetFactory->createWidget(Object(TestController), 'bootstrap.widge...', Array)
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(173): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 /var/www/yiidemos/protected/views/test/index.php(87): CBaseController->widget('bootstrap.widge...', Array)
+#4 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require('/var/www/yiidem...')
+#5 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): CBaseController->renderInternal('/var/www/yiidem...', Array, true)
+#6 /var/www/yiidemos/yii/framework/web/CController.php(870): CBaseController->renderFile('/var/www/yiidem...', Array, true)
+#7 /var/www/yiidemos/yii/framework/web/CController.php(783): CController->renderPartial('index', Array, true)
+#8 /var/www/yiidemos/protected/controllers/TestController.php(158): CController->render('index', Array)
+#9 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#10 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams(Array)
+#11 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#12 /var/www/yiidemos/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#13 /var/www/yiidemos/yii/framework/web/CController.php(1146): CFilter->filter(Object(CFilterChain))
+#14 /var/www/yiidemos/yii/framework/web/filters/CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#15 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#16 /var/www/yiidemos/yii/framework/web/CController.php(292): CFilterChain->run()
+#17 /var/www/yiidemos/yii/framework/web/CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): CController->run('')
+#19 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController('test')
+#20 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#21 /var/www/yiidemos/index.php(13): CApplication->run()
+#22 {main}
+REQUEST_URI=/yiidemos/index.php?r=test
+HTTP_REFERER=http://localhost/yiidemos/
+---
+2012/12/26 19:52:56 [error] [php] Trying to get property of non-object (/var/www/yiidemos/protected/extensions/bootstrap/widgets/TbGridView.php:78)
+Stack trace:
+#0 /var/www/yiidemos/protected/views/test/index.php(87): TestController->widget()
+#1 /var/www/yiidemos/yii/framework/web/CBaseController.php(127): require()
+#2 /var/www/yiidemos/yii/framework/web/CBaseController.php(96): TestController->renderInternal()
+#3 /var/www/yiidemos/yii/framework/web/CController.php(870): TestController->renderFile()
+#4 /var/www/yiidemos/yii/framework/web/CController.php(783): TestController->renderPartial()
+#5 /var/www/yiidemos/protected/controllers/TestController.php(158): TestController->render()
+#6 /var/www/yiidemos/yii/framework/web/actions/CInlineAction.php(50): TestController->actionIndex()
+#7 /var/www/yiidemos/yii/framework/web/CController.php(309): CInlineAction->runWithParams()
+#8 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(134): TestController->runAction()
+#9 /var/www/yiidemos/yii/framework/web/filters/CFilter.php(41): CFilterChain->run()
+#10 /var/www/yiidemos/yii/framework/web/CController.php(1146): CAccessControlFilter->filter()
+#11 /var/www/yiidemos/yii/framework/web/filters/CInlineFilter.php(59): TestController->filterAccessControl()
+#12 /var/www/yiidemos/yii/framework/web/filters/CFilterChain.php(131): CInlineFilter->filter()
+#13 /var/www/yiidemos/yii/framework/web/CController.php(292): CFilterChain->run()
+#14 /var/www/yiidemos/yii/framework/web/CController.php(266): TestController->runActionWithFilters()
+#15 /var/www/yiidemos/yii/framework/web/CWebApplication.php(276): TestController->run()
+#16 /var/www/yiidemos/yii/framework/web/CWebApplication.php(135): CWebApplication->runController()
+#17 /var/www/yiidemos/yii/framework/base/CApplication.php(162): CWebApplication->processRequest()
+#18 /var/www/yiidemos/index.php(13): CWebApplication->run()
+REQUEST_URI=/yiidemos/index.php?r=test
+in /var/www/yiidemos/protected/extensions/bootstrap/widgets/TbGridView.php (78)
+in /var/www/yiidemos/protected/views/test/index.php (87)
+in /var/www/yiidemos/protected/controllers/TestController.php (158)

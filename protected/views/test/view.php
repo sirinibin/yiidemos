@@ -13,7 +13,7 @@ $this->beginWidget('zii.widgets.CPortlet', array(
 		'class'=>''
 	)
 ));
-$this->widget('bootstrap.widgets.BootMenu', array(
+$this->widget('bootstrap.widgets.TbMenu', array(
 	'type'=>'pills',
 	'items'=>array(
 		array('label'=>'Create', 'icon'=>'icon-plus', 'url'=>Yii::app()->controller->createUrl('create'), 'linkOptions'=>array()),
@@ -27,7 +27,7 @@ $this->endWidget();
 ?>
 <div class='printableArea'>
 
-<?php $this->widget('bootstrap.widgets.BootDetailView',array(
+<?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',

@@ -75,8 +75,8 @@ class TbGridView extends CGridView
 				$this->itemsCssClass = $classes;
 		}
 
-		$popover = Yii::app()->getModule('admin')->bootstrap->popoverSelector;
-		$tooltip = Yii::app()->getModule('admin')->bootstrap->tooltipSelector;
+		$popover = Yii::app()->bootstrap->popoverSelector;
+		$tooltip = Yii::app()->bootstrap->tooltipSelector;
 		
 		$afterAjaxUpdate = "js:function() {
 			jQuery('.popover').remove();

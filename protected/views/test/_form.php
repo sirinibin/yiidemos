@@ -1,5 +1,5 @@
 <div class="form">
-<?php $form=$this->beginWidget('bootstrap.widgets.BootActiveForm',array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'test-form',
 	'enableAjaxValidation'=>false,
         'method'=>'post',

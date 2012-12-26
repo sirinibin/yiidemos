@@ -1,4 +1,4 @@
-<?php  $form=$this->beginWidget('bootstrap.widgets.BootActiveForm',array(
+<?php  $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
         'id'=>'search-test-form',
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
@@ -12,8 +12,8 @@
 	<?php echo $form->textFieldRow($model,'age',array('class'=>'span5')); ?>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'search white', 'label'=>'Search')); ?>
-               <?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'button', 'icon'=>'icon-remove-sign white', 'label'=>'Reset', 'htmlOptions'=>array('class'=>'btnreset btn-small'))); ?>
+		<?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'search white', 'label'=>'Search')); ?>
+               <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'button', 'icon'=>'icon-remove-sign white', 'label'=>'Reset', 'htmlOptions'=>array('class'=>'btnreset btn-small'))); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

@@ -1,4 +1,5 @@
 <?php
+/*
 $filename='689x1000.jpg';
 $filename2='images.jpeg';
  $assetsDir = dirname(__FILE__).'/../../assets/gangnam'; 
@@ -9,5 +10,5 @@ $filename2='images.jpeg';
   
  
   $file= Yii::app()->assetManager->publish($filepath);
-
+*/
 ?>

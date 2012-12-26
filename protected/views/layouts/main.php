@@ -29,7 +29,7 @@
 <?php
 
               
-$this->widget('bootstrap.widgets.BootNavbar', array(
+$this->widget('bootstrap.widgets.TbNavbar', array(
     'fixed'=>false,
    // 'brand'=>CHtml::encode(Yii::app()->name),
     'brandUrl'=>'#',
@@ -37,7 +37,7 @@ $this->widget('bootstrap.widgets.BootNavbar', array(
     //'htmlOptions'=>array('class'=>'span14 offset2'),
     'items'=>array(
         array(
-            'class'=>'bootstrap.widgets.BootMenu',
+            'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>'Giiplus demo', 'url'=>Yii::app()->createUrl('test/')),
                 array('label'=>'Ajax form submit demo', 'url'=>Yii::app()->createUrl('person/ajax')),

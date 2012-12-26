@@ -27,7 +27,7 @@ $this->beginWidget('zii.widgets.CPortlet', array(
 		'class'=>''
 	)
 ));
-$this->widget('bootstrap.widgets.BootMenu', array(
+$this->widget('bootstrap.widgets.TbMenu', array(
 	'type'=>'pills',
 	'items'=>array(
 		array('label'=>'Create', 'icon'=>'icon-plus', 'url'=>Yii::app()->controller->createUrl('create'), 'linkOptions'=>array()),
@@ -49,7 +49,7 @@ $this->endWidget();
 </div><!-- search-form -->
 
 
-<?php $this->widget('bootstrap.widgets.BootGridView',array(
+<?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'test-grid',
 	'dataProvider'=>$model->search(),
         'type'=>'striped bordered condensed',
@@ -59,7 +59,7 @@ $this->endWidget();
 		'name',
 		'age',
        array(
-            'class'=>'bootstrap.widgets.BootButtonColumn',
+            'class'=>'bootstrap.widgets.TbButtonColumn',
 			'template' => '{view} {update} {delete}',
 			'buttons' => array(
 			      'view' => array(
