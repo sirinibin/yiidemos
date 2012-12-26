@@ -5,7 +5,7 @@
  */
 ?>
 <div class="form">
-<?php echo "<?php \$form=\$this->beginWidget('bootstrap.widgets.BootActiveForm',array(
+<?php echo "<?php \$form=\$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'".$this->class2id($this->modelClass)."-form',
 	'enableAjaxValidation'=>false,
         'method'=>'post',
@@ -40,13 +40,13 @@ foreach($this->tableSchema->columns as $column)
   </div>
 
 	<div class="form-actions">
-		<?php echo "<?php \$this->widget('bootstrap.widgets.BootButton', array(
+		<?php echo "<?php \$this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
                         'icon'=>'ok white',  
 			'label'=>\$model->isNewRecord ? 'Create' : 'Save',
 		)); ?>\n"; ?>
-              <?php echo "<?php \$this->widget('bootstrap.widgets.BootButton', array(
+              <?php echo "<?php \$this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'reset',
                         'icon'=>'remove',  
 			'label'=>'Reset',

@@ -7,13 +7,14 @@
 ?>
 <?php echo "<?php\n"; ?>
 
-class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseControllerClass."\n"; ?>
+class <?php echo $this->controllerClass; ?> extends <?php echo 'C'.$this->baseControllerClass."\n"; ?>
 {
+        public $breadcrumbs;
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='main';
 
 	/**
 	 * @return array action filters
@@ -39,11 +40,11 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update','GeneratePdf','GenerateExcel'),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -158,7 +159,8 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
                     ?>
 			
 		}
-                 $session['<?php echo $this->modelClass; ?>_records']=Test::model()->findAll($criteria); 
+                 $session['<?php echo $this->modelClass; ?>_records']=<?php echo $this->modelClass; ?>::model()->findAll($criteria); 
+       
 
                 $this->render('index',array(
 			'model'=>$model,
@@ -227,21 +229,20 @@ class <?php echo $this->controllerClass; ?> extends <?php echo $this->baseContro
 	}
         public function actionGeneratePdf() 
 	{
-            $session=new CHttpSession;
-            $session->open();
-		Yii::import('application.extensions.giiplus.bootstrap.*');
+           $session=new CHttpSession;
+           $session->open();
+		Yii::import('application.modules.admin.extensions.giiplus.bootstrap.*');
 		require_once('tcpdf/tcpdf.php');
 		require_once('tcpdf/config/lang/eng.php');
 
-
-               if(isset($session['<?php echo $this->modelClass; ?>_records']))
+             if(isset($session['<?php echo $this->modelClass; ?>_records']))
                {
                 $model=$session['<?php echo $this->modelClass; ?>_records'];
                }
                else
                  $model = <?php echo $this->modelClass; ?>::model()->findAll();
 
-		
+
 
 		$html = $this->renderPartial('expenseGridtoReport', array(
 			'model'=>$model
