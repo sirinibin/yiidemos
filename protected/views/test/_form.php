@@ -26,13 +26,13 @@
   </div>
 
 	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.BootButton', array(
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',
                         'icon'=>'ok white',  
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
 		)); ?>
-              <?php $this->widget('bootstrap.widgets.BootButton', array(
+              <?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'reset',
                         'icon'=>'remove',  
 			'label'=>'Reset',
