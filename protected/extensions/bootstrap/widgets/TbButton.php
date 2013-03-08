@@ -7,7 +7,6 @@
  * @package bootstrap.widgets
  * @since 0.9.10
  */
-
 /**
  * Bootstrap button widget.
  * @see http://twitter.github.com/bootstrap/base-css.html#buttons

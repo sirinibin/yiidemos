@@ -231,7 +231,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo 'C'.$this->baseCo
 	{
            $session=new CHttpSession;
            $session->open();
-		Yii::import('application.modules.admin.extensions.giiplus.bootstrap.*');
+		Yii::import('application.extensions.giiplus.bootstrap.*');
 		require_once('tcpdf/tcpdf.php');
 		require_once('tcpdf/config/lang/eng.php');
 

@@ -45,7 +45,8 @@ return array(
 			'password'=>'123',
                          'generatorPaths' => array(
                                                   // 'application.extensions.giiplus',
-                                                   'ext.giiplus', 
+                                                   //'ext.giiplus', 
+                                                     'ext.ajaxgii', 
                                                  //  'ext.giiplus2',    
                                                  ),
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
