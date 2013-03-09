@@ -79,6 +79,7 @@ class Ajaxtest extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+		$criteria->order="id desc"; 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('age',$this->age);

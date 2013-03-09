@@ -172,7 +172,7 @@ class <?php echo $this->controllerClass; ?> extends <?php echo 'C'.$this->baseCo
 	public function actionUpdate()
 	{
       
-	    $id=isset($_REQUEST["<?php echo $this->tableSchema->primaryKey; ?>"])?$_REQUEST["<?php echo $this->tableSchema->primaryKey; ?>"]:$_REQUEST["<?php echo $this->modelClass; ?>"]["<?php echo $this->tableSchema->primaryKey; ?>"];
+	    $id=isset($_REQUEST["id"])?$_REQUEST["id"]:$_REQUEST["<?php echo $this->modelClass; ?>"]["<?php echo $this->tableSchema->primaryKey; ?>"];
 	    $model=$this->loadModel($id);
 			    
 	    // Uncomment the following line if AJAX validation is needed
