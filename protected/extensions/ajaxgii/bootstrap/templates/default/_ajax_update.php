@@ -8,7 +8,7 @@ function update()
   
    var data=$("#<?php echo $this->class2id($this->modelClass); ?>-update-form").serialize();
 
-  $.ajax({
+  jQuery.ajax({
    type: 'POST',
     url: '<?php echo "<?php"; ?> echo Yii::app()->createAbsoluteUrl("<?php echo $this->class2id($this->modelClass); ?>/update"); ?>',
    data:data,
@@ -39,7 +39,7 @@ function renderUpdateForm(id)
    $('#<?php echo $this->class2id($this->modelClass); ?>-view-modal').modal('hide');
  var data="id="+id;
 
-  $.ajax({
+  jQuery.ajax({
    type: 'POST',
     url: '<?php echo "<?php"; ?> echo Yii::app()->createAbsoluteUrl("<?php echo $this->class2id($this->modelClass); ?>/update"); ?>',
    data:data,

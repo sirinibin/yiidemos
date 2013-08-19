@@ -51,16 +51,14 @@ class AjaxtestController extends CController
 	 */
 	public function actionView()
 	{
-	       $id=$_REQUEST["id"];
+		$id=$_REQUEST["id"];
 	     
-	       
 	       if(Yii::app()->request->isAjaxRequest)
 	       {
 	        $model=$this->loadModel($id);
 	        
 	         $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'button',
-			//'id'=>'sub2',
 			'type'=>'primary',
                         'icon'=>'plus white', 
 			'label'=>'Create',
@@ -69,7 +67,6 @@ class AjaxtestController extends CController
 		echo " ";
                 $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'button',
-			//'id'=>'sub2',
 			'type'=>'primary',
                         'icon'=>'edit white', 
 			'label'=>'Update',
@@ -80,7 +77,6 @@ class AjaxtestController extends CController
 		echo " ";
 		$this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'button',
-			//'id'=>'sub2',
 			'type'=>'primary',
                         'icon'=>'trash white', 
 			'label'=>'Delete',
@@ -90,7 +86,6 @@ class AjaxtestController extends CController
 		echo " ";
 		$this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'button',
-			//'id'=>'sub2',
 			'type'=>'primary',
                         'icon'=>'print white', 
 			'label'=>'Print',
@@ -117,7 +112,7 @@ class AjaxtestController extends CController
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
-	       }	
+	       }
 	}
 
 	/**
@@ -125,8 +120,8 @@ class AjaxtestController extends CController
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
-	{
-		$model=new Ajaxtest;
+	{	
+            $model=new Ajaxtest;
 
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model,"ajaxtest-create-form");
@@ -168,49 +163,50 @@ class AjaxtestController extends CController
 	 * @param integer $id the ID of the model to be updated
 	 */
 	public function actionUpdate()
-	{	    		    
-	        $id=isset($_REQUEST["id"])?$_REQUEST["id"]:$_REQUEST["Ajaxtest"]["id"];
-		$model=$this->loadModel($id);
-				
-		// Uncomment the following line if AJAX validation is needed
-		 $this->performAjaxValidation($model,"ajaxtest-update-form");
-		
-	      if(Yii::app()->request->isAjaxRequest)
-	       {
-		
-		    if(isset($_POST['Ajaxtest']))
-		    {
-		     
-			    $model->attributes=$_POST['Ajaxtest'];
-			    if($model->save())
-			    {
-			      echo $model->id;
-			    }
-			    else
-			    {
-			      echo "false";
-			    }
-			    return;
-		    }
-		       
-		      $this->renderPartial('_ajax_update_form',array(
-			'model'=>$model,
-		       ));
-		      return; 
-	       
-	       }
-		
-
+	{
+      
+	    $id=isset($_REQUEST["id"])?$_REQUEST["id"]:$_REQUEST["Ajaxtest"]["id"];
+	    $model=$this->loadModel($id);
+			    
+	    // Uncomment the following line if AJAX validation is needed
+	      $this->performAjaxValidation($model,"ajaxtest-update-form");
+	    
+	  if(Yii::app()->request->isAjaxRequest)
+	    {
+	    
 		if(isset($_POST['Ajaxtest']))
 		{
+		  
 			$model->attributes=$_POST['Ajaxtest'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			{
+			  echo $model->id;
+			}
+			else
+			{
+			  echo "false";
+			}
+			return;
 		}
+		    
+		  $this->renderPartial('_ajax_update_form',array(
+		    'model'=>$model,
+		    ));
+		  return; 
+	    
+	    }
+	    
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+	    if(isset($_POST['Ajaxtest']))
+	    {
+		    $model->attributes=$_POST['Ajaxtest'];
+		    if($model->save())
+			    $this->redirect(array('view','id'=>$model->id));
+	    }
+
+	    $this->render('update',array(
+		    'model'=>$model,
+	    ));
 	}
 
 	/**
@@ -220,7 +216,7 @@ class AjaxtestController extends CController
 	 */
 	public function actionDelete()
 	{
-	   $id=$_POST["id"];
+	        $id=$_POST["id"];
 	   
 		if(Yii::app()->request->isPostRequest)
 		{
@@ -239,7 +235,7 @@ class AjaxtestController extends CController
 			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 		    else
 			   echo "false"; 	
-	        }
+	        }	
 	}
 
 	/**
@@ -249,9 +245,7 @@ class AjaxtestController extends CController
 	{
             $session=new CHttpSession;
             $session->open();		
-            $criteria = new CDbCriteria();     
-            
-            
+            $criteria = new CDbCriteria();            
 
                 $model=new Ajaxtest('search');
                 $model->unsetAttributes();  // clear any default values
@@ -344,7 +338,7 @@ class AjaxtestController extends CController
 	{
            $session=new CHttpSession;
            $session->open();
-		Yii::import('application.extensions.giiplus.bootstrap.*');
+		Yii::import('application.extensions.ajaxgii.bootstrap.*');
 		require_once('tcpdf/tcpdf.php');
 		require_once('tcpdf/config/lang/eng.php');
 

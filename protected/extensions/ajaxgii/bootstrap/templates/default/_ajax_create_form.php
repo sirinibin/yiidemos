@@ -2,7 +2,7 @@
     <div id='<?php echo $this->class2id($this->modelClass); ?>-create-modal' class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Create Ajaxtest</h3>
+    <h3>Create <?php echo $this->class2id($this->modelClass); ?></h3>
     </div>
     
     <div class="modal-body">
@@ -104,7 +104,7 @@ function create()
      
 
 
-  $.ajax({
+  jQuery.ajax({
    type: 'POST',
     url: '<?php echo "<?php\n"; ?> echo Yii::app()->createAbsoluteUrl("<?php echo $this->class2id($this->modelClass); ?>/create"); ?>',
    data:data,

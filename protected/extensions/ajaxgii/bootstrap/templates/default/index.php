@@ -39,7 +39,7 @@ $this->beginWidget('zii.widgets.CPortlet', array(
 $this->widget('bootstrap.widgets.TbMenu', array(
 	'type'=>'pills',
 	'items'=>array(
-		array('label'=>'Create', 'icon'=>'icon-plus', 'url'=>'javascript:return;','linkOptions'=>array('onclick'=>'renderCreateForm()')),
+		array('label'=>'Create', 'icon'=>'icon-plus', 'url'=>'javascript:void(0);','linkOptions'=>array('onclick'=>'renderCreateForm()')),
                 array('label'=>'List', 'icon'=>'icon-th-list', 'url'=>Yii::app()->controller->createUrl('index'),'active'=>true, 'linkOptions'=>array()),
 		array('label'=>'Search', 'icon'=>'icon-search', 'url'=>'#', 'linkOptions'=>array('class'=>'search-button')),
 		array('label'=>'Export to PDF', 'icon'=>'icon-download', 'url'=>Yii::app()->controller->createUrl('GeneratePdf'), 'linkOptions'=>array('target'=>'_blank'), 'visible'=>true),
@@ -79,9 +79,9 @@ if($count>=7)
 		     
 		      'type'=>'raw',
 		       'value'=>'"
-		      <a href=\'javascript:return;\' onclick=\'renderView(".$data-><?php echo $this->tableSchema->primaryKey; ?>.")\'   class=\'btn btn-small view\'  ><i class=\'icon-eye-open\'></i></a>
-		      <a href=\'javascript:return;\' onclick=\'renderUpdateForm(".$data-><?php echo $this->tableSchema->primaryKey; ?>.")\'   class=\'btn btn-small view\'  ><i class=\'icon-pencil\'></i></a>
-		      <a href=\'javascript:return;\' onclick=\'delete_record(".$data-><?php echo $this->tableSchema->primaryKey; ?>.")\'   class=\'btn btn-small view\'  ><i class=\'icon-trash\'></i></a>
+		      <a href=\'javascript:void(0);\' onclick=\'renderView(".$data-><?php echo $this->tableSchema->primaryKey; ?>.")\'   class=\'btn btn-small view\'  ><i class=\'icon-eye-open\'></i></a>
+		      <a href=\'javascript:void(0);\' onclick=\'renderUpdateForm(".$data-><?php echo $this->tableSchema->primaryKey; ?>.")\'   class=\'btn btn-small view\'  ><i class=\'icon-pencil\'></i></a>
+		      <a href=\'javascript:void(0);\' onclick=\'delete_record(".$data-><?php echo $this->tableSchema->primaryKey; ?>.")\'   class=\'btn btn-small view\'  ><i class=\'icon-trash\'></i></a>
 		     "',
 		      'htmlOptions'=>array('style'=>'width:150px;')  
 		     ),
@@ -109,7 +109,7 @@ function delete_record(id)
  var data="id="+id;
  
 
-  $.ajax({
+  jQuery.ajax({
    type: 'POST',
     url: '<?php echo "<?php"; ?> echo Yii::app()->createAbsoluteUrl("<?php echo $this->class2id($this->modelClass); ?>/delete"); ?>',
    data:data,

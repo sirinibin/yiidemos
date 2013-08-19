@@ -2,7 +2,7 @@
     <div class="modal-header">
    
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3>Update #<?php echo "<?php"; ?> echo $model-><?php echo $this->tableSchema->primaryKey; ?>; ?></h3>
+    <h3>Update <?php echo $this->class2id($this->modelClass); ?> #<?php echo "<?php"; ?> echo $model-><?php echo $this->tableSchema->primaryKey; ?>; ?></h3>
     </div>
     
     <div class="modal-body">

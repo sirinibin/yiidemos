@@ -21,7 +21,7 @@ function renderView(id)
  
  var data="id="+id;
 
-  $.ajax({
+  jQuery.ajax({
    type: 'POST',
     url: '<?php echo "<?php"; ?> echo Yii::app()->createAbsoluteUrl("<?php echo $this->class2id($this->modelClass); ?>/view"); ?>',
    data:data,

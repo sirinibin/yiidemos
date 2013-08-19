@@ -102,6 +102,8 @@ return array(
 			'username' => $db_user,
 			'password' => $db_password,
 			'charset' => 'utf8',
+			'enableProfiling'=>true,
+
 		),
 		
 		'errorHandler'=>array(
@@ -109,20 +111,19 @@ return array(
             'errorAction'=>'site/error',
         ),
 		'log'=>array(
-			'class'=>'CLogRouter',
-			'routes'=>array(
-				array(
-					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
-				),
-				// uncomment the following to show log messages on web pages
-				/*
-				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
-			),
-		),
+                        'class'=>'CLogRouter',
+                        'routes'=>array(
+                                array(
+                                'class'=>'CProfileLogRoute',
+                                'levels'=>'error, warning, trace, info, profile',
+                                ),
+                                array(
+                                'class'=>'CWebLogRoute',
+                                'levels'=>'error, warning, trace, info, profile',
+                                'showInFireBug'=>false,
+                                ),
+                        ),
+                    ),
 	),
 
 	// application-level parameters that can be accessed
