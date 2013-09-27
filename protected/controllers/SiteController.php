@@ -215,4 +215,49 @@ class SiteController extends Controller
          Yii::import('ext.icrop.Icrop');
          $this->render("icropapi");
         } 
+        
+        public function actionParse()
+        {
+          // echo "ok";
+        //  Yii::import("application.extensions.parse.NParse");
+          
+          // $p=new NParse;
+           
+           $model=new ParseTest;
+           $model->name="sirin";
+           $model->age="123";
+           
+          // $model->save();
+           
+           
+           if($model->save())
+            {
+              echo "saved"; 
+              echo "<br/	>id:".$model->id;
+            }
+            else
+            {
+             $e=$model->getErrors();
+             print_r($e);
+            }
+            
+        }
+        public function actionParseView($id)
+        {
+          $model=ParseTest::model()->findbyPk($id); 
+          
+          $model->name="ABCD";
+          $model->age=123;
+          if($model->save())
+            {
+              echo "saved"; 
+              echo "<br/>id:".$model->id;
+            }
+            else
+            {
+             $e=$model->getErrors();
+             print_r($e);
+            }
+          
+        }
 }

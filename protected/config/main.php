@@ -35,6 +35,7 @@ return array(
 		'application.components.*',
                // 'application.extensions.facebook.*', 
                 'application.extensions.fb.*', 
+                 'application.extensions.parse.*', 
 	),
 
 	'modules'=>array(
@@ -133,5 +134,9 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
                 'fb_app_id'=>'174683815908585',
                 'fb_app_secret'=>'16c1ee8315499025482b00e8d2ea229c',
+                
+                'parse_app_id'=>'nO39c3e5uxMZ7Tmng6Q5oe6L3DEmnrxokReKdV9y',
+                'parse_api_key'=>'TDzsT2K3bmLG9LSkuajJ1Y5RGUJszVZ8v92Lpyft',
+               
 	),
 );
