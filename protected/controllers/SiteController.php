@@ -5,39 +5,128 @@ class SiteController extends Controller
 	/**
 	 * Declares class-based actions.
 	 */
-	public function actions()
+   public function filters()
 	{
 		return array(
-			// captcha action renders the CAPTCHA image displayed on the contact page
-			'captcha'=>array(
-				'class'=>'CCaptchaAction',
-				'backColor'=>0xFFFFFF,
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+	/**
+	 * @return array rules for the "accessControl" filter.
+	 */
+	 
+	public function accessRules()
+	{
+		return array(
+		
+		       array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array(
+				                 'login',
+				                 'error', 
+				                 'signup'
+				       
+				                ),
+				'users'=>array('*'),
 			),
-			// page action renders "static" pages stored under 'protected/views/site/pages'
-			// They can be accessed via: index.php?r=site/page&view=FileName
-			'page'=>array(
-				'class'=>'CViewAction',
+			
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array(
+				               //  'login',
+				                 'index',
+				                 'logout'
+				                ),
+				'users'=>array('@'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
 			),
 		);
 	}
-	
-
-        public function actionFacebooklogin()
-       {
-       Yii::import('ext.facebook.*');
-        $ui = new FacebookUserIdentity(Yii::app()->params['fb_app_id'],Yii::app()->params['fb_app_secret']);
-        if ($ui->authenticate()) {
-        $user=Yii::app()->user;
-        $user->login($ui);
-        $this->redirect($user->returnUrl);
-    } else {
-        throw new CHttpException(401, $ui->error);
-    }
-       }  
-       	public function actionFblogin()
+		public function actionLogin()
 	{
-		$this->render('fblogin');
-	}  
+		//$this->layout = 'main';
+		
+		 if(!Yii::app()->user->isGuest)
+		 {
+		  $this->redirect(array('category/index'));
+		  return;
+		 }
+
+		$model = new LoginForm();
+
+		if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form')
+		{
+			echo CActiveForm::validate($model, array('username', 'password', 'verifyCode'));
+			Yii::app()->end();
+		}
+
+		if (isset($_POST['LoginForm']))
+		{
+			$model->attributes = $_POST['LoginForm'];
+			if ($model->validate(array('username', 'password')) && $model->login())
+				$this->redirect(array('site/index'));
+		}
+
+		
+		//$sent = r()->getParam('sent', 0);
+		$this->render('login', array(
+			'model' => $model,
+			//'sent' => $sent,
+		));
+	}
+        public function actionSignup()
+	{
+	    $model=new User;
+
+	    // uncomment the following code to enable ajax-based validation
+	    /*
+	    if(isset($_POST['ajax']) && $_POST['ajax']==='user-signup-form')
+	    {
+		echo CActiveForm::validate($model);
+		Yii::app()->end();
+	    }
+	    */
+
+	    if(isset($_POST['User']))
+	    {
+		$model->attributes=$_POST['User'];
+		if($model->validate())
+		{ 
+		    $login=new LoginForm;
+		    $login->username=$model->email;
+		    $login->password=$model->password;
+		    
+		  $model->save(false);
+		  
+		  
+			if ($login->validate(array('username', 'password')) && $login->login())
+				$this->redirect(array('site/index'));
+			else
+			{
+			   echo "Email:".$model->email;
+			   echo "Password:".$model->password;
+			   
+			       $this->render('login',array('model'=>$login));
+			       return;
+			}
+		      
+		    // form inputs are valid, do something here
+		  
+		}
+	    }
+	    $this->render('signup',array('model'=>$model));
+	}
+	 
+	/**
+	 * This is the action that handles user's logout
+	 */
+	public function actionLogout()
+	{
+		Yii::app()->user->logout();
+		$this->redirect(Yii::app()->homeUrl);
+	}
+
+   
 
        /*
         public function actionAskPermission()
@@ -59,53 +148,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-           //Yii::app()->clientScript->registerCoreScript("jquery");
-           header('P3P: CP="HONK"');
-           $session=new CHttpSession; //making session object
-           $session->open();       
-          /* 
-           if(isset($_REQUEST['name']))
-             { 
-              echo "name:".$_REQUEST['name'];
-              return;
-             }  
-           */
-            /*
-          $facebook = new Facebook(array(
-          'appId'  => Yii::app()->params['fb_app_id'],
-          'secret' => Yii::app()->params['fb_app_secret'],
-           ));
-           
-           $signedRequest=$facebook->getSignedRequest();
-            if($signedRequest)
-             {
-                print_r($signedRequest);
-             }
-            else
-            {
-             echo "No signed request";
-            }
-              
-         //  $me=$facebook->api('/me');
-          //  echo "id:".Yii::app()->params['fb_app_id']."|"."secret:".Yii::app()->params['fb_app_secret'];
-           
-            $userId = $facebook->getUser();
-            if($userId!=0)
-             {
-              $me=$facebook->api('/me');
-              $session['me']=$me;                
-              print_r($me);
-             }
-            else
-             {
-             echo "Not logged in";
-             } 
-              */
-              $userId=0;
-                
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index',array('userId'=>$userId));
+	  $this->render('index');
 	}
 
 	/**
@@ -142,41 +185,7 @@ class SiteController extends Controller
 		$this->render('contact',array('model'=>$model));
 	}
 
-	/**
-	 * Displays the login page
-	 */
-	public function actionLogin()
-	{
-		$model=new LoginForm;
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
-	}
-
-	/**
-	 * Logs out the current user and redirect to homepage.
-	 */
-	public function actionLogout()
-	{
-		Yii::app()->user->logout();
-                ii::app()->user->setState('FB',NULL);
-		$this->redirect(Yii::app()->homeUrl);
-	}
 	public function actionAjaxCrop()
 	{
 	
@@ -246,8 +255,8 @@ class SiteController extends Controller
         {
           $model=ParseTest::model()->findbyPk($id); 
           
-          $model->name="ABCD";
-          $model->age=123;
+          $model->name="Sirin";
+          $model->age="24";
           if($model->save())
             {
               echo "saved"; 
@@ -258,6 +267,7 @@ class SiteController extends Controller
              $e=$model->getErrors();
              print_r($e);
             }
-          
+           $model->name="coool";
+           $model->save();
         }
 }

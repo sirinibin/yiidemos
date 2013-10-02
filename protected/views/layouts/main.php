@@ -39,11 +39,16 @@ $this->widget('bootstrap.widgets.TbNavbar', array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
-                array('label'=>'Giiplus demo', 'url'=>Yii::app()->createUrl('test/')),
-                array('label'=>'Ajax form submit demo', 'url'=>Yii::app()->createUrl('person/ajax')),
+                 array('label'=>'ajaxGii', 'url'=>Yii::app()->createUrl('ajaxtest/')),
+                array('label'=>'Giiplus', 'url'=>Yii::app()->createUrl('test/')),
+                array('label'=>'Ajax form submit', 'url'=>Yii::app()->createUrl('person/ajax')),
                 array('label'=>'Aspect Ratio w/ Preview Pane ', 'url'=>Yii::app()->createUrl('site/icrop')),
                 array('label'=>'Jcrop - API Demo', 'url'=>Yii::app()->createUrl('site/icropapi')),
-               //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
+                
+                array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
+	        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => 'SignUp', 'url' => array('/site/signup'), 'visible' => Yii::app()->user->isGuest),
+              //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
                
             ),
         ),
