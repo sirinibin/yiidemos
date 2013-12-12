@@ -1,0 +1,2 @@
+  <h2>Welcome back to Yii Demo.You will be redirected to the paypal Demo page within 2 sec.</h2>
+  <META http-equiv="refresh" content="2;URL=<?php echo Yii::app()->createUrl("site/paypalDemo"); ?>"> 

@@ -23,7 +23,12 @@ class SiteController extends Controller
 				'actions'=>array(
 				                 'login',
 				                 'error', 
-				                 'signup'
+				                 'signup',
+				                 'paypal',
+				                 'PaypalReturn',
+				                 'PaypalCancel',
+				                 'PaypalDemo',
+				                 'RequestPayment'
 				       
 				                ),
 				'users'=>array('*'),
@@ -265,4 +270,95 @@ class SiteController extends Controller
            $model->name="coool";
            $model->save();
         }
+        public function actionPaypalDemo()
+        {
+          $this->render('paypal_demo');
+        }
+        public function actionRequestPayment()
+        {
+          $products=array(
+              
+			'0'=>array(
+				  'NAME'=>'Milk Shake with Ice Cream',
+				  'AMOUNT'=>'20',
+				  'QTY'=>'1'
+				  ),
+			
+    
+                         );
+                         /*Optional */
+             $shipping_address=array(
+    
+			'FIRST_NAME'=>'Sirin',
+			'LAST_NAME'=>'K',
+			'EMAIL'=>'sirinibin2006@gmail.com',
+			'MOB'=>'0918606770278',
+			'ADDRESS'=>'mannarkkad', 
+			'SHIPTOSTREET'=>'mannarkkad',
+			'SHIPTOCITY'=>'palakkad',
+			'SHIPTOSTATE'=>'kerala',
+			'SHIPTOCOUNTRYCODE'=>'IN',
+			'SHIPTOZIP'=>'678761'
+                 );
+    
+		    $e=new ExpressCheckout;
+		    
+		    $e->setCurrencyCode("USD");
+		    
+		    $e->setProducts($products);
+		    
+		    $e->setShippingCost(0);/*Optional*/
+		    
+		    $e->setShippingInfo($shipping_address); //Optional
+		    
+		    $e->returnURL=Yii::app()->createAbsoluteUrl("site/PaypalReturn");
+    
+                    $e->cancelURL=Yii::app()->createAbsoluteUrl("site/PaypalCancel");
+		    
+		    $result=$e->requestPayment();
+		      
+		
+		    if(strtoupper($result["ACK"])=="SUCCESS")
+		      {
+			    //$token = urldecode($resArray["TOKEN"]);
+			    
+			    header("location:".$e->PAYPAL_URL.$result["TOKEN"]);
+		      }
+		      else
+		      {
+		    
+		           $this->render("paypal_error",array('ack'=>$result));   
+		   
+		      }
+                     
+        
+        }
+        public function actionPaypalReturn()
+        {
+   
+		     $e=new ExpressCheckout;
+		    
+		    if(isset($_REQUEST['token']))
+		    {
+		      $paymentDetails=$e->getPaymentDetails($_REQUEST['token']);
+	          
+	              if($paymentDetails['ACK']=="Success")
+		      {
+		        $ack=$e->doPayment($paymentDetails);
+		        $this->render("paypal_success",array('ack'=>$ack));
+		      }
+		      else
+		      {
+		        $this->render("paypal_error",array('ack'=>$ack));   
+		      }
+		    } 
+		   
+	   
+	
+        }
+        public function actionPaypalCancel()
+        {
+                     $this->render("paypal_cancel");        
+        } 
+       
 }

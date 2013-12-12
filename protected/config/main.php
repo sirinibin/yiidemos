@@ -33,9 +33,11 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		
                // 'application.extensions.facebook.*', 
                 'application.extensions.fb.*', 
-                 'application.extensions.parse.*', 
+                'application.extensions.parse.*', 
+                'application.extensions.easyPaypal.*', 
 	),
 
 	'modules'=>array(
@@ -139,6 +141,14 @@ return array(
                 
                 'parse_app_id'=>'nO39c3e5uxMZ7Tmng6Q5oe6L3DEmnrxokReKdV9y',
                 'parse_api_key'=>'TDzsT2K3bmLG9LSkuajJ1Y5RGUJszVZ8v92Lpyft',
+                
+                 'PAYPAL_API_USERNAME'=>'sirini_1313473286_biz_api1.gmail.com',
+   
+                 'PAYPAL_API_PASSWORD'=>'1313473344',
+   
+                 'PAYPAL_API_SIGNATURE'=>'An5ns1Kso7MWUdW4ErQKJJJ4qi4-AU8IA9mUzvO17e5sDQiA1iHUfL2j',
+                            
+                 'PAYPAL_MODE'=>'sandbox'   // sandbox/live  default=sandbox
                
 	),
 );
