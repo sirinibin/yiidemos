@@ -70,10 +70,49 @@ class NParseDataProvider extends CDataProvider
 			$this->model = $modelClass;
 		}
 
-		$this->_criteria = $this->model->getDbCriteria();
+		//$this->_criteria = $this->model->getDbCriteria();
+		//$this->_criteria = new NParseCriteria;
 		if(isset($config['criteria']))
 		{
+		   $this->setCriteria($config['criteria']);
+		   
+		   /*
+		     echo "ok";
+		     echo "<pre>";
+		     print_r($config['criteria']);
+		     echo "</pre>";
+		     
+		     
+		     echo "C:<pre>";
+		     print_r($this->_criteria);
+		     echo "</pre>";
+		     
+		     exit;
+		     */
+		     //if(($pagination=$this->getPagination())!==false)
+		      {
+			
+			 //$pagination->setItemCount($this->getTotalItemCount());
+		       
+		        // $this->_criteria->setLimit($pagination->getLimit());
+		 	 //$this->_criteria->setOffset=$pagination->getOffset();
+		 	 
+		 	// $this->_criteria->_limit=$pagination->getLimit();
+		 	 //$this->_criteria->_offset=$pagination->getOffset();
+			
+			 //$c=$this->_criteria->getConditions();
+              
+                       /*
+			echo "<pre>";
+			print_r($c);
+			echo "</pre>";
+			exit;
+			*/
+		      }	
+			
 			$this->_criteria->mergeWith($config['criteria']);
+			
+			
 			unset($config['criteria']);
 		}
 
@@ -87,7 +126,7 @@ class NParseDataProvider extends CDataProvider
 				throw new CException('This DataProvider cannot handle multi-field primary key!');
 		}
 		else
-			$this->keyField='_id';
+			$this->keyField='id';
 	}
 
 	/**
@@ -118,14 +157,29 @@ class NParseDataProvider extends CDataProvider
 	 * @return array list of data items
 	 * @since v1.0
 	 */
+	 
 	protected function fetchData()
 	{
 		if(($pagination=$this->getPagination())!==false)
 		{
 			$pagination->setItemCount($this->getTotalItemCount());
 
-			$this->_criteria->setLimit($pagination->getLimit());
-			$this->_criteria->setOffset($pagination->getOffset());
+                       //$this->_criteria=new NParseCriteria;  
+                        //echo "limit:".$pagination->getLimit();
+                         //echo "<br/>offset:".$pagination->getOffset();
+            
+			$this->_criteria->limit=$pagination->getLimit();
+			$this->_criteria->offset=$pagination->getOffset();
+			
+			 //$c=$this->_criteria->condition->getConditions();
+              
+                       
+                       /*
+			echo "<pre>";
+			print_r($c);
+			echo "</pre>";
+			exit;
+		       */
 		}
 
 		if(($sort=$this->getSort())!==false && ($order=$sort->getOrderBy())!='')
@@ -140,7 +194,7 @@ class NParseDataProvider extends CDataProvider
 
 		return $this->model->findAll($this->_criteria);
 	}
-
+          
 	/**
 	 * Fetches the data item keys from the persistent data storage.
 	 * @return array list of data item keys.

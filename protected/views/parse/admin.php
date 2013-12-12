@@ -1,0 +1,11 @@
+<?php
+$this->widget('zii.widgets.grid.CGridView',array(
+                               'id'=>'parse-test',
+                              //'template'=>'{pager}{summary}{items}',
+                               'dataProvider'=>$dataProvider,
+                               'columns'=>array(
+                                 'id',
+                                 'name',
+                                 'age'
+                                )
+          ));

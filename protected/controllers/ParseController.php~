@@ -54,7 +54,7 @@ class ParseController extends Controller
         {
            $criteria=new NParseCriteria;
            
-           $criteria->compare('name','si');
+           $criteria->compare('name','srin');
            
            $criteria->conditions=array(
             //'age'=>array("<",20),
@@ -83,23 +83,22 @@ class ParseController extends Controller
            
            $criteria=new NParseCriteria;
            
-           
-           //$criteria->conditions=array(
+           $criteria->conditions=array(
             //'age'=>array(">=",1000),
-           // 'name'=>array("in",array('abc','sirin')),
-           //);
+            'name'=>array("in",array('abc','sirin')),
+           );
            
            
           
              
           // $criteria->limit=4;
-           //  $criteria->order="name";
-             //$criteria->offset=4;
-           //  $criteria->select="age";
+             $criteria->order="name";
+             $criteria->offset=4;
+             $criteria->select="age";
            
           // $criteria->addCond("age","<",150);
            
-           $criteria->compare('name','s');
+           $criteria->compare('age','555');
            //$criteria->compare('name','abcdefg');
            //$criteria->compare('name','fffffff',false,"OR");
            
@@ -116,15 +115,13 @@ class ParseController extends Controller
            
            $models=ParseTest::model()->findAll($criteria); 
              $c=ParseTest::model()->count($criteria); 
-             //echo "Count:".$c;
+             echo "Count:".$c;
            $i=1;
            foreach($models as $model)
             {
-             /*
-             echo "<hr/><pre>".$i.": id:".$model->id;
+             echo "<pre>".$i.": id:".$model->id;
              print_r($model->attributes);
              echo "</pre>";
-             */
              $i++;
             } 
         

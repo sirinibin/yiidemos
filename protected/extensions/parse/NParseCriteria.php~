@@ -64,8 +64,7 @@ class NParseCriteria extends CComponent
 		'=='			=> '$$eq',
 		'where'			=> '$where',
 		'or'			=> '$or',
-		'startsWith'=>'$startsWith',
-		'^'=>'^',
+		'startsWith'=>'startsWith',
 		//'like'                 =>  '',
 	);
 
@@ -400,9 +399,7 @@ class NParseCriteria extends CComponent
 		if($field!==null&&$value!=null)
 		 {
 		   //$this->addCond();
-		   $this->addCond($field,$value);
-		   //  $this->addCond($field,"==",'^\Q'.$value.'\E');
-		  // ^\Qstring here\E
+		   $this->addCond($field,"startsWith",$value);
 		 }
 	}
 

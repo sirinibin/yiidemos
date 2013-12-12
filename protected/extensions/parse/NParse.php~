@@ -152,12 +152,10 @@ class NParse extends CModel
    //$data['test']='hello';
     //$data["id"]=345678;
     
-    /*
      echo "<pre>";
      print_r($data);
      echo "</pre>";
-     */
-   //exit;
+    //exit;
     
     $ch = curl_init();
       $curlConfig = array(
@@ -180,11 +178,10 @@ class NParse extends CModel
       
       $response=json_decode($content);
       
-      /*
-      echo "<hr/><pre>";
+      echo "<pre>";
       print_r($response);
       echo "</pre>";
-       */
+ 
      if(!empty($response->objectId))
      {
       $this->setIsNewRecord(false);
@@ -322,7 +319,7 @@ class NParse extends CModel
  public function findAll($criteria=null)
  {
    
-    $URL="https://api.parse.com/1/classes/".$this->className."?"."where={\"name\":\"^\Qa\E\"}";
+    $URL="https://api.parse.com/1/classes/".$this->className."?";
  
    //echo "Url:".$URL;
    
@@ -369,7 +366,7 @@ class NParse extends CModel
 		      echo "</pre>";
 	              */
 	        $condition=json_encode($condition);
-	        echo "<br/>json Condition".$condition; 
+	       // echo "<br/>json Condition".$condition; 
 	        $data['where']=$condition;
 	       // $URL.="where=".$condition;
 	       }
@@ -453,13 +450,11 @@ class NParse extends CModel
          return(false);
         }
         
-    
+       /* 
      echo "<pre>Resp:"; 
      print_r($response);
      echo "</pre>";
-     
-      echo "Url:".urldecode($URL);
-   
+     */
      //exit;
      
       // echo "ClassName:".$this->className;
@@ -634,12 +629,8 @@ class NParse extends CModel
       
       $response=json_decode($content);
       
-      /*
-      echo "<pre>";
-      print_r($response);
-      echo "</pre>";
-      */
-    //  exit;
+      //print_r($response);
+      //exit;
       
    
        if(isset($response->code)&&$response->code==101)
