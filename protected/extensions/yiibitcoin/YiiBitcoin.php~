@@ -32,7 +32,7 @@ class YiiBitcoin extends CApplicationComponent
        $params = array(
 						'response_type' => urlencode("code"),
 						'client_id' => urlencode($this->CLIENT_ID),
-						'redirect_uri' => urlencode($this->CALLBACK_URL),
+						'redirect_uri' => $this->CALLBACK_URL),
 						'scope'=>$scope
 						
 				);
@@ -89,7 +89,7 @@ class YiiBitcoin extends CApplicationComponent
       
         $params = array(
 				
-			 'access_token'=.urlencode($access_token)
+			 'access_token'=>urlencode($access_token)
 						
 		       );
        $response=$this->sendRequest($url,"GET",$params);
