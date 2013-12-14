@@ -1,3 +1,11 @@
+/**
+ * ExpressCheckout.php
+ *
+ * @author: sirin k <sirinibin2006@gmail.com>
+ * Date: 12/dec/2013
+ * Time: 8.21pm
+ */
+ 
 EASY PAYPAL
 ===========
 Easy paypal Simplify integrating paypal express checkout with your Yii app.

@@ -28,7 +28,11 @@ class SiteController extends Controller
 				                 'PaypalReturn',
 				                 'PaypalCancel',
 				                 'PaypalDemo',
-				                 'RequestPayment'
+				                 'RequestPayment',
+				                 'Bitcoin',
+				                 'BitcoinCancel',
+				                 'BitcoinSuccess',
+				                 'BitcoinCallback'
 				       
 				                ),
 				'users'=>array('*'),
@@ -360,5 +364,41 @@ class SiteController extends Controller
         {
                      $this->render("paypal_cancel");        
         } 
+        public function actionBitcoin()
+        {
+          Yii::app()->bitcoin->askPermission(true);
+        }
+        public function actionBitcoinCallback()
+        {
+          $response=Yii::app()->bitcoin->getAccessToken();
+          
+          echo "response1:<pre>";
+          print_r($response); 
+          echo "</pre>";
+          
+          $response2=Yii::app()->bitcoin->getBalance($response['access_token']);
+          
+          echo "response2:<pre>";
+          print_r($response2); 
+          echo "</pre>";
+         
+          
+          echo "<pre>";
+          print_r($_REQUEST); 
+          echo "</pre>";
+        }
+        public function actionBitcoinCancel()
+        { 
+          echo "<pre>";
+          print_r($_REQUEST); 
+          echo "</pre>";
+        }
+        public function actionBitcoinSuccess()
+        {
+           echo "<pre>";
+           print_r($_REQUEST); 
+           echo "</pre>";
+        
+        }
        
 }

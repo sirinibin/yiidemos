@@ -60,6 +60,20 @@ return array(
 
 	// application components
 	'components'=>array(
+	
+	        'bitcoin' => array(
+                                      'class'=>'application.extension.yiibitcoin.YiiBitcoin',
+                                      'API_KEY' => '4f4b421377b0289c6ea314255656e93629f932bfc7ed253566900fa406f634c4',
+                                      'CLIENT_SECRET' => '5346d960b9da887dcf9db3fa61ec5eb52e11c85b93936ccd7dad5730b7863952',
+                                      'CLIENT_ID' => 'faf5f8e5260b0af2e7473a4b76b8dd16ba0acf412356f6c96990af5f2aac7425', 
+                                     
+                                      'CALLBACK_URL'=>'site/bitcoinCallback',
+                                      
+                                      'CANCEL_URL'=>'site/bitcoinCancel',
+                                      
+                                      'SUCCESS_URL'=>'site/bitcoinSuccess',
+ 
+                                      ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
