@@ -1,4 +1,7 @@
 <?php
+/*
+https://coinbase.com/api/doc/1.0.html
+*/
 class YiiBitcoin extends CApplicationComponent
 {
     public $API_KEY;
@@ -32,8 +35,8 @@ class YiiBitcoin extends CApplicationComponent
        $params = array(
 						'response_type' => urlencode("code"),
 						'client_id' => urlencode($this->CLIENT_ID),
-						'redirect_uri' => $this->CALLBACK_URL,
-						'scope'=>$scope
+						'redirect_uri' => urlencode($this->CALLBACK_URL),
+						'scope'=>urlencode($scope)
 						
 				);
 
