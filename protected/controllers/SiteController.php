@@ -366,7 +366,7 @@ class SiteController extends Controller
         } 
         public function actionBitcoin()
         {
-          $scope="merchant,buy,sell,balance,addresses,buttons,contacts,orders";/* merchant,buy,sell,balance,addresses,buttons,contacts,orders,transactions,send,request,transfers,recurring_payments*/
+          $scope="all";/* merchant,buy,sell,balance,addresses,buttons,contacts,orders,transactions,send,request,transfers,recurring_payments*/
           Yii::app()->bitcoin->askPermission(true,$scope);
         }
         public function actionBitcoinCallback()
