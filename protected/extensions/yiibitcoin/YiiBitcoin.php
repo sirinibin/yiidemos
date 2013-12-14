@@ -89,7 +89,7 @@ class YiiBitcoin extends CApplicationComponent
       
         $params = array(
 				
-			 'access_token'=.urlencode($access_token)
+			 'access_token'=>urlencode($access_token)
 						
 		       );
        $response=$this->sendRequest($url,"GET",$params);

@@ -72,7 +72,7 @@ class YiiBitcoin extends CApplicationComponent
 						'code' => urlencode($code),
 						'redirect_uri' => urlencode($this->CALLBACK_URL),
 						'client_id'=>urlencode($this->CLIENT_ID),
-						'client_secret'=.urlencode($this->CLIENT_SECRET),
+						'client_secret'=>urlencode($this->CLIENT_SECRET),
 						
 				);
 				
