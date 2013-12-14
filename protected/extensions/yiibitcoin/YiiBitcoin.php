@@ -1,44 +1,4 @@
 <?php
-/*
-if(!function_exists('curl_init')) {
-    throw new Exception('The Coinbase client library requires the CURL PHP extension.');
-}
-
-require(dirname(__FILE__) . '/Exception.php');
-require(dirname(__FILE__) . '/ApiException.php');
-require(dirname(__FILE__) . '/ConnectionException.php');
-//require(dirname(__FILE__) . '/Coinbase/Coinbase.php');
-require(dirname(__FILE__) . '/Requestor.php');
-require(dirname(__FILE__) . '/Rpc.php');
-require(dirname(__FILE__) . '/OAuth.php');
-require(dirname(__FILE__) . '/TokensExpiredException.php');
-*/
-/*
-  'Paypal' => array(
-    'class'=>'application.components.Paypal',
-    'apiUsername' => 'YOUR_API_USERNAME',
-    'apiPassword' => 'YOUR_API_PASSWORD',
-    'apiSignature' => 'YOUR_API_SIGNATURE',
-    'apiLive' => false,
- 
-    'returnUrl' => 'paypal/confirm/', //regardless of url management component
-    'cancelUrl' => 'paypal/cancel/', //regardless of url management component
- 
-    // Default currency to use, if not set USD is the default
-    'currency' => 'USD',
- 
-    // Default description to use, defaults to an empty string
-    //'defaultDescription' => '',
- 
-    // Default Quantity to use, defaults to 1
-    //'defaultQuantity' => '1',
- 
-    //The version of the paypal api to use, defaults to '3.0' (review PayPal documentation to include a valid API version)
-    //'version' => '3.0',
-),
-
-*/
-
 class YiiBitcoin extends CApplicationComponent
 {
     public $API_KEY;
@@ -64,7 +24,7 @@ class YiiBitcoin extends CApplicationComponent
         $this->SUCCESS_URL = Yii::app()->createAbsoluteUrl($this->SUCCESS_URL);
     }
     
-    public function askPermission($popup=false)
+    public function askPermission($popup=false,$scope)
     { 
       //$url = $this->API_BASE;
       $url="https://coinbase.com/oauth/authorize";
@@ -73,6 +33,7 @@ class YiiBitcoin extends CApplicationComponent
 						'response_type' => urlencode("code"),
 						'client_id' => urlencode($this->CLIENT_ID),
 						'redirect_uri' => urlencode($this->CALLBACK_URL),
+						'scope'=>$scope
 						
 				);
 
