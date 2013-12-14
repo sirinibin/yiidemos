@@ -42,7 +42,7 @@ class YiiBitcoin extends CApplicationComponent
         
         //echo $url."?".$fields_string; 
         
-      
+      /*
         if($popup)
         {
                                          echo "
@@ -55,9 +55,9 @@ class YiiBitcoin extends CApplicationComponent
                                            ";
         }
         else
-        {
+        {*/
          header("location:".$url."?".$fields_string);
-        } 
+        //} 
        
     }
     
