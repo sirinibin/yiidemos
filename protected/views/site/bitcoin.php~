@@ -1,0 +1,1800 @@
+<div style="float:right;position:fixed;margin-left:65%;" >
+<?php
+$this->widget('bootstrap.widgets.TbMenu', array(
+	'items' => array(
+		array('label' => '1.Account Changes', 'url' => '#account_changes', 'active' => true),
+		array('label' => '2.Account', 'url' => '#account',),
+		array('label' => '3.Addresses', 'url' => '#addresses'),
+		array('label' => '4.Button', 'url' => '#button'),
+		array('label' => '5.Buys', 'url' => '#buys'),
+		array('label' => '6.Contacts', 'url' => '#contacts'),
+		array('label' => '7.Currencies', 'url' => '#currencies'),
+		array('label' => '8.Orders', 'url' => '#orders'),
+		array('label' => '9.Prices', 'url' => '#prices'),
+		array('label' => '10.Recurring Payments', 'url' => '#recurring'),
+		array('label' => '11.Sells', 'url' => '#sells'),
+		array('label' => '12.Subscribers', 'url' => '#subscribers'),
+		array('label' => '13.Tokens', 'url' => '#tokens'),
+		array('label' => '14.Transactions', 'url' => '#transactions'),
+		array('label' => '15.Users', 'url' => '#users'),
+		array('label' => '16.Ask Permission', 'url' => '#permission'),
+		array('label' => '17.get AccessToken', 'url' => '#access_token'),
+		
+	),
+	 'type'=>'list',
+	//'stacked' => false,
+	//'pills' => false, //true
+));
+
+?>
+</div>
+<script>
+ $(".nav-list li").bind("click",function(){
+  
+   //alert("ok");
+   $(".nav-list li").removeClass("active");
+    
+   $(this).addClass("active");
+   
+ });
+ $("#yw1").bind("click",function(){
+  
+   alert("ok");
+   $("#yw1").removeClass("active");
+    
+   $(this).addClass("active");
+   
+ });
+</script>
+ <h5 id="account_changes">1.Account Change</h5>
+  <pre>
+    <b>1.1.stdClass Object function getAccountChanges()</b>
+        
+        <b>purpose:</b>List all changes to your account
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+   $response=Yii::app()->bitcoin->getAccountChanges();
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+    stdClass Object
+      (
+	  [current_user] => stdClass Object
+	      (
+		  [id] => 52150505ae4151c1e700002f
+		  [email] => sirinibin2006@gmail.com
+		  [name] => Sirin k
+	      )
+
+	  [balance] => stdClass Object
+	      (
+		  [amount] => 0.00000000
+		  [currency] => BTC
+	      )
+
+	  [account_changes] => Array
+	      (
+	      )
+
+	  [total_count] => 0
+	  [num_pages] => 0
+	  [current_page] => 1
+      )
+   
+  </pre>
+  
+  
+ <h5 id="account">2.Account</h5>
+  <pre>
+    <b>2.1.stdClass Object function getBalance()</b>
+        
+        <b>purpose</b>:Get the user's account balance in BTC.
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+  $response=Yii::app()->bitcoin->getBalance()
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+    stdClass Object
+      (
+	  [amount] => 0.00000000
+	  [currency] => BTC
+      )
+          
+   
+  </pre>
+  <pre>
+    <b>2.2.stdClass Object function getReceiveAddress()</b>
+        
+        <b>purpose:</b>Get the user's current bitcoin receive address
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+      $response=Yii::app()->bitcoin->getReceiveAddress();  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+     stdClass Object
+      (
+	  [success] => 1
+	  [address] => 1H1jPMvyY7Xk6RZGtj4taqWxZYhsEH8ebX
+	  [callback_url] => 
+      )
+       
+   
+  </pre>
+  
+ 
+  <pre>
+    <b>2.3.stdClass Object function generateReceiveAddress()</b>
+        
+        <b>purpose:</b>Generates a new bitcoin receive address for the user
+  </pre>
+  Usage:
+  <?php 
+  
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+	
+  ?>	
+	
+     $response=Yii::app()->bitcoin->generateReceiveAddress();
+   
+   <?php
+  $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+   
+        stdClass Object
+      (
+[success]=> true,
+[address]=> muVu2JZo8PbewBHRp6bpqFvVD87qvqEHWA,
+[callback_url]=> null
+}
+    
+            
+   
+  </pre>
+   
+   <h5 id="addresses">3.Addresses </h5>
+   
+  <pre>
+    <b>3.1.stdClass Object function getAllAddresses($query=null, $page=0, $limit=null)</b>
+        
+        <b>purpose:</b>List bitcoin addresses associated with this account
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+  $response=Yii::app()->bitcoin->getAllAddresses();
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+   
+      stdClass Object
+	(
+	    [total_count] => 1
+	    [num_pages] => 1
+	    [current_page] => 1
+	    [addresses] => Array
+		(
+		    [0] => stdClass Object
+			(
+			    [address] => 1H1jPMvyY7Xk6RZGtj4taqWxZYhsEH8ebX
+			    [callback_url] => 
+			    [label] => 
+			    [created_at] => 2013-12-16T07:22:45+05:30
+			)
+
+		)
+
+	) 
+  </pre>
+   <h5 id="button">4.Button</h5>
+  <pre>
+    <b>4.1.stdClass Object function  createButton($name, $price, $currency, $custom=null, $options=array())</b>
+        
+        <b>purpose:</b>Create a new payment button, page, or iFrame
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+       $response=Yii::app()->bitcoin->createButton("Buy now", "50", "USD", null, array());
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+         stdClass Object
+(
+    [button] => stdClass Object
+        (
+            [code] => 4e277b6f17669860d1417e0cc0b8e432
+            [type] => buy_now
+            [style] => buy_now_large
+            [text] => Pay With Bitcoin
+            [name] => Buy now
+            [description] => 
+            [custom] => 
+            [callback_url] => 
+            [success_url] => 
+            [cancel_url] => 
+            [info_url] => 
+            [price] => stdClass Object
+                (
+                    [cents] => 5000
+                    [currency_iso] => USD
+                )
+
+            [variable_price] => 
+            [choose_price] => 
+            [include_address] => 
+            [include_email] => 
+        )
+
+    [embedHtml] => <div class="coinbase-button" data-code="4e277b6f17669860d1417e0cc0b8e432"></div><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+    [success] => 1
+)
+           <?php
+           /*
+             $response=Yii::app()->bitcoin->createButton("Buy now", "50", "USD", null, array());
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+            */
+           ?>
+   
+  </pre>
+  <pre>
+    <b>4.2.stdClass Object function createButtonOrder($code)</b>
+        
+        <b>purpose:</b>Create an order for this button
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+  $response=Yii::app()->bitcoin->createButtonOrder("4e277b6f17669860d1417e0cc0b8e432");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+     stdClass Object
+	(
+	    [success] => 1
+	    [order] => stdClass Object
+		(
+		    [id] => MI2IHCCZ
+		    [created_at] => 2013-12-16T16:47:37+05:30
+		    [status] => new
+		    [total_btc] => stdClass Object
+			(
+			    [cents] => 6125000
+			    [currency_iso] => BTC
+			)
+
+		    [total_native] => stdClass Object
+			(
+			    [cents] => 5000
+			    [currency_iso] => USD
+			)
+
+		    [custom] => 
+		    [receive_address] => 14PkDvMBsyjeKGoYeRm5A8WgNv3cw5TbQz
+		    [button] => stdClass Object
+			(
+			    [type] => buy_now
+			    [name] => Buy now
+			    [description] => 
+			    [id] => 4e277b6f17669860d1417e0cc0b8e432
+			)
+
+		    [transaction] => 
+		)
+
+	)
+   
+       <?php
+           /*
+             $response=Yii::app()->bitcoin->createButtonOrder("4e277b6f17669860d1417e0cc0b8e432");
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+            */
+           ?>
+            
+   
+  </pre>
+   <h5 id="buys">5.Buys</h5>
+  <pre>
+    <b>5.1.stdClass Object function buy($amount, $agreeBtcAmountVaries=false)</b>
+        
+        <b>purpose:Purchase bitcoin by debiting your U.S. bank account</b>
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+     $response=Yii::app()->bitcoin->buy(1, true);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+       Response:
+         <?php  print_r(json_decode('{
+  "success": true,
+  "transfer": {
+    "type": "Buy",
+    "code": "6H7GYLXZ",
+    "created_at": "2013-01-28T16:08:58-08:00",
+    "fees": {
+      "coinbase": {
+        "cents": 14,
+        "currency_iso": "USD"
+      },
+      "bank": {
+        "cents": 15,
+        "currency_iso": "USD"
+      }
+    },
+    "status": "created",
+    "payout_date": "2013-02-01T18:00:00-08:00",
+    "btc": {
+      "amount": "1.00000000",
+      "currency": "BTC"
+    },
+    "subtotal": {
+      "amount": "13.55",
+      "currency": "USD"
+    },
+    "total": {
+      "amount": "13.84",
+      "currency": "USD"
+    }
+  }
+}')); ?>
+      note: for buying a bitcoin you have to do 2 following things.
+            1.Verify Your bank account with Bitcoin.
+            2.Verify Your mobile number with Bitcoin.
+         if you havnt done this you will get an response format like below:
+       
+  
+       stdClass Object
+	  (
+	      [success] => 
+	      [errors] => Array
+		  (
+		      [0] => Payment method can't be blank
+		      [1] => You must verify a phone number on your account
+		  )
+
+	      [transfer] => stdClass Object
+		  (
+		      [id] => 52aee3018bf6feb7840000a5
+		      [created_at] => 
+		      [fees] => stdClass Object
+			  (
+			      [coinbase] => stdClass Object
+				  (
+				      [cents] => 1639
+				      [currency_iso] => USD
+				  )
+
+			      [bank] => stdClass Object
+				  (
+				      [cents] => 15
+				      [currency_iso] => USD
+				  )
+
+			  )
+
+		      [payout_date] => 
+		      [transaction_id] => 
+		      [_type] => AchDebit
+		      [code] => 52aee3018bf6feb7840000a5
+		      [type] => Buy
+		      [status] => Pending
+		      [btc] => stdClass Object
+			  (
+			      [amount] => 2.00000000
+			      [currency] => BTC
+			  )
+
+		      [subtotal] => stdClass Object
+			  (
+			      [amount] => 1639.20
+			      [currency] => USD
+			  )
+
+		      [total] => stdClass Object
+			  (
+			      [amount] => 1655.74
+			      [currency] => USD
+			  )
+
+		      [description] => 
+		  )
+
+	  )
+ 
+             <?php
+           /*
+             $response=Yii::app()->bitcoin->buy(2, true);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+            */
+           ?>
+   
+  </pre>
+   <h5 id="contacts" >6.Contacts</h5>
+  <pre>
+    <b>stdClass Object function getContacts($query=null, $page=0, $limit=null)</b>
+        
+        <b>purpose:</b>List emails the user has previously used for autocompletion.
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+      $response=Yii::app()->bitcoin->getContacts(null, 0, null);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+   
+        <?php print_r(json_decode('{
+  "contacts": [
+    {
+      "contact": {
+        "email": "user1@example.com"
+      }
+    },
+    {
+      "contact": {
+        "email": "user2@example.com"
+      }
+    }
+  ],
+  "total_count": 2,
+  "num_pages": 1,
+  "current_page": 1
+}')); ?>
+          <?php
+           /*
+             $response=Yii::app()->bitcoin->getContacts(null, 0, null);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+            */
+           ?>      
+      
+  </pre>
+  
+   <h5 id="currencies">7.Currencies</h5>
+  <pre>
+    <b>7.1.stdClass Object function getCurrencies()</b>
+        
+        <b>purpose:</b>Show currencies supported by Coinbase.
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+    Array
+	(
+	    [0] => stdClass Object
+		(
+		    [name] => Afghan Afghani (AFN)
+		    [iso] => AFN
+		)
+
+	    [1] => stdClass Object
+		(
+		    [name] => Albanian Lek (ALL)
+		    [iso] => ALL
+		)
+
+	    [2] => stdClass Object
+		(
+		    [name] => Algerian Dinar (DZD)
+		    [iso] => DZD
+		)
+
+	    [3] => stdClass Object
+		(
+		    [name] => Angolan Kwanza (AOA)
+		    [iso] => AOA
+		)
+
+	    [4] => stdClass Object
+		(
+		    [name] => Argentine Peso (ARS)
+		    [iso] => ARS
+		)
+
+	    [5] => stdClass Object
+		(
+		    [name] => Armenian Dram (AMD)
+		    [iso] => AMD
+		)
+	    .....upto 160 Currencies as of now.try it out to see all in the list.	
+	) 
+ 
+             <?php
+           /*
+             $response=Yii::app()->bitcoin->getCurrencies();
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+            */
+           ?>
+   
+  </pre>
+  <pre>
+    <b>7.2.stdClass Object function getExchangeRate($from=null, $to=null)</b>
+        
+        <b>purpose:</b>Show exchange rates between BTC and other currencies
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	  $response=Yii::app()->bitcoin->getExchangeRate(null, null);
+  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+   stdClass Object
+    (
+	[gbp_to_usd] => 1.633667
+	[usd_to_bwp] => 8.62852
+	[usd_to_azn] => 0.784167
+	[eur_to_usd] => 1.35924
+	[usd_to_czk] => 20.11621
+	[czk_to_btc] => 6.2e-05
+	[btc_to_mga] => 1816130.167664
+	[btc_to_djf] => 143630.629233
+	[idr_to_btc] => 0.0
+	[mnt_to_usd] => 0.00058
+	[usd_to_ngn] => 158.682199
+	[usd_to_gbp] => 0.61212
+	[irr_to_btc] => 0.0
+	[ils_to_usd] => 0.282751
+	[ars_to_usd] => 0.163763
+	[usd_to_uyu] => 21.16168
+	[uyu_to_btc] => 5.9e-05
+	[pyg_to_btc] => 0.0
+	[usd_to_yer] => 215.006099
+	.....try this example to see all in the list.
+     )    
+      <?php
+         /*  
+             $response=Yii::app()->bitcoin->getExchangeRate(null, null);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */ 
+           ?>
+            
+   
+  </pre>
+   <h5 id="orders">8.Orders</h5>
+  <pre>
+    <b>8.1.stdClass Object function getOrders($page=0)</b>
+        
+        <b>purpose:</b>List merchant orders received
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	$response=Yii::app()->bitcoin->getOrders();
+  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+       <?php print_r(json_decode('{
+  "orders": [
+    {
+      "order": {
+        "id": "A7C52JQT",
+        "created_at": "2013-03-11T22:04:37-07:00",
+        "status": "completed",
+        "total_btc": {
+          "cents": 100000000,
+          "currency_iso": "BTC"
+        },
+        "total_native": {
+          "cents": 3000,
+          "currency_iso": "USD"
+        },
+        "custom": "",
+        "button": {
+          "type": "buy_now",
+          "name": "Order #1234",
+          "description": "order description",
+          "id": "eec6d08e9e215195a471eae432a49fc7"
+        },
+        "transaction": {
+          "id": "513eb768f12a9cf27400000b",
+          "hash": "4cc5eec20cd692f3cdb7fc264a0e1d78b9a7e3d7b862dec1e39cf7e37ababc14",
+          "confirmations": 0
+        }
+      }
+    }
+  ],
+  "total_count": 1,
+  "num_pages": 1,
+  "current_page": 1
+}'));?>
+            <?php
+         
+           /*
+             $response=Yii::app()->bitcoin->getOrders();
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?>
+   
+  </pre>
+  <pre>
+    <b>8.2.stdClass Object function getOrder($id)</b>
+        
+        <b>purpose:</b>Show an individual merchant order
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	 $response=Yii::app()->bitcoin->getOrder("A7C52JQT");
+  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+   <?php print_r(json_decode('{
+  "order": {
+    "id": "A7C52JQT",
+    "created_at": "2013-03-11T22:04:37-07:00",
+    "status": "completed",
+    "total_btc": {
+      "cents": 10000000,
+      "currency_iso": "BTC"
+    },
+    "total_native": {
+      "cents": 10000000,
+      "currency_iso": "BTC"
+    },
+    "custom": "",
+    "button": {
+      "type": "buy_now",
+      "name": "test",
+      "description": "",
+      "id": "eec6d08e9e215195a471eae432a49fc7"
+    },
+    "transaction": {
+      "id": "513eb768f12a9cf27400000b",
+      "hash": "4cc5eec20cd692f3cdb7fc264a0e1d78b9a7e3d7b862dec1e39cf7e37ababc14",
+      "confirmations": 0
+    }
+  }
+}')); ?>
+                   <?php
+         
+           /*
+             $response=Yii::app()->bitcoin->getOrder($id);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?>
+   
+  </pre>
+   <h5 id="prices">9.PRICES</h5>
+  <pre>
+    <b>9.1.float function getBuyPrice($qty=1)</b>
+        
+        <b>purpose:</b>Get the total buy price for some bitcoin amount
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	 $response=Yii::app()->bitcoin->getBuyPrice(1);
+  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:820.27
+       
+        <?php
+         
+           /*
+             $response=Yii::app()->bitcoin->getBuyPrice(1);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?>         
+   
+  </pre>
+
+  <pre>
+    <b>9.2.float Object function getSellPrice($qty=1)</b>
+        
+        <b>purpose:</b>Get the total sell price for some bitcoin amount
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+      $response=Yii::app()->bitcoin->getSellPrice(1);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:796.75
+         
+              <?php
+         
+           /*
+             $response=Yii::app()->bitcoin->getSellPrice(1);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?> 
+   
+  </pre>
+  <pre>
+    <b>9.3.stdClass Object function getSpotPrice($currency=null)</b>
+        
+        <b>purpose:</b>Get the spot price of bitcoin.
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+       $response=Yii::app()->bitcoin->getSpotPrice("INR");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+     stdClass Object
+      (
+	  [amount] => 50161.23
+	  [currency] => INR
+      )
+         <?php
+         
+           /*
+             $response=Yii::app()->bitcoin->getSpotPrice("INR");
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?> 
+            
+   
+  </pre>
+   <h5 id="recurring" >10.Recurring Payments </h5>
+  <pre>
+    <b>10.1.stdClass Object function getRecurringPayments()</b>
+        
+        <b>purpose:</b>List your recurring payment
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	 $response=Yii::app()->bitcoin->getRecurringPayments()
+  
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+    <?php print_r(json_decode('{
+  "recurring_payments": [
+    {
+      "recurring_payment": {
+        "id":"51a7b9e9f8182b4b22000013",
+        "type": "send",
+        "status": "active",
+        "created_at": "2013-05-30T13:43:21-07:00",
+        "to": "user2@example.com",
+        "from": null,
+        "start_type": "now",
+        "times": -1,
+        "times_run": 7,
+        "repeat": "monthly",
+        "last_run": "2013-05-30T13:00:00-07:00",
+        "next_run": "2013-06-30T13:00:00-07:00",
+        "notes": null,
+        "description": "Send 0.02 BTC to User Two",
+        "amount": {
+          "amount": "0.02000000",
+          "currency": "BTC"
+        }
+      }
+    },
+    {
+      "recurring_payment": {
+        "id":"5193377ef8182b7c19000015",
+        "type": "request",
+        "status": "completed",
+        "created_at": "2013-05-15T00:21:34-07:00",
+        "to": "",
+        "from": "user1@example.com",
+        "start_type": "now",
+        "times": 3,
+        "times_run": 3,
+        "repeat": "daily",
+        "last_run": "2013-05-15T00:22:57-07:00",
+        "next_run": "2013-05-16T00:22:57-07:00",
+        "notes": "",
+        "description": "Request 0.01 BTC from user1@example.com",
+        "amount": {
+          "amount": "0.01000000",
+          "currency": "BTC"
+        }
+      }
+    }
+  ],
+  "total_count": 2,
+  "num_pages": 1,
+  "current_page": 1
+}'));?>
+    <?php
+         /*
+             $response=Yii::app()->bitcoin->getRecurringPayments();
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?> 
+            
+   
+  </pre>
+   
+  <pre>
+    <b>10.2.stdClass Object function getRecurringPayment($id)</b>
+        
+        <b>purpose:</b>Show an individual recurring payment
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+     $response=Yii::app()->bitcoin->getRecurringPayments("5193377ef8182b7c19000015");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+     <?php print_r(json_decode('{
+  "recurring_payment": {
+    "id": "5193377ef8182b7c19000015",
+    "type": "send",
+    "status": "active",
+    "created_at": "2013-05-30T13:43:21-07:00",
+    "to": "user2@example.com",
+    "from": null,
+    "start_type": "now",
+    "times": -1,
+    "times_run": 7,
+    "repeat": "monthly",
+    "last_run": "2013-05-30T13:00:00-07:00",
+    "next_run": "2013-06-30T13:00:00-07:00",
+    "notes": null,
+    "description": "Send 0.02 BTC to User Two",
+    "amount": {
+      "amount": "0.02000000",
+      "currency": "BTC"
+    }
+  }
+}')); ?>
+             <?php
+           /*
+             $response=Yii::app()->bitcoin->getRecurringPayments();
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?> 
+   
+  </pre>
+   <h5 id="sells">11.Sells</h5>
+  <pre>
+    <b>11.1.stdClass Object function sell($amount)</b>
+        
+        <b>purpose:</b>Sell bitcoin and receive a credit to your U.S. bank account
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+     $response=Yii::app()->bitcoin->sell(1);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+    <?php print_r(json_decode('{
+  "success": true,
+  "transfer": {
+    "type": "Sell",
+    "code": "RD2OC8AL",
+    "created_at": "2013-01-28T16:32:35-08:00",
+    "fees": {
+      "coinbase": {
+        "cents": 14,
+        "currency_iso": "USD"
+      },
+      "bank": {
+        "cents": 15,
+        "currency_iso": "USD"
+      }
+    },
+    "status": "created",
+    "payout_date": "2013-02-01T18:00:00-08:00",
+    "btc": {
+      "amount": "1.00000000",
+      "currency": "BTC"
+    },
+    "subtotal": {
+      "amount": "13.50",
+      "currency": "USD"
+    },
+    "total": {
+      "amount": "13.21",
+      "currency": "USD"
+    }
+  }
+}')); ?>
+            <?php
+           /*
+             $response=Yii::app()->bitcoin->sell(1);
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+           */
+           ?> 
+   
+  </pre>
+   <h5 id="subscribers"> 12.Subscribers</h5>
+  <pre>
+    <b>12.1.stdClass Object function getSubscribers()</b>
+        
+        <b>purpose:</b>List customer subscriptions.
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+    $response=Yii::app()->bitcoin->getSubscribers();
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+   
+     <?php   print_r(json_decode('{
+  "recurring_payments": [
+    {
+      "recurring_payment": {
+        "id": "51a7cf58f8182b4b220000d5",
+        "created_at": "2013-05-30T15:14:48-07:00",
+        "status": "active",
+        "custom": "user123",
+        "button": {
+          "type": "subscription",
+          "name": "Test",
+          "description": "",
+          "id": "1b7a1019f371402ec02af389d1b24e55"
+        }
+      }
+    },
+    {
+      "recurring_payment": {
+        "id": "51a7be2ff8182b4b220000a5",
+        "created_at": "2013-05-30T14:01:35-07:00",
+        "status": "paused",
+        "custom": "user456",
+        "button": {
+          "type": "subscription",
+          "name": "Test",
+          "description": "",
+          "id": "1b7a1019f371402ec02af389d1b24e55"
+        }
+      }
+    }
+  ],
+  "total_count": 2,
+  "num_pages": 1,
+  "current_page": 1
+}'));  ?>
+           <?php
+          
+/*             $response=Yii::app()->bitcoin->getSubscribers();
+     
+       
+          echo "<pre>";
+          print_r($response);
+          echo "</pre>";
+   */         
+           ?>         
+    
+  </pre>
+  <pre>
+    <b>12.2.stdClass Object function getSubscriber($id)</b>
+        
+        <b>purpose:</b>Show an individual customer subscription
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+       $response=Yii::app()->bitcoin->getSubscriber("51a7cf58f8182b4b220000d5");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+      <?php print_r(json_decode('{
+  "recurring_payment": {
+    "id": "51a7cf58f8182b4b220000d5",
+    "created_at": "2013-05-30T15:14:48-07:00",
+    "status": "active",
+    "custom": "user123",
+    "button": {
+      "type": "subscription",
+      "name": "Test",
+      "description": "",
+      "id": "1b7a1019f371402ec02af389d1b24e55"
+    }
+  }
+}')); ?>        
+   
+     </pre>
+   <h5 id="tokens">13.Tokens</h5>
+  <pre>
+    <b>13.1.stdClass Object function createToken()</b>
+        
+        <b>purpose:</b>Create a token which can be redeemed for bitcoin
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+     Yii::app()->bitcoin->createToken();
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+        <?php print_r(json_decode('{
+  "success": true,
+  "token": {
+    "token_id": "abc12e821cf6e128afc2e821cf68e12cf68e168e128af21cf682e821cf68e1fe",
+    "address": "n3NzN74qGYHSHPhKM1hdts3bF1zV4N1Aa3"
+  }
+}')); ?>    
+   
+  </pre>
+  <pre>
+    <b>13.2.stdClass Object function redeemToken($token_id)</b>
+        
+        <b>purpose:</b>Redeem a token, claiming its address and all its bitcoins
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+   Yii::app()->bitcoin->redeemToken("abc12e821cf6e128afc2e821cf68e12cf68e168e128af21cf682e821cf68e1fe");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+           <?php print_r(json_decode('{
+            "success": true
+            }')); ?> 
+   
+  </pre>
+   <h5 id="transactions">14.Transactions</h5>
+  <pre>
+    <b>14.1.stdClass Object function getTransactions()</b>
+        
+        <b>purpose:</b>List a user's recent transactions
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>		
+     Yii::app()->bitcoin->getTransactions();
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+      <?php print_r(json_decode('{
+  "current_user": {
+    "id": "5011f33df8182b142400000e",
+    "email": "user2@example.com",
+    "name": "User Two"
+  },
+  "balance": {
+    "amount": "50.00000000",
+    "currency": "BTC"
+  },
+  "total_count": 2,
+  "num_pages": 1,
+  "current_page": 1,
+  "transactions": [
+    {
+      "transaction": {
+        "id": "5018f833f8182b129c00002f",
+        "created_at": "2012-08-01T02:34:43-07:00",
+        "amount": {
+          "amount": "-1.10000000",
+          "currency": "BTC"
+        },
+        "request": true,
+        "status": "pending",
+        "sender": {
+          "id": "5011f33df8182b142400000e",
+          "name": "User Two",
+          "email": "user2@example.com"
+        },
+        "recipient": {
+          "id": "5011f33df8182b142400000a",
+          "name": "User One",
+          "email": "user1@example.com"
+        }
+      }
+    },
+    {
+      "transaction": {
+        "id": "5018f833f8182b129c00002e",
+        "created_at": "2012-08-01T02:36:43-07:00",
+        "hsh": "9d6a7d1112c3db9de5315b421a5153d71413f5f752aff75bf504b77df4e646a3",
+        "amount": {
+          "amount": "-1.00000000",
+          "currency": "BTC"
+        },
+        "request": false,
+        "status": "complete",
+        "sender": {
+          "id": "5011f33df8182b142400000e",
+          "name": "User Two",
+          "email": "user2@example.com"
+        },
+        "recipient_address": "37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare"
+      }
+    }
+ ]
+}')); ?>
+            
+   
+  </pre>
+
+  <pre>
+    <b>14.2.stdClass Object function getTransaction($id)</b>
+        
+        <b>purpose:</b>Show details for an individual transaction
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+        Yii::app()->bitcoin->getTransaction("5018f833f8182b129c00002f");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+         <?php print_r(json_decode('{
+  "transaction": {
+    "id": "5018f833f8182b129c00002f",
+    "created_at": "2012-08-01T02:34:43-07:00",
+    "amount": {
+      "amount": "-1.10000000",
+      "currency": "BTC"
+    },
+    "request": true,
+    "status": "pending",
+    "sender": {
+      "id": "5011f33df8182b142400000e",
+      "name": "User Two",
+      "email": "user2@example.com"
+    },
+    "recipient": {
+      "id": "5011f33df8182b142400000a",
+      "name": "User One",
+      "email": "user1@example.com"
+    }
+  }
+}')); ?>   
+   
+  </pre>
+  <pre>
+    <b>14.3.stdClass Object function sendMoney($to, $amount, $notes=null, $userFee=null, $amountCurrency=null)</b>
+        
+        <b>purpose:</b>Send bitcoins to an email address or bitcoin address
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+      Yii::app()->bitcoin->sendMoney("user1@example.com","1.234",null, null, "USD");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+    <?php print_r(json_decode('{
+  "success": true,
+  "transaction": {
+    "id": "501a1791f8182b2071000087",
+    "created_at": "2012-08-01T23:00:49-07:00",
+    "hsh": "9d6a7d1112c3db9de5315b421a5153d71413f5f752aff75bf504b77df4e646a3",
+    "notes": "Sample transaction for you!",
+    "amount": {
+      "amount": "-1.23400000",
+      "currency": "BTC"
+    },
+    "request": false,
+    "status": "pending",
+    "sender": {
+      "id": "5011f33df8182b142400000e",
+      "name": "User Two",
+      "email": "user2@example.com"
+    },
+    "recipient": {
+      "id": "5011f33df8182b142400000a",
+      "name": "User One",
+      "email": "user1@example.com"
+    },
+    "recipient_address": "37muSN5ZrukVTvyVh3mT5Zc5ew9L9CBare"
+  }
+}')); ?>        
+   
+  </pre>
+
+  <pre>
+    <b>14.4.stdClass Object function requestMoney($from, $amount, $notes=null, $amountCurrency=null)</b>
+        
+        <b>purpose:</b>Send an invoice/money request to an email address
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+     Yii::app()->bitcoin->requestMoney("user1@example.com","1.234",null, "USD");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre >
+   Response:
+       <?php  print_r(json_decode('{
+  "success": true,
+  "transaction": {
+    "id": "501a3554f8182b2754000003",
+    "created_at": "2012-08-02T01:07:48-07:00",
+    "hsh": null,
+    "notes": "Sample request for you!",
+    "amount": {
+      "amount": "1.23400000",
+      "currency": "BTC"
+    },
+    "request": true,
+    "status": "pending",
+    "sender": {
+      "id": "5011f33df8182b142400000a",
+      "name": "User One",
+      "email": "user1@example.com"
+    },
+    "recipient": {
+      "id": "5011f33df8182b142400000e",
+      "name": "User Two",
+      "email": "user2@example.com"
+    }
+  }
+}')); ?>     
+   
+  </pre>
+
+  <pre>
+    <b>14.5.stdClass Object function resendRequest($id)</b>
+        
+        <b>purpose:</b>Resend emails for a money request
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+    Yii::app()->bitcoin->resendRequest("501a3554f8182b2754000003");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+    stdClass Object
+       (
+        "success"=>true
+       )
+               
+   
+  </pre>
+  
+    <pre>
+    <b>14.6.stdClass Object  function cancelRequest($id)</b>
+        
+        <b>purpose:</b>Cancel a money request
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+    Yii::app()->bitcoin->cancelRequest("501a3554f8182b2754000003");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+   
+     stdClass Object
+       (
+        "success"=>true
+       )
+          
+   
+  </pre>
+  
+     <pre>
+    <b>14.7.stdClass Object function completeRequest($id)</b>
+        
+        <b>purpose:</b>Complete a money request
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+    Yii::app()->bitcoin->completeRequest("501a3554f8182b2754000003");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+      <?php print_r(json_decode('{
+  "success": false,
+  "errors": [
+    "Only the sender can complete a money request."
+  ],
+  "transaction": {
+    "id": "503c46a3f8182b106500009b",
+    "created_at": null,
+    "hsh": null,
+    "notes": null,
+    "amount": {
+      "amount": "0.00000000",
+      "currency": "BTC"
+    },
+    "request": false,
+    "status": "pending",
+    "recipient": null,
+    "sender": null
+  }
+}')); ?>      
+   
+  </pre>
+  <h5 id="users">15.Users</h5>
+     <pre>
+    <b>15.1.stdClass Object function createUser($email, $password)</b>
+        
+        <b>purpose:</b>Create or signup a new user
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+    Yii::app()->bitcoin->createUser("newuser@example.com", "test");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+      <?php print_r(json_decode('{
+  "success": true,
+  "user": {
+    "id": "501a3d22f8182b2754000011",
+    "name": "New User",
+    "email": "newuser@example.com",
+    "receive_address": "mpJKwdmJKYjiyfNo26eRp4j6qGwuUUnw9x"
+  }
+}')); ?>      
+   
+  </pre>  
+   <pre>
+    <b>15.2.stdClass Object function getUserAccountSettings($email, $password)</b>
+        
+        <b>purpose:</b>Show current user with account settingsr
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+	
+    Yii::app()->bitcoin->getUserAccountSettings("user1@example.com", "test");
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+      <?php print_r(json_decode('{
+  "users": [
+    {
+      "user": {
+        "id": "512db383f8182bd24d000001",
+        "name": "User One",
+        "email": "user1@example.com",
+        "time_zone": "Pacific Time (US & Canada)",
+        "native_currency": "USD",
+        "balance": {
+          "amount": "49.76000000",
+          "currency": "BTC"
+        },
+        "buy_level": 1,
+        "sell_level": 1,
+        "buy_limit": {
+          "amount": "10.00000000",
+          "currency": "BTC"
+        },
+        "sell_limit": {
+          "amount": "100.00000000",
+          "currency": "BTC"
+        }
+      }
+    }
+  ]
+}')); ?>      
+   
+  </pre>   
+   <pre>
+    <b>15.3.stdClass Object updateUserAccountSettings($id,$user_details)</b>
+        
+        <b>purpose:</b>Update account settings for current user
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+    $user_details=array(
+     <?php print_r(json_decode('{
+     "user": {
+    "id": "512db383f8182bd24d000001",
+    "name": "User One",
+    "email": "goodemail@example.com",
+    "time_zone": "Pacific Time (US & Canada)",
+    "native_currency": "USD",
+    "buy_level": 1,
+    "sell_level": 1,
+    "balance": {
+      "amount": "49.76000000",
+      "currency": "BTC"
+    },
+    "buy_limit": {
+      "amount": "10.00000000",
+      "currency": "BTC"
+    },
+    "sell_limit": {
+      "amount": "100.00000000",
+      "currency": "BTC"
+    }
+  }
+}')); ?>
+    );	
+    Yii::app()->bitcoin->updateUserAccountSettings("512db383f8182bd24d000001",$user_details);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+      <?php print_r(json_decode('{
+  "success": true,
+  "user": {
+    "id": "512db383f8182bd24d000001",
+    "name": "User One",
+    "email": "goodemail@example.com",
+    "time_zone": "Pacific Time (US & Canada)",
+    "native_currency": "USD",
+    "buy_level": 1,
+    "sell_level": 1,
+    "balance": {
+      "amount": "49.76000000",
+      "currency": "BTC"
+    },
+    "buy_limit": {
+      "amount": "10.00000000",
+      "currency": "BTC"
+    },
+    "sell_limit": {
+      "amount": "100.00000000",
+      "currency": "BTC"
+    }
+  }
+}')); ?>      
+   
+  </pre>
+  <h5 id="permission">16.Ask UserPersmission</h5>
+   <pre>
+    <b>16.1. function askPermission($scope)</b>
+        
+        <b>purpose:</b>Ask UserPersmission to manage his/her bitcoin account
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+     $scope=array(
+       'all'
+     );	
+    Yii::app()->bitcoin->askPermission($scope);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+
+   <h5 id="access_token">17.get AccessToken</h5>
+   
+   <pre>
+    <b>17.1.function getAccessToken($code)</b>
+        
+        <b>purpose:</b>Get AccessToken of a user to manage his/her bitcoin account.
+  </pre>
+  Usage:
+  <?php 
+ $this->beginWidget('system.web.widgets.CTextHighlighter',array(
+	    'language'=>"php",
+	    //'showLineNumbers'=>true,
+	));
+  ?>	
+ 
+    Yii::app()->bitcoin->getAccessToken($code);
+   
+   <?php
+   $this->endWidget();
+   ?>  
+     <pre>
+   Response:
+      <?php print_r(json_decode('{
+    "access_token": "...", 
+    "refresh_token": "...", 
+    "token_type": "bearer", 
+    "expire_in": 7200, 
+    "scope": "universal"
+}')); ?>      
+   
+  </pre> 

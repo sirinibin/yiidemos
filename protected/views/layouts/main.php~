@@ -45,7 +45,8 @@
                  array('label'=>'ajaxGii', 'url'=>Yii::app()->createUrl('ajaxtest/')),
                 array('label'=>'Giiplus', 'url'=>Yii::app()->createUrl('test/')),
                 array('label'=>'Ajax form submit', 'url'=>Yii::app()->createUrl('person/ajax')),
-                array('label'=>'Paypal Demo', 'url'=>Yii::app()->createUrl('site/ajax')),
+                array('label'=>'Paypal Demo', 'url'=>Yii::app()->createUrl('site/paypalDemo')),
+                array('label'=>'YiiBitcoin Demo', 'url'=>Yii::app()->createUrl('site/bitcoin')),
                 /*
                 array('label'=>'Aspect Ratio w/ Preview Pane ', 'url'=>Yii::app()->createUrl('site/icrop')),
                 array('label'=>'Jcrop - API Demo', 'url'=>Yii::app()->createUrl('site/icropapi')),

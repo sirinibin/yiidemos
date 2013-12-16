@@ -62,7 +62,7 @@ return array(
 	'components'=>array(
 	
 	        'bitcoin' => array(
-                                      'class'=>'application.extensions.yiibitcoin.YiiBitcoin',
+                                      'class'=>'application.components.bitcoin.Bitcoin',
                                       'API_KEY' => '4f4b421377b0289c6ea314255656e93629f932bfc7ed253566900fa406f634c4',
                                       'CLIENT_SECRET' => '5346d960b9da887dcf9db3fa61ec5eb52e11c85b93936ccd7dad5730b7863952',
                                       'CLIENT_ID' => 'faf5f8e5260b0af2e7473a4b76b8dd16ba0acf412356f6c96990af5f2aac7425', 
@@ -74,6 +74,13 @@ return array(
                                       'SUCCESS_URL'=>'site/bitcoinSuccess',
  
                                       ),
+                                      /*
+                'syntaxhighlighter' => array(
+                                       'class' => 'ext.JMSyntaxHighlighter.JMSyntaxHighlighter',
+                                       // 'theme' => 'Django',    
+                                       ),
+                                       */
+            
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
