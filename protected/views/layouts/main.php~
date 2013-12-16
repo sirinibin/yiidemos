@@ -54,6 +54,7 @@
                 array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
 	        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'SignUp', 'url' => array('/site/signup'), 'visible' => Yii::app()->user->isGuest),
+                array('label' => 'AboutUs', 'url' =>'http://nintriva.com'),
               //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
                
             ),
@@ -67,7 +68,7 @@
       </div>
           <div style="clear:both;"> </div>
         <div  id="footer" style="position:fixed;bottom:0px;">
-            Copyright &copy; <?php echo date('Y'); ?> by Nintriva.<br/>
+            Copyright &copy; <?php echo date('Y'); ?> by <a href="http://nintriva.com" target="_blank">Nintriva</a>.<br/>
             All Rights Reserved.<br/>
 			<?php echo Yii::powered(); ?>
         </div>
