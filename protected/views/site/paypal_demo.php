@@ -1,3 +1,4 @@
+<h2>Paypal Demo</h2>
 <div>
   <table>
   <tr><td><img src="<?php echo Yii::app()->request->baseUrl; ?>/images/images.jpeg"></yd>

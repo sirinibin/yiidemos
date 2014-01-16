@@ -39,6 +39,7 @@ $this->widget('bootstrap.widgets.TbMenu', array(
  });
 
 </script>
+ <h2>Yii Bitcoin API documentation</h2>
  <h5 id="account_changes">1.Account Change</h5>
   <pre>
     <b>1.1.stdClass Object function getAccountChanges()</b>

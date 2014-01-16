@@ -37,15 +37,9 @@ $this->widget('bootstrap.widgets.TbMenu', array(
    $(this).addClass("active");
    
  });
- $("#yw1").bind("click",function(){
-  
-   alert("ok");
-   $("#yw1").removeClass("active");
-    
-   $(this).addClass("active");
-   
- });
+
 </script>
+ <h2>Yii Bitcoin API documentaion</h2>
  <h5 id="account_changes">1.Account Change</h5>
   <pre>
     <b>1.1.stdClass Object function getAccountChanges()</b>

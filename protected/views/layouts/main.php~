@@ -54,15 +54,16 @@
             'items'=>array(
                  array('label'=>'ajaxGii', 'url'=>Yii::app()->createUrl('ajaxtest/')),
                 array('label'=>'Giiplus', 'url'=>Yii::app()->createUrl('test/')),
-                array('label'=>'Ajax form submit', 'url'=>Yii::app()->createUrl('person/ajax')),
-                array('label'=>'Paypal Demo', 'url'=>Yii::app()->createUrl('site/paypalDemo')),
-                array('label'=>'YiiBitcoin Demo', 'url'=>Yii::app()->createUrl('site/bitcoin')),
+                array('label'=>'Ajax form', 'url'=>Yii::app()->createUrl('person/ajax')),
+                array('label'=>'Paypal', 'url'=>Yii::app()->createUrl('site/paypalDemo')),
+                array('label'=>'YiiBitcoin', 'url'=>Yii::app()->createUrl('site/bitcoin')),
                 /*
                 array('label'=>'Aspect Ratio w/ Preview Pane ', 'url'=>Yii::app()->createUrl('site/icrop')),
                 array('label'=>'Jcrop - API Demo', 'url'=>Yii::app()->createUrl('site/icropapi')),
                 */
                 array('label' => 'Login', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
-	        array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => 'Logout', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
+	        //array('label' => 'Logout (' . Yii::app()->user->name . ')', 'url' => array('/site/logout'), 'visible' => !Yii::app()->user->isGuest),
                 array('label' => 'SignUp', 'url' => array('/site/signup'), 'visible' => Yii::app()->user->isGuest),
                 array('label' => 'AboutUs', 'url' =>'http://nintriva.com'),
               //     array('label'=>'Manage', 'url'=>Yii::app()->createUrl('admin'), 'active'=>false),
@@ -72,7 +73,7 @@
 		
 	),
 )); ?> 
-          <!--   <br/><br/><br/><br/>      -->
+        <!--   <br/><br/><br/><br/> --> 
       <div class="span10 offset2 row">
       <?php echo $content; ?>
       </div>

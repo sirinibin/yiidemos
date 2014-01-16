@@ -1,6 +1,6 @@
 <?php
 
- echo "<h2> Hello, ".Yii::app()->user->firstName." ".Yii::app()->user->lastName." </h2>"; 
+ //echo "<h2> Hello, ".Yii::app()->user->firstName." ".Yii::app()->user->lastName." </h2>"; 
  echo CHtml::link('Logout',array('site/logout'));
 /*
 $filename='689x1000.jpg';

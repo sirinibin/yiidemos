@@ -1,3 +1,4 @@
+<h2>Ajax Form</h2>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(

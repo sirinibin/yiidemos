@@ -21,9 +21,8 @@ class SiteController extends Controller
 		
 		       array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
-				                 'login',
-				                 'error', 
-				                 'signup',
+				                
+				         
 				                 'paypal',
 				                 'PaypalReturn',
 				                 'PaypalCancel',
@@ -32,19 +31,24 @@ class SiteController extends Controller
 				                 'Bitcoin',
 				                 'BitcoinCancel',
 				                 'BitcoinSuccess',
-				                 'BitcoinCallback'
+				                 'BitcoinCallback',
+				                 'Logout',
+				                 'index',
 				       
 				                ),
-				'users'=>array('*'),
+				'users'=>array('@'),
 			),
 			
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array(
 				               //  'login',
-				                 'index',
-				                 'logout'
+				                 //'index',
+				                 'login',
+				                 'error', 
+				                 'signup'
+				               //  'logout'
 				                ),
-				'users'=>array('@'),
+				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -68,7 +72,9 @@ class SiteController extends Controller
 		{
 			$model->attributes = $_POST['LoginForm'];
 			if ($model->validate(array('username', 'password')) && $model->login())
-				$this->redirect(array('site/index'));
+			{
+			    $this->redirect(Yii::app()->user->returnUrl);
+			}
 		}
 
 		
@@ -104,7 +110,10 @@ class SiteController extends Controller
 		  
 		  
 			if ($login->validate(array('username', 'password')) && $login->login())
-				$this->redirect(array('site/index'));
+			        {
+			        
+			        	$this->redirect(Yii::app()->user->returnUrl);
+				}
 			else
 			{
 			   echo "Email:".$model->email;
