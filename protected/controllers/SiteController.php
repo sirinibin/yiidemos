@@ -28,7 +28,7 @@ class SiteController extends Controller
 				                 'PaypalCancel',
 				                 'paypalDemo',
 				                 'RequestPayment',
-				                 'Bitcoin',
+				                
 				                 'BitcoinCancel',
 				                 'BitcoinSuccess',
 				                 'BitcoinCallback',
@@ -45,7 +45,8 @@ class SiteController extends Controller
 				                 //'index',
 				                 'login',
 				                 'error', 
-				                 'signup'
+				                 'signup',
+				                 'Bitcoin'
 				               //  'logout'
 				                ),
 				'users'=>array('*'),
