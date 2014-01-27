@@ -42,9 +42,11 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('email, first_name, last_name, password,password_confirm', 'required'),
-			 array('password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('validation', "Passwords don't match")),
+			  
+			array('password_confirm', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('validation', "Passwords don't match")),
 			array('create_time, update_time', 'numerical', 'integerOnly'=>true),
-			array('email','email'),
+			array('email','email', 'checkMX'=>true),
+			array('email','unique'),
 			array('email', 'length', 'max'=>500),
 			array('first_name, last_name', 'length', 'max'=>200),
 			array('password,password_confirm', 'length', 'max'=>300,'min'=>6),
