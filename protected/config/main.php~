@@ -74,6 +74,23 @@ return array(
                                       'SUCCESS_URL'=>'site/bitcoinSuccess',
  
                                       ),
+                 'braintree' => array(
+                                      'class'=>'application.components.braintree.YiiBraintree',
+                                      
+                                      'ENV' => 'sandbox',
+                                      
+                                      'MERCHANT_ID' => 'hfr938wc2kh8n9rs',
+                                      
+                                      'MERCHANT_ACCOUNT_ID'=>'s3cvp8wbgf3yzqgm',
+                                      
+                                      'PUBLIC_KEY' => '8mr5fz7d2f939v7t', 
+                                     
+                                      'PRIVATE_KEY'=>'56daa4583b87a7338e975ada607c05a7',
+                                      
+                                      'CSEK'=>'MIIBCgKCAQEAp4WlDVf1Q6fad5I1SRLkHTk41OZg+Oxx98skfV+NHPYp1YmMxvPk0DNUNNGOZWarcQLDo+wML9xtDUbGuMOFgVzwz36Msi2SL7DRRr3vTjt80C7FiQzq/ivVC7EHxdYdXH9fe1W1E2HpPTuVtC7h/0SHykp+kUAF36Nu8iuDK8f+xsZUjlT4v8Djl2eCKpGvpCarGS0aNheHplZuHTRmZymvBp7kia4NtHANg2csg+l04oghlx424+qK9Ik5UmUpqimSzYQUHtVsNXlPAWSQtKpFJAiYyep5obV6H3C14lDd/I3wGTlfCtmlzkTrdMTB8FO+AewkAFyHVoO9UT3VcQIDAQAB'
+                                   
+ 
+                                      ),
                                       /*
                 'syntaxhighlighter' => array(
                                        'class' => 'ext.JMSyntaxHighlighter.JMSyntaxHighlighter',

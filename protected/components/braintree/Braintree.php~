@@ -1,0 +1,45 @@
+<?php
+/**
+ * Braintree.php
+ *
+ * @author: sirin k <sirinibin2006@gmail.com>
+ * Date: 21/mar/2014
+ * Time: 3.42am(IST)
+ */
+require_once 'braintree-php-2.26.0/lib/Braintree.php';
+
+class Braintree extends CApplicationComponent
+{
+    public $ENV="sandbox";// "sandbox" or "live"
+    
+    
+    public $MERCHANT_ID;
+    
+    public $PUBLIC_KEY;
+    
+    public $PRIVATE_KEY;
+    
+    
+    
+    
+    public $API_BASE = 'https://coinbase.com/api/v1/';
+   
+    public function init(){
+	
+      Braintree_Configuration::environment($this->ENV);
+      Braintree_Configuration::merchantId($this->MERCHANT_ID);
+      Braintree_Configuration::publicKey($this->PUBLIC_KEY);
+      Braintree_Configuration::privateKey($this->PRIVATE_KEY);
+       
+    }
+    public function __construct()
+    {
+    
+    }
+    
+   public function sale($data)
+   {
+    $result = Braintree_Transaction::sale($data);
+    return($result);
+   }
+}    
