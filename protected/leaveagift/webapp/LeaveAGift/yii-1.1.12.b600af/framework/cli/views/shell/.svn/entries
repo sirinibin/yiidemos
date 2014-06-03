@@ -1,43 +1,0 @@
-10
-
-dir
-1053
-svn+ssh://sirin@ec2-50-18-0-11.us-west-1.compute.amazonaws.com/var/svn/leaveagift/trunk/webapp/LeaveAGift/yii-1.1.12.b600af/framework/cli/views/shell
-svn+ssh://sirin@ec2-50-18-0-11.us-west-1.compute.amazonaws.com/var/svn/leaveagift
-
-
-
-2012-09-03T07:50:56.506839Z
-35
-sirin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-81821cda-4cab-48ad-ba64-a4f4fe4c3d3c
-
-crud
-dir
-
-model
-dir
-
-controller
-dir
-
-form
-dir
-
-module
-dir
-

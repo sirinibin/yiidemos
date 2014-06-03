@@ -42,7 +42,7 @@ return array(
 
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
-		
+		'braintree',
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
 			'password'=>'123',
@@ -74,6 +74,7 @@ return array(
                                       'SUCCESS_URL'=>'site/bitcoinSuccess',
  
                                       ),
+                                      /*
                  'braintree' => array(
                                       'class'=>'application.components.braintree.YiiBraintree',
                                       
@@ -91,6 +92,25 @@ return array(
                                    
  
                                       ),
+                                                */
+         'braintree' => array(
+                                      'class'=>'application.components.braintree.YiiBraintree',
+                                      
+                                      'ENV' => 'sandbox',
+                                      
+                                      'MERCHANT_ID' => 'xcxgscmxf4c7cgvz',
+                                      
+                                      'MERCHANT_ACCOUNT_ID'=>'SkyInnovationLabsInc',
+                                      
+                                      'PUBLIC_KEY' => 'frzfyfzcf5qtscsf', 
+                                     
+                                      'PRIVATE_KEY'=>'dckrqn9qsgcwbr53',
+                                      
+                                      'CSEK'=>'MIIBCgKCAQEAwcoEOJQ9WSM2WPba82<WBR>A0sWSRcOeNJyXlG4W7e9bPLPDl8hG3<WBR>/nukRcE92JQInnrXt3gy/<WBR>vq5IRHfwDgoZlWnsVf9+<WBR>kUQxfEKO2iKrgGA/<WBR>ae7a9pihRIyZVBc6GG4XEkVrWdidcA<WBR>DvTpxQUhdGUHt1rM2GM3slXIIB2SGA<WBR>8sb0XMK/FFP07PBoALi/<WBR>ltI3MTqVLb/Rdw/3+SCS+mZJ7g/<WBR>sxWDMf9jrHcLj3N1d7Lmbh2yFSeqRk<WBR>6PWuwgFdsejnP4q5f/XmkCAEAMV6+<WBR>JZMWcUPCZmo3UwWueqt+<WBR>IaGjqihb1aca2w6l1TomWDK0BDRyy9<WBR>P/kGAS98jSraffBQjRKDwIDAQAB'
+                                   
+ 
+                                      ),
+                                      
                                       /*
                 'syntaxhighlighter' => array(
                                        'class' => 'ext.JMSyntaxHighlighter.JMSyntaxHighlighter',

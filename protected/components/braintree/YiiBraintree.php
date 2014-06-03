@@ -82,14 +82,96 @@ class YiiBraintree extends CApplicationComponent
   
        
     }
+    /*
+    public function saleWithPaymentToken()
+    {
+        $result = Braintree_Transaction::sale(array(
+			'amount' => $obj->amount,
+			'merchantAccountId' => $merchant_account,
+			'customerId' => $obj->customer_profile_id,
+			'paymentMethodToken' => $obj->payment_profile_id
+		      ));
+		      
+    }
+    */
     public function createCustomer($data)
     {
        $result = Braintree_Customer::create($data);
+       
+       
+      echo "<pre>";
+      print_r($result);
+      echo "</pre>";
+      
 
 	if ($result->success) {
 	
 	     return(array('success'=>1,
                         'customer_id'=>$result->customer->id
+                 ));
+     
+	} else {
+	
+	     $errors=$result->errors->deepAll();
+	     
+	      if(count($errors)>0&&($errors[0]->code==91609||$errors[0]->message=='Customer ID has already been taken.'))
+	       {
+	         return(array(
+                      'success'=>1,
+                      'customer_id'=>$data['id'],
+                     
+                )); 
+	       }
+	      
+	     return(array(
+                      'success'=>0,
+                      'validation_errors'=>$errors,
+                     
+                ));
+	   
+	}
+    }
+    public function findCustomer($id)
+    {
+       $result = Braintree_Customer::find($id);
+       
+       
+      echo "<pre>";
+      print_r($result);
+      echo "</pre>";
+      exit;
+
+	if ($result->success) {
+	
+	     return(array('success'=>1,
+                        'customer_id'=>$result->customer->id
+                 ));
+     
+	} else {
+	      
+	     return(array(
+                      'success'=>0,
+                      'validation_errors'=>$errors,
+                     
+                ));
+	   
+	}
+    }
+    public function updateCard($token,$data)
+    {
+       $result = Braintree_CreditCard::update($token,$data);
+        
+        echo "<pre>";
+        print_r($result);
+        echo "</pre>";
+       
+        
+      
+	if ($result->success) {
+	
+	     return(array('success'=>1,
+                        'payment_method_token'=>$result->creditCard->token,
+                        'last4'=>$result->creditCard->last4
                  ));
      
 	} else {
@@ -102,6 +184,33 @@ class YiiBraintree extends CApplicationComponent
 	}
     }
     
+    public function updateCustomer($id,$data)
+    {
+       $result = Braintree_Customer::update($id,$data);
+       
+       
+        echo "<pre>";
+      print_r($result);
+      echo "</pre>";
+     
+
+	if ($result->success) {
+	
+	     return(array('success'=>1,
+                          'customer_id'=>$result->customer->id
+                 ));
+     
+	} else {
+	
+	    
+	     return(array(
+                      'success'=>0,
+                      'validation_errors'=>$errors,
+                     
+                ));
+	   
+	}
+    }
     public function getCustomerById($customer_id)
     {
 
