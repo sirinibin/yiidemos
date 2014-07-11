@@ -474,11 +474,11 @@ class SiteController extends Controller
                         echo "</pre>";
                         
                         
-                         for($j=0;$j<count($s[cells]);$j++)
+                         for($j=0;$j<count($s['cells']);$j++)
                          {
                               if($j==0)
 				  {
-				    $columns=$s[cells][$j+1]; 
+				    $columns=$s['cells'][$j+1]; 
 				    
 				    /* echo "Columns:<pre>";
                                      print_r($columns);
