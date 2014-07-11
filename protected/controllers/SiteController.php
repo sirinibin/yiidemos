@@ -46,7 +46,8 @@ class SiteController extends Controller
 				                 'login',
 				                 'error', 
 				                 'signup',
-				                 'Bitcoin'
+				                 'Bitcoin',
+				                 'Fileupload'
 				               //  'logout'
 				                ),
 				'users'=>array('*'),
@@ -56,7 +57,7 @@ class SiteController extends Controller
 			),
 		);
 	}
-		public function actionLogin()
+	public function actionLogin()
 	{
 		//$this->layout = 'main';
 		
@@ -410,5 +411,147 @@ class SiteController extends Controller
            echo "</pre>";
         
         }
+        public function actionFileupload()
+	{
+	    $model=new FileUpload;
+
+	    // uncomment the following code to enable ajax-based validation
+	    /*
+	    if(isset($_POST['ajax']) && $_POST['ajax']==='file-upload-file_upload-form')
+	    {
+		echo CActiveForm::validate($model);
+		Yii::app()->end();
+	    }
+	    */
+
+	      $rows=array(); 
+	    if(isset($_POST['FileUpload']))
+	    {
+		$model->attributes=$_POST['FileUpload'];
+		if($model->validate())
+		{
+		
+		   $file=CUploadedFile::getInstance($model,'file'); 
+		   
+		  // $file->saveAs($file->getName());
+		   /*
+		    echo "F:<pre>";
+		    print_r($file);
+		    echo "</pre>";
+		    */
+		    
+		   //echo "URL:".Yii::app()->baseUrl."/".$file->getName();
+		   
+		     Yii::import('ext.phpexcelreader.JPhpExcelReader');
+		     
+		    // chmod($file->getTempName(), 0777);
+                     
+                     try{
+                         $data=new JPhpExcelReader($file->getTempName());
+                        }
+                        catch(Exception $e)
+                        {
+                         $model->addError("file",$e->getMessage());
+                         //echo "Error:".$e->getMessage();
+                         
+                        }
+                      
+                       $columns=array();
+                       $i=0;
+                       /*
+                        echo "Data:<pre>";
+		    print_r($data);
+		    echo "</pre>";
+		    exit;
+		    */
+                      foreach($data->sheets as $k1=>$s)
+                      {
+                       /*
+                        echo "Cells:<pre>";
+                       print_r($s['cells']);
+                        echo "</pre>";
+                        */
+                        
+                         for($j=0;$j<count($s['cells']);$j++)
+                         {
+                              if($j==0)
+				  {
+				    $columns=$s['cells'][$j+1]; 
+				    
+				    /* echo "Columns:<pre>";
+                                     print_r($columns);
+                                     echo "</pre>";
+                                     */
+				  }
+				  else
+				  {
+				      for($k=0;$k<count($columns);$k++)
+                                      {
+                                          $rows[$k1][$i][$columns[$k+1]]=$s['cells'][$j+1][$k+1];
+                                                                               
+                                           /*                                    
+                                          $rows[$k1][$i][$columns[$k+1]]=array(
+                                                                                 'value'=>$s['cells'][$j+1][$k+1],
+                                                                                 'style'=>''
+                                                                               );  
+                                                    */                           
+					    
+				    
+					    
+                                      }
+                                      
+                                      $i++;
+                                    
+				    
+				  }
+                         
+                          }
+                         /*
+                        foreach($s['cells'] as $k2=>$cell)
+                        {
+                            /*
+				  if($k2==1)
+				  {
+				  $columns=$cell; 
+				  }
+				  else
+				  {
+				    foreach($columns as $k3=>$c)
+				    {
+				      $rows[$i]=array(
+					    $c=>$cell[$k3],
+				    
+					    );
+				    }
+				    $i++;
+				  }
+                            */
+                         //}
+                         
+                       //$rows[]=$s['cells'];
+                      }
+                      
+                    /*
+                     echo "Rows:<pre>";
+		    print_r($rows);
+		    echo "</pre>";
+		    */
+                    // echo json_encode($data->sheets);
+                    /*
+                    echo "Data:<pre>";
+		    print_r($data);
+		    echo "</pre>";
+                     */
+                     //echo $data->dump(true,true);
+                     
+                  //   exit; 
+                      
+                  // $tempLoc=$csvFile->getTempName();
+		    // form inputs are valid, do something here
+		    //return;
+		}
+	    }
+	    $this->render('file_upload',array('model'=>$model,'sheets'=>$rows,'columns'=>$columns));
+	}
        
 }
