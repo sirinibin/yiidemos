@@ -489,7 +489,7 @@ class SiteController extends Controller
 				  {
 				      for($k=0;$k<count($columns);$k++)
                                       {
-                                          $rows[$k1][$i][$columns[$k+1]]=$s[cells][$j+1][$k+1];
+                                          $rows[$k1][$i][$columns[$k+1]]=$s['cells'][$j+1][$k+1];
                                                                                
                                            /*                                    
                                           $rows[$k1][$i][$columns[$k+1]]=array(
