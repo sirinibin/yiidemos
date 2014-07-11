@@ -434,7 +434,7 @@ class SiteController extends Controller
 		
 		   $file=CUploadedFile::getInstance($model,'file'); 
 		   
-		    $file->saveAs("files/".$file->getName());
+		  //  $file->saveAs("files/".$file->getName());
 		   /*
 		    echo "F:<pre>";
 		    print_r($file);
@@ -448,7 +448,7 @@ class SiteController extends Controller
 		    // chmod($file->getTempName(), 0777);
                      
                      try{
-                         $data=new JPhpExcelReader("files/".$file->getName());
+                         $data=new JPhpExcelReader($file->getTempName());
                         }
                         catch(Exception $e)
                         {
@@ -459,19 +459,19 @@ class SiteController extends Controller
                       
                        
                        $i=0;
-                       /*
+                       
                         echo "Data:<pre>";
 		    print_r($data);
 		    echo "</pre>";
-		    exit;
-		    */
+		    //exit;
+		    
                       foreach($data->sheets as $k1=>$s)
                       {
-                       /*
+                       
                         echo "Cells:<pre>";
-                       print_r($s['cells']);
+                       print_r($s);
                         echo "</pre>";
-                        */
+                        
                         
                          for($j=0;$j<count($s['cells']);$j++)
                          {
