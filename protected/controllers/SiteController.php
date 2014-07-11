@@ -425,6 +425,7 @@ class SiteController extends Controller
 	    */
 
 	      $rows=array(); 
+	      $columns=array();
 	    if(isset($_POST['FileUpload']))
 	    {
 		$model->attributes=$_POST['FileUpload'];
@@ -456,7 +457,7 @@ class SiteController extends Controller
                          
                         }
                       
-                       $columns=array();
+                       
                        $i=0;
                        /*
                         echo "Data:<pre>";
