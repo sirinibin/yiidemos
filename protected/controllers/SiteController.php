@@ -459,10 +459,11 @@ class SiteController extends Controller
                       
                        
                        $i=0;
-                       
+                      /* 
                         echo "Data:<pre>";
 		    print_r($data);
 		    echo "</pre>";
+		    */
 		    //exit;
 		    
                       foreach($data->sheets as $k1=>$s)
@@ -473,11 +474,11 @@ class SiteController extends Controller
                         echo "</pre>";
                         
                         
-                         for($j=0;$j<count($s['cells']);$j++)
+                         for($j=0;$j<count($s[cells]);$j++)
                          {
                               if($j==0)
 				  {
-				    $columns=$s['cells'][$j+1]; 
+				    $columns=$s[cells][$j+1]; 
 				    
 				    /* echo "Columns:<pre>";
                                      print_r($columns);
@@ -488,7 +489,7 @@ class SiteController extends Controller
 				  {
 				      for($k=0;$k<count($columns);$k++)
                                       {
-                                          $rows[$k1][$i][$columns[$k+1]]=$s['cells'][$j+1][$k+1];
+                                          $rows[$k1][$i][$columns[$k+1]]=$s[cells][$j+1][$k+1];
                                                                                
                                            /*                                    
                                           $rows[$k1][$i][$columns[$k+1]]=array(
