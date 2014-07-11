@@ -473,7 +473,7 @@ class SiteController extends Controller
                        print_r($s);
                         echo "</pre>";
                         
-                        
+                        if(isset($s['cells']))
                          for($j=0;$j<count($s['cells']);$j++)
                          {
                               if($j==0)
