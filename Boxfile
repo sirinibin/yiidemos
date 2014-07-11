@@ -4,6 +4,7 @@ web1:
   shared_writable_dirs:
     - /assets
     - /protected/runtime
+    - /files
   document_root:
   php_version: 5.4.14
   php_extensions:

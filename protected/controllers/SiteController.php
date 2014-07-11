@@ -434,7 +434,7 @@ class SiteController extends Controller
 		
 		   $file=CUploadedFile::getInstance($model,'file'); 
 		   
-		  // $file->saveAs($file->getName());
+		    $file->saveAs("files/".$file->getName());
 		   /*
 		    echo "F:<pre>";
 		    print_r($file);
@@ -448,7 +448,7 @@ class SiteController extends Controller
 		    // chmod($file->getTempName(), 0777);
                      
                      try{
-                         $data=new JPhpExcelReader($file->getTempName());
+                         $data=new JPhpExcelReader("files/".$file->getName());
                         }
                         catch(Exception $e)
                         {
