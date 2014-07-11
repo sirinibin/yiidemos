@@ -468,11 +468,11 @@ class SiteController extends Controller
 		    
                       foreach($data->sheets as $k1=>$s)
                       {
-                       
+                       /*
                         echo "Cells:<pre>";
                        print_r($s);
                         echo "</pre>";
-                        
+                        */
                         if(isset($s['cells']))
                          for($j=0;$j<count($s['cells']);$j++)
                          {
@@ -508,49 +508,10 @@ class SiteController extends Controller
 				  }
                          
                           }
-                         /*
-                        foreach($s['cells'] as $k2=>$cell)
-                        {
-                            /*
-				  if($k2==1)
-				  {
-				  $columns=$cell; 
-				  }
-				  else
-				  {
-				    foreach($columns as $k3=>$c)
-				    {
-				      $rows[$i]=array(
-					    $c=>$cell[$k3],
-				    
-					    );
-				    }
-				    $i++;
-				  }
-                            */
-                         //}
-                         
-                       //$rows[]=$s['cells'];
+                       
                       }
                       
-                    /*
-                     echo "Rows:<pre>";
-		    print_r($rows);
-		    echo "</pre>";
-		    */
-                    // echo json_encode($data->sheets);
-                    /*
-                    echo "Data:<pre>";
-		    print_r($data);
-		    echo "</pre>";
-                     */
-                     //echo $data->dump(true,true);
-                     
-                  //   exit; 
-                      
-                  // $tempLoc=$csvFile->getTempName();
-		    // form inputs are valid, do something here
-		    //return;
+                   
 		}
 	    }
 	    $this->render('file_upload',array('model'=>$model,'sheets'=>$rows,'columns'=>$columns));
