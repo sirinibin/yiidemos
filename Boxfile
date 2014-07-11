@@ -5,7 +5,7 @@ web1:
     - /assets
     - /protected/runtime
   document_root:
-  php_version: 5.5.13
+  php_version: 5.4
   php_extensions:
     - curl
     - mysql
