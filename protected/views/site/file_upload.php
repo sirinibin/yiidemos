@@ -1,5 +1,5 @@
 <h2>Upload Excel files</h2>
-<a href="<?php echo Yii::app()->baseUrl."/Excel_import_sample.xls"; ?>" target="_blank">Download Sample Excel file</a>
+<a href="<?php echo Yii::app()->baseUrl."/Excel_import_sample.xls"; ?>" target="_blank">Download Sample Excel file</a><br/>
 <a href="<?php echo Yii::app()->baseUrl."/samplePowerPoint.pptx"; ?>" target="_blank">Download Sample pptx file</a>
 <div class="form">
 

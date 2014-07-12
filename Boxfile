@@ -1,5 +1,6 @@
 web1: 
   php_max_execution_time: 600
+  php_upload_max_filesize: "8M"
   name: yiidemos          #component settings
   shared_writable_dirs:
     - /assets
