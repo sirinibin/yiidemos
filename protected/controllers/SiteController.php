@@ -47,7 +47,8 @@ class SiteController extends Controller
 				                 'error', 
 				                 'signup',
 				                 'Bitcoin',
-				                 'Fileupload'
+				                 'Fileupload',
+				                 'Ppt'
 				               //  'logout'
 				                ),
 				'users'=>array('*'),
@@ -426,6 +427,7 @@ class SiteController extends Controller
 
 	      $rows=array(); 
 	      $columns=array();
+	      $slides=array();
 	    if(isset($_POST['FileUpload']))
 	    {
 		$model->attributes=$_POST['FileUpload'];
@@ -433,88 +435,150 @@ class SiteController extends Controller
 		{
 		
 		   $file=CUploadedFile::getInstance($model,'file'); 
-		   
-		  //  $file->saveAs("files/".$file->getName());
-		   /*
-		    echo "F:<pre>";
-		    print_r($file);
-		    echo "</pre>";
-		    */
-		    
-		   //echo "URL:".Yii::app()->baseUrl."/".$file->getName();
-		   
-		     Yii::import('ext.phpexcelreader.JPhpExcelReader');
+		
+		 
+		    $ext=pathinfo($file->getName(), PATHINFO_EXTENSION);
+		 
+		      if($ext=="pptx")
+		       {
+		         $slides=$this->pptx_to_text($file->getTempName());
+		       }
+		       else if($ext=="xls"||$ext=="xlsx")
+		       {
+		                  Yii::import('ext.phpexcelreader.JPhpExcelReader');
 		     
-		    // chmod($file->getTempName(), 0777);
+	
                      
-                     try{
-                         $data=new JPhpExcelReader($file->getTempName());
-                        }
-                        catch(Exception $e)
-                        {
-                         $model->addError("file",$e->getMessage());
-                         //echo "Error:".$e->getMessage();
-                         
-                        }
-                      
-                       
-                       $i=0;
-                      /* 
-                        echo "Data:<pre>";
-		    print_r($data);
-		    echo "</pre>";
-		    */
-		    //exit;
-		    
-                      foreach($data->sheets as $k1=>$s)
-                      {
-                       /*
-                        echo "Cells:<pre>";
-                       print_r($s);
-                        echo "</pre>";
-                        */
-                        if(isset($s['cells']))
-                         for($j=0;$j<count($s['cells']);$j++)
-                         {
-                              if($j==0)
-				  {
-				    $columns=$s['cells'][$j+1]; 
-				    
-				    /* echo "Columns:<pre>";
-                                     print_r($columns);
-                                     echo "</pre>";
-                                     */
-				  }
-				  else
-				  {
-				      for($k=0;$k<count($columns);$k++)
-                                      {
-                                          $rows[$k1][$i][$columns[$k+1]]=$s['cells'][$j+1][$k+1];
-                                                                               
-                                           /*                                    
-                                          $rows[$k1][$i][$columns[$k+1]]=array(
-                                                                                 'value'=>$s['cells'][$j+1][$k+1],
-                                                                                 'style'=>''
-                                                                               );  
-                                                    */                           
-					    
-				    
-					    
-                                      }
-                                      
-                                      $i++;
-                                    
-				    
-				  }
-                         
-                          }
-                       
-                      }
+						      try{
+							  $data=new JPhpExcelReader($file->getTempName());
+							  }
+							  catch(Exception $e)
+							  {
+							  $model->addError("file",$e->getMessage());
+							  //echo "Error:".$e->getMessage();
+							  
+							  }
+							
+							
+							$i=0;
+							/* 
+							  echo "Data:<pre>";
+						      print_r($data);
+						      echo "</pre>";
+						      */
+						      //exit;
+						      
+							foreach($data->sheets as $k1=>$s)
+							{
+							/*
+							  echo "Cells:<pre>";
+							print_r($s);
+							  echo "</pre>";
+							  */
+									      if(isset($s['cells']))
+									      for($j=0;$j<count($s['cells']);$j++)
+									      {
+										    if($j==0)
+											{
+											  $columns=$s['cells'][$j+1]; 
+											  
+											}
+											else
+											{
+											    for($k=0;$k<count($columns);$k++)
+											    {
+												$rows[$k1][$i][$columns[$k+1]]=$s['cells'][$j+1][$k+1];
+																    
+												/*                                    
+												$rows[$k1][$i][$columns[$k+1]]=array(
+																      'value'=>$s['cells'][$j+1][$k+1],
+																      'style'=>''
+																    );  
+													  */                           
+												  
+											  
+												  
+											    }
+											    
+											    $i++;
+											  
+											  
+											}
+									      
+										}
+							
+							}
+					}		
                       
                    
 		}
 	    }
-	    $this->render('file_upload',array('model'=>$model,'sheets'=>$rows,'columns'=>$columns));
+	    $this->render('file_upload',array('model'=>$model,
+	                                      'sheets'=>$rows,
+	                                      'columns'=>$columns,
+	                                      'slides'=>$slides
+	                                      ));
 	}
+	public function actionPpt()
+	{
+	  $t=$this->pptx_to_text("files/samplePowerPoint.pptx");
+	  echo "<pre>";
+	  print_r($t);
+	  echo "</pre>";
+	  //echo "Text:".$t;
+	}
+	public function pptx_to_text($input_file)
+	{
+	
+		$zip_handle = new ZipArchive;
+		$output_text = "";
+		
+		$content=array();
+		$i=0;
+		
+		if(true === $zip_handle->open($input_file)){
+		    $slide_number = 1; //loop through slide files
+		    
+		    while(($xml_index = $zip_handle->locateName("ppt/slides/slide".$slide_number.".xml")) !== false){
+		    
+			$xml_datas = $zip_handle->getFromIndex($xml_index);
+			
+			
+		    
+		    
+			$xml_handle = DOMDocument::loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+			$output_text .= strip_tags($xml_handle->saveXML());
+			//$output_xml = $xml_handle->saveXML();
+			$slide_number++;
+		    
+			    $txtbody=$xml_handle->getElementsByTagName("p");
+			    
+			  $content[$i]['header']="";  
+			  $content[$i]['content']="";
+			    foreach($txtbody as $k=>$b)
+			    {
+			       if($k==0)
+			        $content[$i]['header']=trim($b->nodeValue);
+			       else 
+			        $content[$i]['content'].=trim($b->nodeValue);
+			        
+			      //echo $k.":".trim($b->nodeValue);
+			      //echo "<hr/>";
+			    }
+			    
+			    $i++;
+	    
+		    }
+		    
+		    if($slide_number == 1){
+			$output_text .="";
+		    }
+		    $zip_handle->close();
+		}else{
+		$output_text .="";
+		}
+		
+		return $content;
+          }
        
 }

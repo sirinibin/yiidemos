@@ -1,5 +1,6 @@
 <h2>Upload Excel files</h2>
 <a href="<?php echo Yii::app()->baseUrl."/Excel_import_sample.xls"; ?>" target="_blank">Download Sample Excel file</a>
+<a href="<?php echo Yii::app()->baseUrl."/samplePowerPoint.pptx"; ?>" target="_blank">Download Sample pptx file</a>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -64,9 +65,38 @@
    <?php
  }
 ?>
+<?php
+ foreach($slides as $k=>$slide)
+ {
+   echo "<h3>Slide".($k+1)."</h3>"
+   ?>
+     <table border="1">
+         <th>Header</th>
+         <th>Content</th>
+         <?php
+         echo "<tr>";
+        
+          foreach($slide as $k2=>$value)
+          {
+         
+                echo "<td>".$value."</td>";
+       
+            
+          }
+           echo "</tr>";
+          
+         ?>
+     </table>
+   <?php
+ }
+?>
  <h3>JSON</h3>
  <?php
  echo "<pre>";
- echo json_encode($sheets,JSON_PRETTY_PRINT);
+ 
+  if(count($sheets)>0)
+   echo json_encode($sheets,JSON_PRETTY_PRINT);
+  if(count($slides)>0)
+   echo json_encode($slides,JSON_PRETTY_PRINT);
  echo "</pre>";
  ?>

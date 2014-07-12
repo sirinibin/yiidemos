@@ -8,10 +8,7 @@
 class FileUpload extends CFormModel
 {
 	public $file;
-	public $email;
-	public $subject;
-	public $body;
-	public $verifyCode;
+	
 
 	/**
 	 * Declares the validation rules.
@@ -22,9 +19,9 @@ class FileUpload extends CFormModel
            // will receive user inputs.
           return array(  
              array('file', 'file', 
-                                            'types'=>'xls',
-                                            'maxSize'=>1024 * 1024 * 10, // 10MB
-                                            'tooLarge'=>'The file was larger than 10MB. Please upload a smaller file.',
+                                            'types'=>'xls,ppt,pptx',
+                                          //  'maxSize'=>1024 * 1024 * 10, // 10MB
+                                            //'tooLarge'=>'The file was larger than 10MB. Please upload a smaller file.',
                                             'allowEmpty' => true
                               ),
                    );
