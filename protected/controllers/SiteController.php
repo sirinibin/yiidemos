@@ -545,13 +545,17 @@ class SiteController extends Controller
 			
 			
 		    
-		    
-			$xml_handle = DOMDocument::loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
-			$output_text .= strip_tags($xml_handle->saveXML());
+		        $obj=new DOMDocument;
+			$xml_handle = $obj->loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+			//$xml_handle = DOMDocument::loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+			$output_text .= strip_tags($obj->saveXML());
+			//$output_text .= strip_tags($xml_handle->saveXML());
 			//$output_xml = $xml_handle->saveXML();
 			$slide_number++;
 		    
-			    $txtbody=$xml_handle->getElementsByTagName("p");
+			    $txtbody=$obj->getElementsByTagName("p");
+			    
+			    //$txtbody=$xml_handle->getElementsByTagName("p");
 			    
 			  $content[$i]['header']="";  
 			  $content[$i]['content']="";
