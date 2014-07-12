@@ -24,6 +24,7 @@ web1:
     - soap
     - gd
     - freetype
+    - zip
 db2:
   name: yiidemo
   type: mysql
