@@ -71,19 +71,25 @@
    echo "<h3>Slide".($k+1)."</h3>"
    ?>
      <table border="1">
-         <th>Header</th>
+         
          <th>Content</th>
+         <th>color</th>
+         <th>font</th>
+         <th>size</th>
          <?php
-         echo "<tr>";
+      
         
           foreach($slide as $k2=>$value)
           {
-         
-                echo "<td>".$value."</td>";
+            echo "<tr>";
+                echo "<td>".$value['content']."</td>";
+                echo "<td>".$value['color']."</td>";
+                echo "<td>".$value['font']."</td>";
+                echo "<td>".$value['size']."</td>";
        
-            
+             echo "</tr>";
           }
-           echo "</tr>";
+          
           
          ?>
      </table>

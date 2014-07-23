@@ -434,14 +434,17 @@ class SiteController extends Controller
 		if($model->validate())
 		{
 		
+		 //  $slides=$this->pptx_to_text(Yii::app()->baseUrl."/files/samplePowerPoint.pptx");
+		   
 		   $file=CUploadedFile::getInstance($model,'file'); 
 		
-		 
+		    //$ext="pptx";
 		    $ext=pathinfo($file->getName(), PATHINFO_EXTENSION);
 		 
 		      if($ext=="pptx")
 		       {
 		         $slides=$this->pptx_to_text($file->getTempName());
+		         //$slides=$this->pptx_to_text("files/samplePowerPoint.pptx");
 		       }
 		       else if($ext=="xls"||$ext=="xlsx")
 		       {
@@ -522,6 +525,9 @@ class SiteController extends Controller
 	public function actionPpt()
 	{
 	  $t=$this->pptx_to_text("files/samplePowerPoint.pptx");
+	  //$t=$this->pptx_to_text("files/sampleKeynote.zip");
+	 // $t=$this->pptx_to_text("files/index.zip");
+	  
 	  echo "<pre>";
 	  print_r($t);
 	  echo "</pre>";
@@ -530,6 +536,15 @@ class SiteController extends Controller
 	public function pptx_to_text($input_file)
 	{
 	
+	      /*
+	     $status_header = 'HTTP/1.1 200 OK ';
+             $content_type="application/xml; charset=utf-8";
+           
+             header($status_header);
+             header('Content-type: ' . $content_type);
+             header('X-Powered-By: ' . "Nintriva <nintriva.com>");
+             */
+             
 		$zip_handle = new ZipArchive;
 		$output_text = "";
 		
@@ -543,34 +558,138 @@ class SiteController extends Controller
 		    
 			$xml_datas = $zip_handle->getFromIndex($xml_index);
 			
-			
+			  
 		    
 		        $obj=new DOMDocument;
 			$xml_handle = $obj->loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
 			//$xml_handle = DOMDocument::loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+			//$output_text .= strip_tags($obj->saveXML());
 			$output_text .= strip_tags($obj->saveXML());
+			//echo $obj->saveXML();
+			//echo '<pre>', htmlentities($obj->saveXML()), '</pre>';
+			//exit;
+			//echo "OT:".$output_text;
 			//$output_text .= strip_tags($xml_handle->saveXML());
 			//$output_xml = $xml_handle->saveXML();
-			$slide_number++;
+		
 		    
-			    $txtbody=$obj->getElementsByTagName("p");
+			    /*
+			    $xml = simplexml_load_string($obj->saveXML());
+                             $json = json_encode($xml);
+                             $array = json_decode($json,TRUE);
+                             
+                             $p = xml_parser_create();
+                             */
+                             $p = xml_parser_create();
+			    xml_parse_into_struct($p, $obj->saveXML(), $vals, $index);
+			    xml_parser_free($p);
 			    
-			    //$txtbody=$xml_handle->getElementsByTagName("p");
+			    
+			    /*
+			    echo "Index array\n";
+			     echo "<pre>";
+			    print_r($index);
+			     echo "</pre>";
+			     */
+			     /*
+			    echo "\nVals array\n";
+			    echo "<pre>";
+			    print_r($vals);
+			    echo "</pre>";
+			    */
+			    $size=null;
+			    $color=null;
+			    $font=null;
+			    foreach($vals as $p)
+			    {
+			     $text=null;
+			      if($p['tag']=="A:RPR")
+			       {
+			         if(isset($p['attributes']['SZ']))
+			          {
+			           $size=$p['attributes']['SZ'];
+			           $size=$size/100;
+			          }
+			          
+			       }
+			       
+			       else if($p['tag']=="A:SRGBCLR")
+			       {
+			         if(isset($p['attributes']['VAL']))
+			          {
+			           $color=$p['attributes']['VAL'];
+			          // echo "Color:".$color."<br/>";
+			          }
+			          
+			       }
+			       else if($p['tag']=="A:LATIN")
+			       {
+			         if(isset($p['attributes']['TYPEFACE']))
+			          {
+			           $font=$p['attributes']['TYPEFACE'];
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			        else if($p['tag']=="A:T")
+			       {
+			         if(isset($p['value']))
+			          {
+			           $text=$p['value'];
+			           //echo "TEXT:".$text;
+			          }
+			          
+			       }
+			       
+			       if($text!=null)
+			       {
+			         
+			         $content[$slide_number-1][$i]['content']=$text;
+			         $content[$slide_number-1][$i]['color']=$color;
+			         $content[$slide_number-1][$i]['font']=$font;
+			         $content[$slide_number-1][$i]['size']=$size;
+			          
+			          $size=null;
+				  $color=null;
+				  $font=null;
+				  
+				  $i++;
+			       }
+			    
+			    }
+
+			   $slide_number++;
+			   $i=0;
+			   
+			  /* echo $json;
+                            //$array = (array)$xml;
+                            echo "<pre>";
+			     print_r($array);
+			    echo "</pre>";*/
+			    /*
+			  $txtbody=$obj->getElementsByTagName("p");
+			    
+			  
 			    
 			  $content[$i]['header']="";  
 			  $content[$i]['content']="";
 			    foreach($txtbody as $k=>$b)
 			    {
 			       if($k==0)
-			        $content[$i]['header']=trim($b->nodeValue);
+			        {
+			          $content[$i]['header']=trim($b->nodeValue);
+			        }
 			       else 
-			        $content[$i]['content'].=trim($b->nodeValue);
+			        {
+			          $content[$i]['content'].=trim($b->nodeValue);
+			        }
 			        
 			      //echo $k.":".trim($b->nodeValue);
 			      //echo "<hr/>";
 			    }
 			    
 			    $i++;
+			    */
 	    
 		    }
 		    
@@ -581,8 +700,22 @@ class SiteController extends Controller
 		}else{
 		$output_text .="";
 		}
-		
+		 
+		 // echo "Content:".$output_text;
+		  
+		 //exit;
 		return $content;
           }
+         public  function xml_to_array($xml,$main_heading = '') {
+    $deXml = simplexml_load_string($xml);
+    $deJson = json_encode($deXml);
+    $xml_array = json_decode($deJson,TRUE);
+    if (! empty($main_heading)) {
+        $returned = $xml_array[$main_heading];
+        return $returned;
+    } else {
+        return $xml_array;
+    }
+}
        
 }
