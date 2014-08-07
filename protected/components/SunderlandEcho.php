@@ -491,7 +491,9 @@ class SunderlandEcho extends CApplicationComponent
 		      else if(isset($c2->tagName))
 		      {
 		       $contact=explode("Twitter",trim($c2->nodeValue));
+		       if(isset($contact[0]))
 		       $data['author_email']=trim($contact[0]);
+		       if(isset($contact[1]))
 		       $data['author_twitter']=trim($contact[1]);
 		      }
 		      if(isset($data['author_email'])&&isset($data['author']))
