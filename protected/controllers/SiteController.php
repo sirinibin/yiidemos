@@ -524,7 +524,11 @@ class SiteController extends Controller
 	}
 	public function actionPpt()
 	{
-	  $t=$this->pptx_to_text("files/samplePowerPoint.pptx");
+	 // $t=$this->pptx_to_text("files/samplePowerPoint.pptx");
+	//  $t=$this->pptx_to_text("files/MAC_PP2004.ppt");
+	  $t=$this->pptx_to_text2("files/MAC_PP2011.pptx");
+	   
+	  
 	  //$t=$this->pptx_to_text("files/sampleKeynote.zip");
 	 // $t=$this->pptx_to_text("files/index.zip");
 	  
@@ -532,7 +536,882 @@ class SiteController extends Controller
 	  print_r($t);
 	  echo "</pre>";
 	  //echo "Text:".$t;
+	  
+	//  $f=$this->loadSerialized("files/MAC_PP2011.pptx");
 	}
+	public function loadSerialized($pFilename)
+	{
+	    $oArchive = new \ZipArchive();
+	    if ($oArchive->open($pFilename) === true) {
+	      
+		$xmlContent = $oArchive->getFromName('PHPPowerPoint.xml');
+		
+		
+		
+                 echo "Xml:".$xmlContent;
+                 
+		if (!empty($xmlContent)) {   
+		    echo "cool";
+		    exit;
+		    $xmlData = simplexml_load_string($xmlContent);                    
+		    $file    = unserialize(base64_decode((string) $xmlData->data));
+
+		    
+		    // Update media links
+		    for ($i = 0; $i < $file->getSlideCount(); ++$i) {
+		    
+			for ($j = 0; $j < $file->getSlide($i)->getShapeCollection()->count(); ++$j) {
+			
+			 if ($file->getSlide($i)->getShapeCollection()->offsetGet($j) instanceof AbstractDrawing) {
+				
+				$file->getSlide($i)->getShapeCollection()->offsetGet($j)->setPath('zip://' . $pFilename . '#media/' . $file->getSlide($i)->getShapeCollection()->offsetGet($j)->getFilename(), false);
+			    
+			    }
+			}
+		    }
+
+		    $oArchive->close();
+		    return $file;
+		}
+	    }
+
+	    return null;
+	}
+	public function pptx_to_text2($input_file)
+	{
+	
+	      /*
+	     $status_header = 'HTTP/1.1 200 OK ';
+             $content_type="application/xml; charset=utf-8";
+           
+             header($status_header);
+             header('Content-type: ' . $content_type);
+             header('X-Powered-By: ' . "Nintriva <nintriva.com>");
+             */
+             
+		$zip_handle = new ZipArchive;
+		$output_text = "";
+		
+		$content=array();
+		$i=0;
+		
+		$level=null;
+		
+		if(true === $zip_handle->open($input_file)){
+		    $slide_number = 1; //loop through slide files
+		    
+		    while(($xml_index = $zip_handle->locateName("ppt/slides/slide".$slide_number.".xml")) !== false){
+		    
+			$xml_datas = $zip_handle->getFromIndex($xml_index);
+			 
+			// $xmlData = simplexml_load_strin); 
+			/*
+			  echo "<pre>";
+			  print_r($xml_datas);
+			  echo "</pre>";
+			  exit;
+			  */
+		    
+		        $obj=new DOMDocument;
+			$xml_handle = $obj->loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+			//$xml_handle = DOMDocument::loadXML($xml_datas, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
+			//$output_text .= strip_tags($obj->saveXML());
+			$output_text .= strip_tags($obj->saveXML());
+			//echo $obj->saveXML();
+			//echo '<pre>', htmlentities($obj->saveXML()), '</pre>';
+			//exit;
+			//echo "OT:".$output_text;
+			//$output_text .= strip_tags($xml_handle->saveXML());
+			//$output_xml = $xml_handle->saveXML();
+		
+		    
+			    /*
+			    $xml = simplexml_load_string($obj->saveXML());
+                             $json = json_encode($xml);
+                             $array = json_decode($json,TRUE);
+                             
+                             $p = xml_parser_create();
+                             */
+                            $p = xml_parser_create();
+			    xml_parse_into_struct($p, $obj->saveXML(), $vals, $index);
+			    xml_parser_free($p);
+			    
+			    
+			    /*
+			    echo "Index array\n";
+			     echo "<pre>";
+			    print_r($index);
+			     echo "</pre>";
+			     */
+			     /*
+			    $xml = simplexml_load_string($obj->saveXML());
+			    
+			     echo "\nXml:\n";
+			    echo "<pre>";
+			    print_r($xml);
+			    echo "</pre>";
+			      */
+			    /*
+			    if(  $slide_number==2)
+			    {
+			    echo "\nVals array\n";
+			    echo "<pre>";
+			    print_r($vals);
+			    echo "</pre>";
+			    echo "<hr/>";
+			    }*/
+			    $size=null;
+			    $color=null;
+			    $font=null;
+			    $textbox_id=null;
+			    $type="";
+			    $is_textbox=0;
+			    $spid=null;
+			    $shape=null;
+			             $is_image=0;
+			            $image_name=null;
+			            $image_filename=null;
+			            
+			            $marl=null;
+			           $indent=null;
+			           $align=null;
+			            
+			            $is_vertical=0;
+			            $vert=null;
+			            $bold=0;
+			            $strike=0;
+			            $spc=0;
+			            $baseline=0;
+			            
+			             /*Shadow params*/
+			            $alpha=null;
+			            $scheme_color=null;
+			            $glow=null;
+			            $lin=null;
+			            $shade=null;
+			            $tint=null;
+			            $gs=null;
+			            $miter=null;
+			            $PRSTDAS=null;
+			            $ln=null;
+			            /*bullet_list params*/
+			            $BUFONT=null;
+			            $BUCHAR=null;
+			            $bullet_list=0;
+			            
+			    foreach($vals as $p)
+			    {
+			     $text=null;
+			      if($p['tag']=="A:RPR")
+			       {
+			         if(isset($p['attributes']['SZ']))
+			          {
+			           $size=$p['attributes']['SZ'];
+			           $size=$size/100;
+			          }
+			          
+			       }
+			       
+			       else if($p['tag']=="A:SRGBCLR")
+			       {
+			         if(isset($p['attributes']['VAL']))
+			          {
+			           $color=$p['attributes']['VAL'];
+			          // echo "Color:".$color."<br/>";
+			          }
+			          
+			       }
+			       else if($p['tag']=="A:LATIN")
+			       {
+			         if(isset($p['attributes']['TYPEFACE']))
+			          {
+			           $font=$p['attributes']['TYPEFACE'];
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			       else if($p['tag']=="A:OFF")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $off_position=array('X'=>(int)($p['attributes']['X']/10000),'Y'=>(int)($p['attributes']['Y']/10000));
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			        else if($p['tag']=="A:EXT")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $ext_position=array('CX'=>(int)($p['attributes']['CX']/10000),'CY'=>(int)($p['attributes']['CY']/10000));
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			        else if($p['tag']=="A:CHOFF")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $choff_position=array('X'=>$p['attributes']['X']/100000,'Y'=>$p['attributes']['Y']/100000);
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			        else if($p['tag']=="A:CHEXT")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $chext_position=array('CX'=>$p['attributes']['CX']/100000,'CY'=>$p['attributes']['CY']/100000);
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			        else if($p['tag']=="A:RPR")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $lang=$p['attributes']['LANG'];
+			           if(isset($p['attributes']['B']))
+			            {
+			             $bold=$p['attributes']['B'];
+			            }
+			            if(isset($p['attributes']['STRIKE']))
+			            {
+			             $strike=$p['attributes']['STRIKE'];
+			            }
+			             if(isset($p['attributes']['SPC']))
+			            {
+			             $spc=$p['attributes']['SPC'];
+			            }
+			            
+			            if(isset($p['attributes']['BASELINE']))
+			            {
+			             $baseline=$p['attributes']['BASELINE'];
+			            }
+			           //echo "FONT:".$font."<br/>";;
+			          }
+			          
+			       }
+			       else if($p['tag']=="P:CNVPR")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $textbox_id=$p['attributes']['ID'];
+			           
+			           if(isset($p['attributes']['DESCR'])&&isset($p['attributes']['NAME']))
+			           {
+			            $is_image=1;
+			            $image_name=$p['attributes']['NAME'];
+			            $image_filename=$p['attributes']['DESCR'];
+			            
+			           }
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			        else if($p['tag']=="P:CNVSPPR")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $is_textbox=$p['attributes']['TXBOX'];
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			        else if($p['tag']=="P:SPTGT")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $spid=$p['attributes']['SPID'];
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       else if($p['tag']=="A:PRSTGEOM")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $shape=$p['attributes']['PRST'];
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       else if($p['tag']=="A:PPR")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['MARL']))
+			           $marl=$p['attributes']['MARL'];
+			           
+			           if(isset($p['attributes']['INDENT']))
+			           $indent=$p['attributes']['INDENT'];
+			        
+			            
+			            if(isset($p['attributes']['ALGN']))
+			            $align=$p['attributes']['ALGN'];
+			          }
+			         
+			          
+			       }
+			        else if($p['tag']=="P:PH")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           $type=$p['attributes']['TYPE'];
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       
+			        else if($p['tag']=="A:BODYPR")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['VERT']))
+			           {
+			             $is_vertical=1;
+			             $vert=$p['attributes']['VERT'];
+			           }  
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       else if($p['tag']=="A:BUCHAR")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['CHAR']))
+			           {
+			          
+			             $BUCHAR=$p['attributes']['CHAR'];
+			           }  
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       else if($p['tag']=="A:BUFONT")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['CHAR']))
+			           {
+			          
+			             $BUFONT=$p['attributes']['CHAR'];
+			           }  
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       else if($p['tag']=="A:LN")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['W']))
+			           {
+			          
+			             $ln=$p['attributes']['W'];
+			             
+			              if(isset($p['attributes']['CMPD']))
+			               $cmpd=$p['attributes']['CMPD'];
+			           }  
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			        else if($p['tag']=="A:PRSTDASH")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['VAL']))
+			           {
+			          
+			             $PRSTDASH=$p['attributes']['VAL'];
+			             
+			           }  
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			        else if($p['tag']=="A:MITER")
+			       {
+			         if(isset($p['attributes']))
+			          {
+			           if(isset($p['attributes']['LIM']))
+			           {
+			          
+			             $miter=$p['attributes']['LIM'];
+			             
+			           }  
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       else if($p['tag']=="A:GS"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['POS']))
+			           {
+			          
+			             $gs=$p['attributes']['POS'];
+			             
+			           }  
+			       
+			          
+			       }
+			       
+			        else if($p['tag']=="A:TINT"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['VAL']))
+			           {
+			          
+			             $tint=$p['attributes']['VAL'];
+			             
+			           }  
+			       
+			          
+			       }
+			        else if($p['tag']=="A:SHADE"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['VAL']))
+			           {
+			          
+			             $shade=$p['attributes']['VAL'];
+			             
+			           }  
+			       
+			          
+			       }
+			        else if($p['tag']=="A:LIN"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['ANG']))
+			           {
+			          
+			             $lin=$p['attributes']['ANG'];
+			             
+			           }  
+			       
+			          
+			       }
+			       else if($p['tag']=="A:GLOW"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['RAD']))
+			           {
+			          
+			             $glow=$p['attributes']['RAD'];
+			             
+			           }  
+			       
+			          
+			       }
+			        else if($p['tag']=="A:SCHEMECLR"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['VAL']))
+			           {
+			          
+			             $scheme_color=$p['attributes']['VAL'];
+			             
+			           }  
+			       
+			          
+			       }
+			        else if($p['tag']=="A:ALPHA"&&isset($p['attributes']))
+			       {
+			         
+			           if(isset($p['attributes']['VAL']))
+			           {
+			          
+			             $alpha=$p['attributes']['VAL'];
+			             
+			           }  
+			       
+			          
+			       }
+			        else if($p['tag']=="A:LSTSTYLE")
+			       {
+			         
+			           $bullet_list=1;
+			          
+			       }
+			        else if($p['tag']=="A:T")
+			       {
+			         if(isset($p['value']))
+			          {
+			           $text=$p['value'];
+			           //echo "TEXT:".$text;
+			          }
+			          
+			          
+			       }
+			       
+			        /*Shadow params*/
+			            /*
+			            $alpha=null;
+			            $Scheme_color=null;
+			            $glow=null;
+			            $lin=null;
+			            $shade=null;
+			            $tint=null;
+			            $gs=null;
+			            $miter=null;
+			            $PRSTDAS=null;
+			            $ln=null;
+			            /*bullet_list params*/
+			            /*$BUFONT=null;
+			            $BUCHAR=null;
+			            $bullet_list=null;
+			            */
+			       /*
+			       if($textbox_id!=null)
+			       {
+			       
+			       }
+			       */
+			       if($text!=null)
+			       {
+			          
+			       
+				    if($textbox_id!=null)
+				    {
+				     // $content[$slide_number-1][$i]['content'].=$text;
+				    
+				      $content[$slide_number-1][$i]['textbox_id']=$textbox_id;     
+				       
+				    }
+				  
+				    
+			         $content[$slide_number-1][$i]['content']=$text;
+			         
+			         $content[$slide_number-1][$i]['color']=$color;
+			         $content[$slide_number-1][$i]['font']=$font;
+			         $content[$slide_number-1][$i]['size']=$size;
+			         
+			         $content[$slide_number-1][$i]['lang']=$lang;
+			         
+			         $content[$slide_number-1][$i]['type']=$type;
+			         
+			         $content[$slide_number-1][$i]['textbox']= $is_textbox;
+			         
+			         $content[$slide_number-1][$i]['spid']= $spid;
+			         
+			         $content[$slide_number-1][$i]['shape']= $shape;
+			         
+			         $content[$slide_number-1][$i]['marl']= $marl;
+			         
+			         $content[$slide_number-1][$i]['indent']= $indent;
+			         
+			         $content[$slide_number-1][$i]['align']= $align;
+			         
+			         
+			         $content[$slide_number-1][$i]['is_vertical']= $is_vertical;
+			         
+			         $content[$slide_number-1][$i]['vert']= $vert;
+			         
+			         $content[$slide_number-1][$i]['bold']= $bold;
+			         
+			         $content[$slide_number-1][$i]['strike']= $strike;
+			         
+			         $content[$slide_number-1][$i]['spc']= $spc;
+			         
+			           $content[$slide_number-1][$i]['baseline']= $baseline;
+			           
+			           
+			           $content[$slide_number-1][$i]['alpha']= $alpha;
+			           
+			            $content[$slide_number-1][$i]['satmod']= $alpha;
+			            $content[$slide_number-1][$i]['scheme_color']= $scheme_color;
+			            $content[$slide_number-1][$i]['glow']= $glow;
+			            $content[$slide_number-1][$i]['lin']= $lin;
+			            $content[$slide_number-1][$i]['shade']= $shade;
+			            $content[$slide_number-1][$i]['tint']= $tint;
+			            $content[$slide_number-1][$i]['gs']= $gs;
+			            $content[$slide_number-1][$i]['miter']= $miter;
+			            $content[$slide_number-1][$i]['PRSTDASH']= $PRSTDASH;
+			            $content[$slide_number-1][$i]['ln']= $ln;
+			            
+			            $content[$slide_number-1][$i]['BUFONT']= $BUFONT;
+			            $content[$slide_number-1][$i]['BUCHAR']= $BUCHAR;
+			            $content[$slide_number-1][$i]['bullet_list']= $bullet_list;
+			            
+			              /*shadow params*/
+				                        /*'alpha'=>$s1['alpha'],
+				                        'satmod'=>$s1['satmod'],
+				                        'scheme_color'=>$s1['scheme_color'],
+				                        'glow'=>$s1['glow'],
+				                        'lin'=>$s1['lin'],
+				                        'shade'=>$s1['shade'],
+				                        'tint'=>$s1['tint'],
+				                        'gs'=>$s1['gs'],
+				                        'miter'=>$s1['miter'],
+				                        'PRSTDASH'=>$s1['PRSTDASH'],
+				                        'LN'=>$s1['LN'],
+				                        */
+				                        /*Bulleted list params*/
+				                       /* 'BUFONT'=>$s1['BUFONT'],
+				                        'BUCHAR'=>$s1['BUCHAR'],
+				                        'bullet_list'=>$s['bullet_list']
+				                        
+				                        */
+			         //if(isset($image_name)&&isset($image_filename))
+                                 {
+                                   
+                                    $content[$slide_number-1][$i]['is_image']=$is_image;
+                                    
+                                    $content[$slide_number-1][$i]['image_name']=$image_name;
+			         
+			            $content[$slide_number-1][$i]['image_filename']=$image_filename;
+                                 
+                                 }
+			         
+			         $content[$slide_number-1][$i]['width']=(int)$off_position['X']-(int)$ext_position['CX'];
+			         
+			         $content[$slide_number-1][$i]['height']=(int)$off_position['Y']-(int)$ext_position['CY'];
+			           
+			         $content[$slide_number-1][$i]['off_position']=$off_position;
+			           
+			         $content[$slide_number-1][$i]['ext_position']=$ext_position;
+			           
+			          
+			             
+			         $content[$slide_number-1][$i]['choff_position']=$choff_position;
+			             
+			          $content[$slide_number-1][$i]['chext_position']=$chext_position;
+			             
+			          
+			          $size=null;
+				  $color=null;
+				  $font=null;
+				  
+				  $i++;
+				
+			       }
+			       
+			    }
+                            $textbox_id=null;
+			     
+			   $slide_number++;
+			   $i=0;
+			   
+			  /* echo $json;
+                            //$array = (array)$xml;
+                            echo "<pre>";
+			     print_r($array);
+			    echo "</pre>";*/
+			    /*
+			  $txtbody=$obj->getElementsByTagName("p");
+			    
+			  
+			    
+			  $content[$i]['header']="";  
+			  $content[$i]['content']="";
+			    foreach($txtbody as $k=>$b)
+			    {
+			       if($k==0)
+			        {
+			          $content[$i]['header']=trim($b->nodeValue);
+			        }
+			       else 
+			        {
+			          $content[$i]['content'].=trim($b->nodeValue);
+			        }
+			        
+			      //echo $k.":".trim($b->nodeValue);
+			      //echo "<hr/>";
+			    }
+			    
+			    $i++;
+			    */
+	    
+		    }
+		    
+		    if($slide_number == 1){
+			$output_text .="";
+		    }
+		    $zip_handle->close();
+		}else{
+		$output_text .="";
+		}
+		 
+		 // echo "Content:".$output_text;
+		  
+		 //exit;
+		 
+		 $data=array();
+		
+		 $text="";
+		 $words=array();
+		 
+		 $textbox_id=null;
+		 foreach($content as $k1=>$slide)
+		 {
+		    
+		     $textbox_id=null;
+		    
+		   foreach($slide as $k2=>$s1)
+		   {
+		      // echo  "<br/>Text box idA:".$s1['textbox_id']; 
+		       
+		     if(!empty($s1['textbox_id']))
+		     {
+		
+			  //echo "<br/>TEXT box idA:".$s1['textbox_id'];
+			 // echo  "<br/>Text box idB:".$textbox_id; 
+			   
+			            /*  if	($textbox_id==null)
+			              {
+			              
+			              }
+			              */
+			              
+				      
+				      if(($textbox_id!=$s1['textbox_id'])||$textbox_id==null)
+				       {
+				             if($textbox_id==null&&$s1['textbox']==0)
+				              {
+				                $data[]=array(
+						      'slide'=>($k1+1),
+						      'textbox_id'=>$s1['textbox_id'],
+						      'content'=>$s1['content'],
+						      'words'=>array($s1['content']),
+						      'textbox'=>$s1['textbox'],
+						      'off_possition'=>$s1['off_position'],
+						      'ext_possition'=>$s1['ext_position'],
+						      'spid'=>$s1['spid'],
+						      'shape'=>$s1['shape'],
+						      'is_image'=>$s1['is_image'],
+						      'image_name'=>$s1['image_name'],
+						      'image_filename'=>$s1['image_filename'],
+						      'marl'=>$s1['marl'],
+						      'indent'=>$s1['indent'],
+						      'align'=>$s1['align'],
+						     //  'type'=>$s1['type']
+						      
+						    );
+				              
+				              }
+				              else if(!empty($textbox_id))
+				              {
+					      $data[]=array(
+						      'slide'=>($k1+1),
+						      'textbox_id'=>$textbox_id,
+						      'content'=>$text,
+						      'words'=>$words,
+						      'textbox'=>$s1['textbox'],
+						      'off_possition'=>$s1['off_position'],
+						      'ext_possition'=>$s1['ext_position'],
+						      'spid'=>$s1['spid'],
+						      'shape'=>$s1['shape'],
+						      'is_image'=>$s1['is_image'],
+						      'image_name'=>$s1['image_name'],
+						      'image_filename'=>$s1['image_filename'],
+						      'marl'=>$s1['marl'],
+						      'indent'=>$s1['indent'],
+						      'align'=>$s1['align'],
+						      'bullet_list'=>$s1['bullet_list']
+						     //  'type'=>$s1['type']
+						      
+						    );
+						    
+						    $words=array();
+				                    $text="";
+					       }	    
+						    
+				               
+				       
+				       } 
+				     
+				    
+				     if($textbox_id!=null||$s1['textbox']==1)
+				     {
+				      $text.= $s1['content'];
+				      if(!empty(trim($s1['content'])))
+				       {
+				         $words[]=array(
+				                        'word'=>$s1['content'],
+				                        'font'=>$s1['font'],
+				                        'size'=>$s1['size'],
+				                        'color'=>$s1['color'],
+				                        'lang'=>$s1['lang'],
+				                        'bold'=>$s1['bold'],
+				                        'strike'=>$s1['strike'],
+				                        'spc'=>$s1['spc'], //losely coupled
+				                        'baseline'=>$s1['baseline'], //losely coupled
+				                           /*shadow params*/
+				                        'alpha'=>$s1['alpha'],
+				                        'satmod'=>$s1['satmod'],
+				                        'scheme_color'=>$s1['scheme_color'],
+				                        'glow'=>$s1['glow'],
+				                        'lin'=>$s1['lin'],
+				                        'shade'=>$s1['shade'],
+				                        'tint'=>$s1['tint'],
+				                        'gs'=>$s1['gs'],
+				                        'miter'=>$s1['miter'],
+				                        'PRSTDASH'=>$s1['PRSTDASH'],
+				                        'LN'=>$s1['LN'],
+				                        
+				                        /*Bulleted list params*/
+				                        'BUFONT'=>$s1['BUFONT'],
+				                        'BUCHAR'=>$s1['BUCHAR'],
+				                        'bullet_list'=>$s1['bullet_list']
+				                       ); 
+				         
+				       }
+				      $textbox_id=$s1['textbox_id'];
+				     } 
+				   
+				  
+		      
+		      
+		     }
+		   }
+		   /*
+		   if($k1==0)
+		     {
+		       echo "<pre>";
+		       print_r($data);
+		       echo "</pre>";
+		      exit;
+		     }
+		     */
+		 }
+		  /*
+		  echo "<pre>";
+		 print_r($content);
+		 echo "</pre>";
+		 */
+		 echo "<pre>";
+		 print_r($data);
+		 echo "</pre>";
+		 exit;
+		return $content;
+          }
+         public  function xml_to_array($xml,$main_heading = '') {
+    $deXml = simplexml_load_string($xml);
+    $deJson = json_encode($deXml);
+    $xml_array = json_decode($deJson,TRUE);
+    if (! empty($main_heading)) {
+        $returned = $xml_array[$main_heading];
+        return $returned;
+    } else {
+        return $xml_array;
+    }
+  }
+
 	public function pptx_to_text($input_file)
 	{
 	
@@ -591,12 +1470,12 @@ class SiteController extends Controller
 			    print_r($index);
 			     echo "</pre>";
 			     */
-			     /*
+			     
 			    echo "\nVals array\n";
 			    echo "<pre>";
 			    print_r($vals);
 			    echo "</pre>";
-			    */
+			    
 			    $size=null;
 			    $color=null;
 			    $font=null;
@@ -706,16 +1585,6 @@ class SiteController extends Controller
 		 //exit;
 		return $content;
           }
-         public  function xml_to_array($xml,$main_heading = '') {
-    $deXml = simplexml_load_string($xml);
-    $deJson = json_encode($deXml);
-    $xml_array = json_decode($deJson,TRUE);
-    if (! empty($main_heading)) {
-        $returned = $xml_array[$main_heading];
-        return $returned;
-    } else {
-        return $xml_array;
-    }
-}
+        
        
 }
